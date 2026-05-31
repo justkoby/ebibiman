@@ -1,4 +1,4 @@
-/* Ebi Navigation Assistant Stylesheet */
+/* Ebi Navigation Assistant Stylesheet - High Contrast Black & White Theme */
 
 .ebi-assistant-root {
   position: fixed;
@@ -14,37 +14,45 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  background-color: #173324; /* Forest Green base */
-  border: 1.5px solid #D4A017; /* Gold border */
-  border-radius: 50px;
-  padding: 12px 22px;
-  color: #FDFAF4;
-  font-weight: 600;
-  font-size: 0.95rem;
-  letter-spacing: 0.03em;
+  background-color: #000000; /* Solid Black */
+  border: 1.5px solid #000000;
+  border-radius: 100px;
+  padding: 12px 24px;
+  color: #FFFFFF;
+  font-family: 'PT Sans Narrow', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
   cursor: pointer;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   outline: none;
 }
 
 .ebi-trigger-btn:hover {
-  transform: translateY(-3px) scale(1.03);
-  box-shadow: 0 14px 30px rgba(212, 160, 23, 0.25);
-  background-color: #1a3c2a;
-  border-color: #F2CC6B;
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35);
+  background-color: #FFFFFF; /* High Contrast Swap */
+  color: #000000;
+  border-color: #FFFFFF;
+}
+
+.ebi-trigger-btn:hover .ebi-trigger-dot {
+  background-color: #000000;
 }
 
 .ebi-trigger-btn:active {
-  transform: translateY(-1px) scale(1);
+  transform: translateY(-1px);
 }
 
 .ebi-trigger-dot {
   width: 7px;
   height: 7px;
-  background-color: #D4A017;
+  background-color: #FFFFFF;
   border-radius: 50%;
-  animation: pulse-gold 2s infinite ease-in-out;
+  transition: background-color 0.4s ease;
+  animation: pulse-white 2s infinite ease-in-out;
 }
 
 .ebi-trigger-icon {
@@ -58,12 +66,12 @@
   right: 0;
   width: 380px;
   height: 520px;
-  background: rgba(23, 51, 36, 0.82); /* Glass forest green background */
+  background: rgba(18, 18, 18, 0.95); /* Deep dark background */
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1.5px solid rgba(212, 160, 23, 0.3); /* Transparent gold border */
+  border: 1.5px solid rgba(255, 255, 255, 0.15); /* Sleek white border */
   border-radius: 20px;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -75,8 +83,8 @@
   justify-content: space-between;
   align-items: center;
   padding: 18px 20px;
-  background: rgba(14, 32, 23, 0.6);
-  border-bottom: 1.5px solid rgba(212, 160, 23, 0.15);
+  background: rgba(0, 0, 0, 0.95);
+  border-bottom: 1.5px solid rgba(255, 255, 255, 0.1);
 }
 
 .ebi-header-title-wrap {
@@ -88,12 +96,12 @@
 .ebi-avatar {
   width: 32px;
   height: 32px;
-  background-color: #D4A017;
+  background-color: #FFFFFF;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #173324;
+  color: #000000;
 }
 
 .ebi-sparkle-icon {
@@ -104,15 +112,15 @@
   font-family: 'PT Sans Narrow', sans-serif;
   font-size: 1.15rem;
   font-weight: 700;
-  color: #FDFAF4;
+  color: #FFFFFF;
   margin: 0;
   line-height: 1.2;
 }
 
 .ebi-header-tagline {
   font-size: 0.72rem;
-  font-weight: 500;
-  color: #D4A017;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.5);
   text-transform: uppercase;
   letter-spacing: 0.05em;
   display: block;
@@ -121,7 +129,7 @@
 .ebi-close-btn {
   background: none;
   border: none;
-  color: rgba(253, 250, 244, 0.7);
+  color: rgba(255, 255, 255, 0.7);
   cursor: pointer;
   padding: 5px;
   border-radius: 50%;
@@ -132,8 +140,8 @@
 }
 
 .ebi-close-btn:hover {
-  background: rgba(253, 250, 244, 0.1);
-  color: #FDFAF4;
+  background: rgba(255, 255, 255, 0.1);
+  color: #FFFFFF;
   transform: rotate(90deg);
 }
 
@@ -143,7 +151,7 @@
   padding: 20px;
   overflow-y: auto;
   scrollbar-width: thin;
-  scrollbar-color: rgba(212, 160, 23, 0.2) transparent;
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
 }
 
 .ebi-chat-body::-webkit-scrollbar {
@@ -155,7 +163,7 @@
 }
 
 .ebi-chat-body::-webkit-scrollbar-thumb {
-  background-color: rgba(212, 160, 23, 0.2);
+  background-color: rgba(255, 255, 255, 0.2);
   border-radius: 3px;
 }
 
@@ -190,18 +198,18 @@
 }
 
 .ebi-message-bubble.bot {
-  background: rgba(253, 250, 244, 0.08);
-  border: 1px solid rgba(253, 250, 244, 0.12);
-  color: #FDFAF4;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #FFFFFF;
   border-top-left-radius: 2px;
 }
 
 .ebi-message-bubble.user {
-  background: #D4A017;
-  color: #173324;
+  background: #FFFFFF;
+  color: #000000;
   font-weight: 500;
   border-top-right-radius: 2px;
-  box-shadow: 0 4px 12px rgba(212, 160, 23, 0.15);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.05);
 }
 
 .ebi-message-text {
@@ -215,7 +223,7 @@
   flex-direction: column;
   gap: 8px;
   margin-top: 12px;
-  border-top: 1px solid rgba(253, 250, 244, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding-top: 10px;
 }
 
@@ -223,11 +231,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: rgba(212, 160, 23, 0.12);
-  border: 1px solid rgba(212, 160, 23, 0.25);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 8px;
   padding: 8px 12px;
-  color: #F2CC6B;
+  color: #FFFFFF;
   font-size: 0.82rem;
   font-weight: 500;
   cursor: pointer;
@@ -237,8 +245,9 @@
 }
 
 .ebi-bubble-link-btn:hover {
-  background: rgba(212, 160, 23, 0.24);
-  border-color: #D4A017;
+  background: #FFFFFF;
+  color: #000000;
+  border-color: #FFFFFF;
   transform: translateX(3px);
 }
 
@@ -255,11 +264,11 @@
 }
 
 .ebi-quick-btn {
-  background: rgba(253, 250, 244, 0.05);
-  border: 1px solid rgba(253, 250, 244, 0.15);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 20px;
   padding: 8px 14px;
-  color: #FDFAF4;
+  color: #FFFFFF;
   font-size: 0.8rem;
   font-weight: 500;
   cursor: pointer;
@@ -267,9 +276,9 @@
 }
 
 .ebi-quick-btn:hover {
-  background: #173324;
-  border-color: #D4A017;
-  color: #D4A017;
+  background: #FFFFFF;
+  border-color: #FFFFFF;
+  color: #000000;
   transform: translateY(-1.5px);
 }
 
@@ -277,36 +286,36 @@
 .ebi-chat-input-bar {
   display: flex;
   padding: 12px 16px;
-  background: rgba(14, 32, 23, 0.7);
-  border-top: 1px solid rgba(212, 160, 23, 0.15);
+  background: rgba(0, 0, 0, 0.95);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   gap: 10px;
   align-items: center;
 }
 
 .ebi-text-input {
   flex: 1;
-  background: rgba(253, 250, 244, 0.06);
-  border: 1.5px solid rgba(253, 250, 244, 0.12);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1.5px solid rgba(255, 255, 255, 0.1);
   border-radius: 30px;
   padding: 10px 16px;
-  color: #FDFAF4;
+  color: #FFFFFF;
   font-size: 0.85rem;
   outline: none;
   transition: all 0.25s ease;
 }
 
 .ebi-text-input:focus {
-  border-color: rgba(212, 160, 23, 0.6);
-  background: rgba(253, 250, 244, 0.1);
-  box-shadow: 0 0 10px rgba(212, 160, 23, 0.1);
+  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
 }
 
 .ebi-send-btn {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: #D4A017;
-  color: #173324;
+  background: #FFFFFF;
+  color: #000000;
   border: none;
   display: flex;
   align-items: center;
@@ -316,29 +325,29 @@
 }
 
 .ebi-send-btn:hover:not(:disabled) {
-  background: #F2CC6B;
+  background: rgba(255, 255, 255, 0.85);
   transform: scale(1.08) rotate(-15deg);
 }
 
 .ebi-send-btn:disabled {
-  background: rgba(253, 250, 244, 0.15);
-  color: rgba(253, 250, 244, 0.3);
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.3);
   cursor: not-allowed;
 }
 
 /* Animations */
-@keyframes pulse-gold {
+@keyframes pulse-white {
   0% {
     transform: scale(0.9);
-    box-shadow: 0 0 0 0 rgba(212, 160, 23, 0.7);
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.5);
   }
   70% {
     transform: scale(1.1);
-    box-shadow: 0 0 0 6px rgba(212, 160, 23, 0);
+    box-shadow: 0 0 0 6px rgba(255, 255, 255, 0);
   }
   100% {
     transform: scale(0.9);
-    box-shadow: 0 0 0 0 rgba(212, 160, 23, 0);
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
   }
 }
 
