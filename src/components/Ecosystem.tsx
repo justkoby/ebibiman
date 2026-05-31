@@ -1,201 +1,176 @@
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import EcosystemGlobe from './EcosystemGlobe'
-import './Ecosystem.css'
+﻿import { useState } from "react"
+import { motion } from "framer-motion"
+import "./Ecosystem.css"
+
+interface EcoItem {
+  num: string
+  title: string
+  tags: string[]
+  image: string
+  stat?: string
+  statLabel?: string
+}
+
+const ecoItems: EcoItem[] = [
+  {
+    num: "01",
+    title: "AI MASTERCLASSES",
+    tags: ["Prompt Engineering", "AI Literacy", "Future Skills"],
+    image: "/images/AI Prompt Engineering.png",
+    stat: "150+",
+    statLabel: "Participants"
+  },
+  {
+    num: "02",
+    title: "ETA WEBINAR SERIES",
+    tags: ["Industry Conversations", "Thought Leadership", "Innovation Discussions"],
+    image: "/images/webinar_series.png",
+    stat: "12+",
+    statLabel: "Sessions"
+  },
+  {
+    num: "03",
+    title: "FUTURE MINDS GHANA",
+    tags: ["ICT Labs", "Teacher Training", "Digital Literacy"],
+    image: "/images/future_minds_ghana.png",
+    stat: "5+",
+    statLabel: "Schools"
+  },
+  {
+    num: "04",
+    title: "RESPONSIBLE TECH EDUCATIONSHIP",
+    tags: ["Ethical Technology", "Indigenous Innovation", "Community Impact"],
+    image: "/images/Responsible Tech Educationship.png"
+  },
+  {
+    num: "05",
+    title: "LEARNING THROUGH PLAY",
+    tags: ["Children", "Creativity", "Technology Exploration"],
+    image: "/images/learning_through_play.png"
+  },
+  {
+    num: "06",
+    title: "PARTNERS & COMMUNITIES",
+    tags: ["Schools", "NGOs", "Universities", "Sponsors"],
+    image: "/images/school_outreach.png"
+  }
+]
+
+const rowVariants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.65, ease: [0.16, 1, 0.3, 1], delay: i * 0.08 }
+  })
+} as any
 
 const Ecosystem = () => {
-  const [hoveredNode, setHoveredNode] = useState<string | null>(null)
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.15 }
-    }
-  } as any
-
-  const fadeUp = {
-    hidden: { opacity: 0, y: 35 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
-    }
-  } as any
-
-  const flowSteps = [
-    { label: 'Students', desc: 'Nurturing young, aspiring minds across schools.' },
-    { label: 'Skills', desc: 'Equipping them with ethical coding & indigenous-centered design.' },
-    { label: 'Innovation', desc: 'Channelling skills to build custom community solutions.' },
-    { label: 'Communities', desc: 'Deploying technology hubs and fostering peer learning.' },
-    { label: 'Impact', desc: 'Catalysing economic sovereignty & technology leadership.' }
-  ]
-
-  const nodeDetails: Record<string, { desc: string; image?: string; items: string[] }> = {
-    'AI Masterclasses': {
-      desc: 'Specialized intensive training camps preparing African developers for the cognitive economy.',
-      image: '/images/AI Prompt Engineering.png',
-      items: ['Prompt Engineering', 'AI Literacy', 'Ethical AI', 'Soft Skills']
-    },
-    'Webinars': {
-      desc: 'Public broadcasts bridging the gap between students, leaders, and the tech ecosystem.',
-      image: '/images/webinar_series.png',
-      items: ['Ghanaian Tech Space discussions', 'Industry leaders', 'Innovation conversations']
-    },
-    'Future Minds Ghana': {
-      desc: 'Our cornerstone initiative building ICT infrastructure and setting up tech clubs directly in schools.',
-      image: '/images/future_minds_ghana.png',
-      items: ['ICT Labs', 'School Training', 'Teacher Development', 'Tech Clubs']
-    },
-    'Partners': {
-      desc: 'Stakeholders and collaborators funding and scaling our digital development programs.',
-      items: ['Universities', 'NGOs', 'Companies']
-    },
-    'Schools': {
-      desc: 'Educational institutions participating in our hands-on digital curriculums.',
-      items: ['Primary Schools', 'Junior High', 'Senior High']
-    },
-    'Communities': {
-      desc: 'Decentralized local circles building open tech and fostering digital literacy.',
-      items: ['Tech Clubs', 'Local Hubs', 'Developer Circles']
-    },
-    'Innovation Labs': {
-      desc: 'Physical sandboxes and research groups building localized software and hardware.',
-      items: ['R&D Projects', 'Local Tooling', 'Open Source Labs']
-    },
-    'Tech Leaders': {
-      desc: 'Industry veterans guiding our developers and ensuring tech sovereignty.',
-      items: ['Mentorship', 'Industry Advisory', 'Alumni Network']
-    }
-  }
-
-  const activeDetails = hoveredNode ? nodeDetails[hoveredNode] : null
+  const activeItem = hoveredIndex !== null ? ecoItems[hoveredIndex] : null
 
   return (
     <section className="eco-section" id="ecosystem">
-      {/* Subtle Adinkra Background Overlay */}
-      <div className="adinkra-overlay"></div>
-
       <div className="eco-container">
-        <motion.div 
-          className="eco-grid"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-        >
-          {/* Left Side: Content, Stats & CTAs */}
-          <motion.div className="eco-left" variants={fadeUp}>
-            <div className="eco-eyebrow">The Ecosystem</div>
-            
+
+        {/* Section Header */}
+        <div className="eco-header">
+          <span className="eco-eyebrow">Our Ecosystem</span>
+          <div className="eco-header-grid">
             <h2 className="eco-title">
-              Building Africa’s <br />
-              <span className="gold-gradient">Ethical Technology</span> <br />
-              Ecosystem
+              BUILDING AFRICA'S<br />
+              TECHNOLOGY<br />
+              ECOSYSTEM
             </h2>
-            
-            <p className="eco-intro">
-              Ebibiman connects schools, students, educators, communities, and partners into one growing movement for ethical African technology.
+            <p className="eco-subtitle">
+              We connect students, educators, communities,
+              industry leaders, and technology partners
+              to create lasting digital impact across Africa.
             </p>
+          </div>
+        </div>
 
-            {/* Interactive Flow */}
-            <div className="eco-flow-container">
-              <div className="flow-steps">
-                {flowSteps.map((step, idx) => (
-                  <div className="flow-step-item" key={idx}>
-                    <div className="flow-marker">
-                      <div className="flow-marker-dot"></div>
-                      {idx < flowSteps.length - 1 && <div className="flow-marker-line"></div>}
-                    </div>
-                    <div className="flow-text">
-                      <span className="flow-step-title">{step.label}</span>
-                      <p className="flow-step-desc">{step.desc}</p>
-                    </div>
+        {/* Main Grid: List Left + Preview Right */}
+        <div className="eco-body-grid">
+
+          {/* Left: Numbered List */}
+          <div className="eco-list">
+            {ecoItems.map((item, i) => (
+              <motion.div
+                key={item.num}
+                className={`eco-row ${hoveredIndex === i ? "eco-row-active" : ""}`}
+                custom={i}
+                variants={rowVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-60px" }}
+                onMouseEnter={() => setHoveredIndex(i)}
+                onMouseLeave={() => setHoveredIndex(null)}
+              >
+                <div className="eco-row-left">
+                  <span className="eco-row-num">{item.num}</span>
+                  <span className="eco-row-title">{item.title}</span>
+                </div>
+                <div className="eco-row-right">
+                  <div className="eco-row-tags">
+                    {item.tags.map((tag, ti) => (
+                      <span key={ti} className="eco-row-tag">{tag}</span>
+                    ))}
                   </div>
-                ))}
-              </div>
-            </div>
+                  <div className="eco-arrow-circle">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                      <path d="M3 8H13M13 8L8.5 3.5M13 8L8.5 12.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
 
-            {/* Stats Grid */}
-            <div className="eco-stats-grid">
-              <div className="eco-stat-card">
-                <h4 className="eco-stat-value">5,000+</h4>
-                <p className="eco-stat-label">Students Reached</p>
-              </div>
-              <div className="eco-stat-card">
-                <h4 className="eco-stat-value">45+</h4>
-                <p className="eco-stat-label">Schools Engaged</p>
-              </div>
-              <div className="eco-stat-card">
-                <h4 className="eco-stat-value">20+</h4>
-                <p className="eco-stat-label">Partners</p>
-              </div>
-              <div className="eco-stat-card">
-                <h4 className="eco-stat-value">15+</h4>
-                <p className="eco-stat-label">Communities</p>
-              </div>
-            </div>
-
-            <div className="eco-cta-actions">
-              <a href="#explore" className="btn-eco-primary">
-                <span>Explore the Ecosystem</span>
-              </a>
-              <a href="#partner-with-us" className="btn-eco-secondary">
-                <span>Partner With Us</span>
-              </a>
-            </div>
-          </motion.div>
-
-          {/* Right Side: 3D Globe & Preview Tooltip */}
-          <motion.div className="eco-right" variants={fadeUp}>
-            <div className="globe-wrapper-eco">
-              <EcosystemGlobe hoveredNode={hoveredNode} setHoveredNode={setHoveredNode} />
-              
-              {/* Floating Hover Details Card */}
-              <AnimatePresence mode="wait">
-                {activeDetails && (
-                  <motion.div 
-                    className="eco-hover-card"
-                    initial={{ opacity: 0, y: 15, scale: 0.95 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                    transition={{ duration: 0.3, ease: 'easeOut' }}
-                  >
-                    {activeDetails.image && (
-                      <div className="hover-card-image-wrapper">
-                        <img src={activeDetails.image} alt={hoveredNode || ''} className="hover-card-image" />
+          {/* Right: Sticky Preview Panel */}
+          <div className="eco-preview-panel">
+            <div className="eco-preview-inner">
+              {activeItem ? (
+                <div className="eco-preview-card" key={activeItem.num}>
+                  <div className="eco-preview-img-wrap">
+                    <img
+                      src={activeItem.image}
+                      alt={activeItem.title}
+                      className="eco-preview-img"
+                    />
+                  </div>
+                  <div className="eco-preview-info">
+                    <span className="eco-preview-num">{activeItem.num}</span>
+                    <h3 className="eco-preview-title">{activeItem.title}</h3>
+                    {activeItem.stat && (
+                      <div className="eco-preview-stat">
+                        <span className="eco-preview-stat-val">{activeItem.stat}</span>
+                        <span className="eco-preview-stat-lbl">{activeItem.statLabel}</span>
                       </div>
                     )}
-                    <div className="hover-card-content">
-                      <h4 className="hover-card-title">{hoveredNode}</h4>
-                      <p className="hover-card-desc">{activeDetails.desc}</p>
-                      
-                      <div className="hover-card-bullets">
-                        {activeDetails.items.map((item, idx) => (
-                          <div className="bullet-tag" key={idx}>
-                            <span className="bullet-dot"></span>
-                            <span>{item}</span>
-                          </div>
-                        ))}
-                      </div>
+                    <div className="eco-preview-tags">
+                      {activeItem.tags.map((tag, i) => (
+                        <span key={i} className="eco-preview-tag">{tag}</span>
+                      ))}
                     </div>
-                  </motion.div>
-                )}
-                
-                {!activeDetails && (
-                  <motion.div 
-                    className="eco-hover-card-hint"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 0.85 }}
-                    transition={{ delay: 0.2 }}
-                  >
-                    <p>Hover over the nodes on the globe to explore our ecosystem</p>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+                  </div>
+                </div>
+              ) : (
+                <div className="eco-preview-empty">
+                  <div className="eco-preview-empty-icon">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                      <circle cx="16" cy="16" r="14" stroke="currentColor" strokeWidth="1.5" strokeDasharray="4 3"/>
+                      <path d="M10 16H22M22 16L17 11M22 16L17 21" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
+                  <p>Hover a row to explore</p>
+                </div>
+              )}
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+
+        </div>
       </div>
     </section>
   )

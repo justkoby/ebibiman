@@ -1,0 +1,277 @@
+/* ===== OUR APPROACH SECTION ===== */
+.approach-section {
+  position: relative;
+  background-color: #FAF9F6; /* Matches the warm ivory/alabaster */
+  padding: 80px 6vw;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.approach-container {
+  max-width: 1300px;
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+/* Header */
+.approach-header {
+  margin-bottom: 60px;
+  text-align: left;
+}
+
+.approach-eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #777570;
+  margin-bottom: 20px;
+}
+
+.approach-header-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 40px;
+  align-items: flex-end;
+}
+
+.approach-title {
+  font-family: 'PT Sans Narrow', sans-serif;
+  font-size: clamp(32px, 5.2vw, 68px);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -2px;
+  color: #1A1A1A;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.approach-subtitle {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: clamp(14px, 1.2vw, 17px);
+  line-height: 1.6;
+  color: #5C5A55;
+  margin: 0;
+  max-width: 460px;
+}
+
+/* Three Large Approach Cards Grid */
+.approach-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.approach-card {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  aspect-ratio: 3.6 / 4.6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+  box-sizing: border-box;
+}
+
+/* Background Image Zoom Setup */
+.approach-card-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 0;
+}
+
+.approach-card:hover .approach-card-bg {
+  transform: scale(1.08);
+}
+
+/* Darkening Overlay Setup */
+.approach-card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.05); /* very light initial */
+  transition: background-color 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1;
+}
+
+.approach-card:hover .approach-card-overlay {
+  background-color: rgba(0, 0, 0, 0.35); /* darkens on hover */
+}
+
+/* White Container holding Card Content */
+.approach-card-inner {
+  background-color: #FFFFFF;
+  border-radius: 20px;
+  padding: 40px 28px;
+  width: 85%;
+  height: 82%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-sizing: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.03);
+  z-index: 2;
+  position: relative;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.approach-card:hover .approach-card-inner {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
+}
+
+/* Card Elements */
+.approach-card-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #8A6D3B; /* Accent Gold */
+  letter-spacing: 2px;
+  margin-bottom: 18px;
+}
+
+.approach-card-icon-circle {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  border: 1.5px solid #F0EFEA;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 22px;
+  background-color: #FAF9F6;
+  color: #1A1A1A;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.approach-card:hover .approach-card-icon-circle {
+  background-color: #1A1A1A;
+  color: #FFFFFF;
+  border-color: #1A1A1A;
+}
+
+.approach-card-icon {
+  width: 22px;
+  height: 22px;
+}
+
+.approach-card-title {
+  font-family: 'PT Sans Narrow', sans-serif;
+  font-size: clamp(17px, 1.8vw, 22px);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+  color: #1A1A1A;
+  margin: 0 0 12px 0;
+}
+
+.approach-card-desc {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: clamp(12.5px, 1.1vw, 14px);
+  line-height: 1.5;
+  color: #6C6B66;
+  margin: 0;
+  flex-grow: 1;
+}
+
+/* CTA appearing on hover */
+.approach-card-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-family: 'PT Sans Narrow', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #8A6D3B;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  transition: opacity 0.4s ease, height 0.4s ease, margin-top 0.4s ease;
+  margin-top: 0;
+}
+
+.approach-card:hover .approach-card-cta {
+  opacity: 1;
+  height: 20px;
+  margin-top: 20px;
+}
+
+.approach-card-arrow {
+  width: 14px;
+  height: 14px;
+  transition: transform 0.3s ease;
+}
+
+.approach-card:hover .approach-card-arrow {
+  transform: translateX(4px);
+}
+
+/* ===== RESPONSIVE MEDIA QUERIES ===== */
+@media (max-width: 1024px) {
+  .approach-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .approach-header-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    align-items: flex-start;
+  }
+  
+  .approach-card {
+    aspect-ratio: 4 / 3;
+  }
+}
+
+@media (max-width: 768px) {
+  .approach-section {
+    padding: 50px 6vw;
+  }
+  
+  .approach-card {
+    aspect-ratio: 1 / 1;
+    padding: 16px;
+  }
+  
+  .approach-card-inner {
+    padding: 24px 16px;
+    width: 90%;
+    height: 90%;
+  }
+  
+  .approach-card-icon-circle {
+    margin-bottom: 12px;
+    width: 48px;
+    height: 48px;
+  }
+  
+  .approach-card-icon {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .approach-card-title {
+    margin-bottom: 8px;
+  }
+}

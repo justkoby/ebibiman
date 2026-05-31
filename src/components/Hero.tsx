@@ -1,137 +1,162 @@
-import { useState } from 'react'
-import { motion } from 'framer-motion'
-import { Menu, X } from 'lucide-react'
-import ParticleSwarm from './ParticleSwarm'
+import { motion, useScroll, useTransform } from 'framer-motion'
+import { Star, ChevronDown, Compass } from 'lucide-react'
 import './Hero.css'
 
 const Hero = () => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const { scrollY } = useScroll()
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.1
-      }
-    }
-  } as any
+  // Parallax effect transformations based on scroll position
+  const bgY = useTransform(scrollY, [0, 800], ['0%', '20%'])
+  const logoY = useTransform(scrollY, [0, 800], [0, 80])
+  const card1Y = useTransform(scrollY, [0, 800], [0, -110])
+  const card4Y = useTransform(scrollY, [0, 800], [0, -70])
+  const badgeY = useTransform(scrollY, [0, 800], [0, -35])
 
-  const fadeUpVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+  // Smooth scroll helper for bottom menu button
+  const handleScrollToEcosystem = (e: React.MouseEvent) => {
+    e.preventDefault()
+    const target = document.getElementById('ecosystem')
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' })
     }
-  } as any
-
-  const navVariants = {
-    hidden: { opacity: 0, y: -10 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, ease: "easeOut" }
-    }
-  } as any
+  }
 
   return (
-    <section className="hero">
-      {/* Navigation Bar */}
-      <motion.nav 
-        className="hero-nav"
-        variants={navVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        <div className="nav-container">
-          <div className="nav-logo">
-            <img src="/images/logo.png" alt="ETA Logo" className="logo-image" />
-          </div>
-
-          <ul className="nav-links">
-            <li><a href="#home" className="active">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#programmes">Programmes</a></li>
-            <li><a href="#get-involved">Get Involved</a></li>
-            <li><a href="#news">News</a></li>
-          </ul>
-
-          <div className="nav-action">
-            <a href="#contact" className="btn-contact">Contact</a>
-          </div>
-
-          <button 
-            className="mobile-menu-toggle" 
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle Menu"
-          >
-            {mobileMenuOpen ? <X /> : <Menu />}
-          </button>
-        </div>
-
-        {/* Mobile Navigation Drawer */}
-        {mobileMenuOpen && (
-          <motion.div 
-            className="mobile-nav-drawer"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-          >
-            <a href="#home" onClick={() => setMobileMenuOpen(false)}>Home</a>
-            <a href="#about" onClick={() => setMobileMenuOpen(false)}>About</a>
-            <a href="#programmes" onClick={() => setMobileMenuOpen(false)}>Programmes</a>
-            <a href="#get-involved" onClick={() => setMobileMenuOpen(false)}>Get Involved</a>
-            <a href="#news" onClick={() => setMobileMenuOpen(false)}>News</a>
-            <a href="#contact" className="mobile-contact-btn" onClick={() => setMobileMenuOpen(false)}>Contact</a>
-          </motion.div>
-        )}
-      </motion.nav>
-
-      {/* Hero Content Area */}
+    <section className="hero-metony" id="hero">
+      {/* Background Video with slow zoom-in on page load */}
       <motion.div 
-        className="hero-grid"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
+        className="hero-metony-bg-video-wrapper"
+        initial={{ scale: 1.12, opacity: 0 }}
+        animate={{ scale: 1, opacity: 0.85 }}
+        transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
+        style={{ y: bgY }}
       >
-        {/* Left Column: Headline */}
-        <motion.div className="hero-left" variants={fadeUpVariants}>
-
-          <h1 className="hero-headline">
-            Building Africa's <br />
-            Next Generation of <br />
-            <span className="gradient-text">Ethical Technology</span> <br />
-            Creators
-          </h1>
-        </motion.div>
-
-        {/* Right Column: Glowy Sphere, Subtext, CTAs */}
-        <motion.div className="hero-right" variants={fadeUpVariants}>
-          <div className="sphere-wrapper">
-            <ParticleSwarm />
-            <div className="sphere-glow-ring"></div>
-          </div>
-          
-          <div className="content-block">
-            <p className="hero-subtext">
-              Ebibiman Tech Alliance empowers young Africans to design, build, and lead technology 
-              rooted in indigenous knowledge, ethical principles, and community impact.
-            </p>
-            
-            <div className="hero-cta-actions">
-              <a href="#join" className="btn-primary-new">
-                <span>Join the Movement</span>
-              </a>
-              <a href="#partner" className="btn-secondary-new">
-                <span>Become a Partner</span>
-              </a>
-            </div>
-          </div>
-        </motion.div>
+        <video 
+          autoPlay 
+          loop 
+          muted 
+          playsInline 
+          className="hero-video-bg"
+        >
+          <source src="https://res.cloudinary.com/justkoby/video/upload/v1780198737/bg-video_pnwybf.mp4" type="video/mp4" />
+        </video>
       </motion.div>
 
+      {/* Dark overlay for text contrast */}
+      <div className="hero-metony-overlay"></div>
+
+      {/* Center Container: Main Brand Logo & Subtext */}
+      <div className="hero-metony-center">
+        <motion.div 
+          className="brand-logo-container"
+          style={{ y: logoY }}
+          initial={{ opacity: 0, y: 35 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <img 
+            src="/images/logo.png" 
+            alt="Ebibiman Tech Alliance" 
+            className="hero-logo-main" 
+          />
+        </motion.div>
+
+        <motion.p 
+          className="hero-supporting-text"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.4, duration: 1.2 }}
+        >
+          Empowering young Africans to create ethical, indigenous, and impactful technology through education, innovation, and community action.
+        </motion.p>
+      </div>
+
+      {/* Floating Card #1: Programme Card 1 (Right Side) */}
+      <motion.div 
+        className="floating-card-prog card-right"
+        style={{ y: card1Y }}
+        initial={{ opacity: 0, y: 120 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.8, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+      >
+        <div className="card-prog-thumb">
+          <img src="/images/AI Prompt Engineering.png" alt="AI Masterclass" />
+        </div>
+        <div className="card-prog-details">
+          <span className="card-prog-tag">AI Masterclass 2.0</span>
+          <h4 className="card-prog-title">AI Prompt Engineering</h4>
+          <p className="card-prog-meta">150+ Participants</p>
+          <a href="#programmes" className="btn-card-action">View Programme</a>
+        </div>
+      </motion.div>
+
+      {/* Floating Card #4: Programme Card 2 (Left Side) */}
+      <motion.div 
+        className="floating-card-prog card-left"
+        style={{ y: card4Y }}
+        initial={{ opacity: 0, y: 150 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.0, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+      >
+        <div className="card-prog-thumb">
+          <img src="/images/webinar_series.png" alt="ETA Webinar Series" />
+        </div>
+        <div className="card-prog-details">
+          <span className="card-prog-tag">Webinar Series</span>
+          <h4 className="card-prog-title">ETA Webinar Series</h4>
+          <p className="card-prog-meta">Industry Conversations</p>
+          <a href="#events" className="btn-card-action">Watch Sessions</a>
+        </div>
+      </motion.div>
+
+      {/* Floating Card #3: Bottom-Left Review Badge */}
+      <motion.div 
+        className="floating-badge-reviews"
+        style={{ y: badgeY }}
+        initial={{ opacity: 0, x: -30 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 0.7, duration: 1.0 }}
+      >
+        <div className="star-row">
+          <Star className="star-iconfill" />
+          <Star className="star-iconfill" />
+          <Star className="star-iconfill" />
+          <Star className="star-iconfill" />
+          <Star className="star-iconfill" />
+        </div>
+        <div className="badge-text-block">
+          <span className="badge-val">12+ Events Hosted</span>
+          <span className="badge-lbl">Across Ghana & 500+ Youth Reached</span>
+        </div>
+      </motion.div>
+
+      {/* Bottom Center Button: Explore Ecosystem Menu */}
+      <motion.div 
+        className="bottom-menu-container"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.1, duration: 0.8 }}
+      >
+        <a 
+          href="#ecosystem" 
+          className="btn-bottom-menu"
+          onClick={handleScrollToEcosystem}
+        >
+          <span>Explore Ecosystem</span>
+          <Compass className="menu-icon-spin" />
+        </a>
+      </motion.div>
+
+      {/* Scroll Down Indicator */}
+      <motion.div 
+        className="scroll-down-indicator"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.7 }}
+        transition={{ delay: 1.3, duration: 0.8 }}
+      >
+        <ChevronDown className="bounce-arrow" />
+        <span>Discover The Ecosystem</span>
+      </motion.div>
     </section>
   )
 }

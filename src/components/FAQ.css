@@ -1,7 +1,7 @@
-/* ===== FAQ SECTION ===== */
+/* ===== FAQ SECTION (LIGHT THEME) ===== */
 .faq-section {
   padding: 120px 6vw;
-  background-color: var(--black);
+  background-color: #FAF9F6; /* Premium warm ivory background */
   position: relative;
   width: 100%;
   box-sizing: border-box;
@@ -18,20 +18,45 @@
   margin-bottom: 60px;
 }
 
+.faq-header .section-eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #888480;
+  display: block;
+  margin-bottom: 18px;
+}
+
+.faq-header .section-title {
+  font-family: 'PT Sans Narrow', sans-serif;
+  font-size: clamp(32px, 4.5vw, 64px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -2px;
+  color: #1A1A1A;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.faq-header .gold-text {
+  color: #8A6D3B;
+}
+
 /* ===== ACCORDIONS LIST ===== */
 .faq-accordions-list {
   display: flex;
   flex-direction: column;
-  border-top: 1px solid rgba(253, 250, 244, 0.08);
+  border-top: 1px solid #E2E1DC; /* Soft warm grey borders */
 }
 
 .faq-accordion-item {
-  border-bottom: 1px solid rgba(253, 250, 244, 0.08);
+  border-bottom: 1px solid #E2E1DC;
   transition: all 0.3s ease;
 }
 
 .faq-accordion-item:hover {
-  background: rgba(253, 250, 244, 0.005);
+  background: rgba(26, 26, 26, 0.01);
 }
 
 .faq-question-btn {
@@ -51,26 +76,26 @@
   font-family: 'Muller Next Trial', sans-serif;
   font-size: clamp(15px, 1.4vw, 19px);
   font-weight: 400;
-  color: var(--off-white);
+  color: #1A1A1A; /* Dark text */
   letter-spacing: -0.3px;
   transition: color 0.3s ease;
 }
 
 .faq-accordion-item:hover .faq-question-btn span,
 .faq-accordion-item.active .faq-question-btn span {
-  color: var(--gold-light);
+  color: #8A6D3B; /* Accent gold highlight */
 }
 
 .faq-chevron-icon {
   width: 18px;
   height: 18px;
-  color: rgba(253, 250, 244, 0.4);
+  color: rgba(26, 26, 26, 0.35); /* Muted chevron color */
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
 }
 
 .faq-accordion-item:hover .faq-chevron-icon,
 .faq-accordion-item.active .faq-chevron-icon {
-  color: var(--gold);
+  color: #8A6D3B;
 }
 
 .faq-accordion-item.active .faq-chevron-icon {
@@ -83,11 +108,11 @@
 }
 
 .faq-answer-text {
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Inter Tight', sans-serif;
   font-size: clamp(13.5px, 1.1vw, 15px);
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.7;
-  color: var(--muted);
+  color: #6C6B66; /* Charcoal grey description text */
   padding: 0 10px 24px 10px;
   margin: 0;
 }

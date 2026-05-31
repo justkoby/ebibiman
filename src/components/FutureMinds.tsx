@@ -1,189 +1,193 @@
-import { useState } from 'react'
-import { motion } from 'framer-motion'
-import { Laptop, GraduationCap, Users, Shield, ArrowRight } from 'lucide-react'
-import './FutureMinds.css'
+﻿import { useEffect, useRef, useState } from "react"
+import { motion } from "framer-motion"
+import "./FutureMinds.css"
 
-interface PillarData {
+interface Phase {
+  num: string
   title: string
   desc: string
-  icon: any
+  // placeholder color for now — user will swap in real images later
+  placeholderColor: string
 }
 
-interface TimelinePhase {
-  phase: string
-  title: string
-  desc: string
-  status: string
-}
-
-const pillars: PillarData[] = [
+const phases: Phase[] = [
   {
-    title: 'ICT Labs Setup',
-    desc: 'Installing offline-capable servers, workstations, and network routers inside schools to bypass internet constraints.',
-    icon: Laptop
+    num: "01",
+    title: "ICT LAB SETUP",
+    desc: "We equip schools with computers, networking, and digital infrastructure — creating a foundation for meaningful technology education.",
+    placeholderColor: "#2A2A2A"
   },
   {
-    title: 'Teacher Training',
-    desc: 'Equipping school educators with curriculum guides, digital skills, and AI-literacy frameworks to support peer learning.',
-    icon: GraduationCap
+    num: "02",
+    title: "DIGITAL LITERACY",
+    desc: "Students gain practical technology skills integrated into their everyday learning — from basic computing to creative problem solving.",
+    placeholderColor: "#1E1E2E"
   },
   {
-    title: 'Tech Clubs',
-    desc: 'Launching weekly student-led coding clubs where children build games, scripts, and automation boards together.',
-    icon: Users
+    num: "03",
+    title: "TEACHER TRAINING",
+    desc: "Educators receive hands-on training to confidently lead digital lessons, ensuring technology adoption is sustained long-term.",
+    placeholderColor: "#1A2A1A"
   },
   {
-    title: 'Community Access',
-    desc: 'Opening laboratory doors on weekends and holidays for local youths and adult literacy training programs.',
-    icon: Shield
-  }
-]
-
-const phases: TimelinePhase[] = [
-  {
-    phase: 'Phase 1',
-    title: 'Computer Lab Setup',
-    desc: 'Procuring workstations, configuring server racks, and provisioning localized offline education resources.',
-    status: 'Completed'
+    num: "04",
+    title: "TECH CLUBS & INNOVATION",
+    desc: "Students explore coding, AI, robotics, and creative problem solving — discovering what it means to be a builder of technology.",
+    placeholderColor: "#2A1A10"
   },
   {
-    phase: 'Phase 2',
-    title: 'Teacher Training Bootcamps',
-    desc: 'Empowering core educators through workshops on Scratch, basic computing, and AI-assisted teaching.',
-    status: 'Completed'
-  },
-  {
-    phase: 'Phase 3',
-    title: 'Tech Clubs Deployment',
-    desc: 'Onboarding students, electing club mentors, and distributing creative computing playbooks.',
-    status: 'Active'
-  },
-  {
-    phase: 'Phase 4',
-    title: 'Community Access Hours',
-    desc: 'Opening labs to rural community members for digital identity, literacy, and job search guidance.',
-    status: 'Upcoming'
+    num: "05",
+    title: "COMMUNITY ACCESS",
+    desc: "Labs become shared resources for parents, local communities, and young adults — extending the impact beyond the school gates.",
+    placeholderColor: "#1A1A2A"
   }
 ]
 
 const FutureMinds = () => {
-  const [activePhase, setActivePhase] = useState<number>(2) // Phase 3 (Active) is index 2
+  const [activeIndex, setActiveIndex] = useState(0)
+  const phaseRefs = useRef<(HTMLDivElement | null)[]>([])
+  const sectionRef = useRef<HTMLDivElement>(null)
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.15 }
-    }
-  } as any
+  useEffect(() => {
+    const observers: IntersectionObserver[] = []
 
-  const fadeUp = {
-    hidden: { opacity: 0, y: 35 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
-    }
-  } as any
+    phaseRefs.current.forEach((el, i) => {
+      if (!el) return
+      const obs = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setActiveIndex(i)
+            }
+          })
+        },
+        {
+          root: null,
+          rootMargin: "-40% 0px -40% 0px",
+          threshold: 0
+        }
+      )
+      obs.observe(el)
+      observers.push(obs)
+    })
+
+    return () => observers.forEach((obs) => obs.disconnect())
+  }, [])
 
   return (
-    <section className="fm-section" id="future-minds">
+    <section className="fm-section" id="future-minds" ref={sectionRef}>
       <div className="fm-container">
-        
-        {/* Header Block */}
-        <motion.div 
+
+        {/* Section Header */}
+        <motion.div
           className="fm-header"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeUp}
+          initial={{ opacity: 0, y: 32 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
-          <div className="section-eyebrow">Flagship Initiative</div>
-          <h2 className="section-title">
-            Future Minds Ghana: <br />
-            <span className="gold-text">Bringing Technology to Every Child</span>
-          </h2>
-          <p className="fm-section-desc">
-            We partner with under-resourced schools to build digital infrastructure and nurture creative computing hubs, transforming students from consumers to creators.
-          </p>
-        </motion.div>
-
-        {/* Pillars Grid */}
-        <motion.div 
-          className="fm-pillars-grid"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-        >
-          {pillars.map((pillar, idx) => {
-            const Icon = pillar.icon
-            return (
-              <motion.div className="fm-pillar-card" key={idx} variants={fadeUp}>
-                <div className="fm-pillar-icon-wrapper">
-                  <Icon className="fm-pillar-icon" />
-                </div>
-                <h4 className="fm-pillar-title">{pillar.title}</h4>
-                <p className="fm-pillar-desc">{pillar.desc}</p>
-              </motion.div>
-            )
-          })}
-        </motion.div>
-
-        {/* Timeline Roadmap Section */}
-        <motion.div 
-          className="fm-timeline-block"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={fadeUp}
-        >
-          <h3 className="timeline-section-title">Our Impact Roadmap</h3>
-          
-          <div className="timeline-flow-container">
-            {/* The Connecting Line */}
-            <div className="timeline-axis-line"></div>
-            
-            <div className="timeline-phases-grid">
-              {phases.map((phase, idx) => {
-                const isActive = idx === activePhase
-                const isPassed = idx < activePhase
-                
-                return (
-                  <div 
-                    className={`timeline-phase-card ${isActive ? 'active' : ''} ${isPassed ? 'passed' : ''}`}
-                    key={idx}
-                    onClick={() => setActivePhase(idx)}
-                    onMouseEnter={() => setActivePhase(idx)}
-                  >
-                    {/* Glowing Node */}
-                    <div className="timeline-node">
-                      <div className="node-dot"></div>
-                    </div>
-                    
-                    {/* Content Box */}
-                    <div className="phase-content-card">
-                      <div className="phase-badge-row">
-                        <span className="phase-number">{phase.phase}</span>
-                        <span className={`phase-status-tag ${phase.status.toLowerCase()}`}>
-                          {phase.status}
-                        </span>
-                      </div>
-                      <h4 className="phase-title">{phase.title}</h4>
-                      <p className="phase-desc">{phase.desc}</p>
-                    </div>
-                  </div>
-                )
-              })}
-            </div>
+          <span className="fm-eyebrow">Future Minds Ghana</span>
+          <div className="fm-header-grid">
+            <h2 className="fm-title">
+              BUILDING THE NEXT<br />
+              GENERATION OF<br />
+              AFRICAN INNOVATORS
+            </h2>
+            <p className="fm-subtitle">
+              Future Minds Ghana equips schools with technology,
+              trains educators, and creates opportunities for students
+              to become creators of technology rather than consumers.
+            </p>
           </div>
         </motion.div>
 
-        {/* Supporting CTA */}
+        {/* Scroll Storytelling Body */}
+        <div className="fm-body">
+
+          {/* Left: Scrolling Phase List */}
+          <div className="fm-phases-col">
+            {phases.map((phase, i) => (
+              <motion.div
+                key={phase.num}
+                className={`fm-phase-block ${activeIndex === i ? "fm-phase-active" : ""}`}
+                ref={(el) => { phaseRefs.current[i] = el }}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1], delay: i * 0.05 }}
+              >
+                <div className="fm-phase-num-col">
+                  <span className="fm-phase-num">{phase.num}</span>
+                  {i < phases.length - 1 && <div className="fm-phase-line"></div>}
+                </div>
+                <div className="fm-phase-content">
+                  <h3 className="fm-phase-title">{phase.title}</h3>
+                  <p className="fm-phase-desc">{phase.desc}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Right: Sticky Visual Panel */}
+          <div className="fm-visual-col">
+            <div className="fm-visual-sticky">
+              <div className="fm-visual-frame">
+                {phases.map((phase, i) => (
+                  <div
+                    key={phase.num}
+                    className={`fm-visual-slide ${activeIndex === i ? "fm-visual-active" : ""}`}
+                    style={{ backgroundColor: phase.placeholderColor }}
+                  >
+                    {/* Placeholder — user will replace with real images */}
+                    <div className="fm-placeholder-inner">
+                      <div className="fm-placeholder-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                          <rect x="8" y="12" width="32" height="22" rx="3" stroke="rgba(255,255,255,0.2)" strokeWidth="1.5"/>
+                          <path d="M16 34V38M32 34V38M12 38H36" stroke="rgba(255,255,255,0.2)" strokeWidth="1.5" strokeLinecap="round"/>
+                          <circle cx="24" cy="23" r="5" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5"/>
+                        </svg>
+                      </div>
+                      <span className="fm-placeholder-label">{phase.num}</span>
+                      <span className="fm-placeholder-title">{phase.title}</span>
+                    </div>
+                  </div>
+                ))}
+
+                {/* Progress indicator bar */}
+                <div className="fm-progress-bar">
+                  <div
+                    className="fm-progress-fill"
+                    style={{ height: `${((activeIndex + 1) / phases.length) * 100}%` }}
+                  ></div>
+                </div>
+
+                {/* Phase counter */}
+                <div className="fm-visual-counter">
+                  <span className="fm-counter-current">{String(activeIndex + 1).padStart(2, "0")}</span>
+                  <span className="fm-counter-sep">/</span>
+                  <span className="fm-counter-total">{String(phases.length).padStart(2, "0")}</span>
+                </div>
+              </div>
+
+              {/* Active label below */}
+              <div className="fm-visual-label">
+                <span className="fm-visual-label-num">{phases[activeIndex].num}</span>
+                <span className="fm-visual-label-text">{phases[activeIndex].title}</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        {/* Bottom CTA */}
         <div className="fm-bottom-cta">
-          <a href="#partner" className="btn-fm-partner">
+          <a href="#partner" className="fm-cta-btn">
             <span>Sponsor a Future Minds Lab</span>
-            <ArrowRight className="fm-cta-arrow" />
+            <div className="fm-cta-arrow">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M3 8H13M13 8L8.5 3.5M13 8L8.5 12.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
           </a>
         </div>
 

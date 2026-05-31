@@ -1,0 +1,103 @@
+/* ===== TRANSITION MARQUEE SECTION ===== */
+.transition-marquee-section {
+  position: relative;
+  background-color: #FAF9F6; /* Matches the warm ivory/alabaster background */
+  padding: 45px 0;
+  width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.marquee-container {
+  position: relative;
+  width: 100%;
+  height: 180px; /* Comfortably fits the large text height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Infinite Loop Track */
+.marquee-wrapper {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  display: flex;
+  z-index: 1;
+}
+
+.marquee-track {
+  display: flex;
+  animation: marquee-infinite 45s linear infinite;
+}
+
+.marquee-text {
+  font-family: 'PT Sans Narrow', sans-serif;
+  font-size: clamp(45px, 6.2vw, 84px); /* Giant typography styling */
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #D3D2CC; /* Elegant soft grey contrast */
+  letter-spacing: -1px;
+}
+
+/* Floating Center Capsule Video Pocket */
+.floating-video-capsule {
+  position: absolute;
+  z-index: 2; /* Floating overlay */
+  width: 290px;
+  height: 155px;
+  border-radius: 90px; /* Perfect capsule curvature */
+  overflow: hidden;
+  border: 4px solid #FAF9F6; /* Matches background for crisp blending */
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12), 0 3px 12px rgba(0, 0, 0, 0.05);
+  background-color: #1A1A1A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.floating-video-capsule:hover {
+  transform: scale(1.05);
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.18), 0 5px 18px rgba(0, 0, 0, 0.08);
+}
+
+.capsule-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ===== SEAMLESS LOOP ANIMATION ===== */
+@keyframes marquee-infinite {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%); /* Snaps invisibly back to 0% */
+  }
+}
+
+/* ===== RESPONSIVE MEDIA QUERIES ===== */
+@media (max-width: 768px) {
+  .transition-marquee-section {
+    padding: 25px 0;
+  }
+  
+  .marquee-container {
+    height: 120px;
+  }
+  
+  .marquee-text {
+    font-size: clamp(32px, 8vw, 48px);
+  }
+  
+  .floating-video-capsule {
+    width: 190px;
+    height: 102px;
+    border-radius: 60px;
+    border-width: 2.5px;
+  }
+}

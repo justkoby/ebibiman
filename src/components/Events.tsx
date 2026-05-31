@@ -1,60 +1,45 @@
 import { motion } from 'framer-motion'
-import { Calendar, Users, ArrowRight } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import './Events.css'
 
-interface EventData {
-  title: string
-  image: string
-  summary: string
-  date: string
-  participants: string
+interface MagazineStory {
   category: string
+  title: string
+  date: string
+  image: string
+  link: string
+  desc: string
 }
 
-const secondaryEvents: EventData[] = [
+const featuredStory: MagazineStory = {
+  category: 'Masterclass',
+  title: 'AI Prompt Engineering: Teaching Young Africans To Work Smarter With AI',
+  date: 'July 2025',
+  image: '/images/AI Prompt Engineering.png',
+  link: '#story-ai',
+  desc: 'Equipping the next generation of African builders with AI prompt structures, communication frameworks, and critical future-skills required for cognitive work.'
+}
+
+const sideStories: MagazineStory[] = [
   {
-    title: 'ETA Webinar Series',
+    category: 'Thought Leadership',
+    title: "The Ghanaian Tech Space Is Dying: Reimagining Ghana's Technology Landscape",
+    date: 'Monthly Series',
     image: '/images/webinar_series.png',
-    summary: 'Discussions featuring Ghanaian tech space leaders and industry pioneers sharing career insights.',
-    date: 'Monthly',
-    participants: '200+ Attendees',
-    category: 'Webinar'
+    link: '#story-webinar',
+    desc: 'Bringing industry leaders together to challenge status quos and design sustainable digital policy.'
   },
   {
-    title: 'Ebibiman Tech Talks',
-    image: '/images/tech_talks.png',
-    summary: 'Brief interactive sessions breaking down complex software architectures and systems.',
-    date: 'Bi-Weekly',
-    participants: '120+ Builders',
-    category: 'Tech Talks'
-  },
-  {
-    title: 'School Digital Outreach',
-    image: '/images/school_outreach.png',
-    summary: 'Visiting regional schools to donate learning materials, test ICT facilities, and onboard students.',
-    date: 'Ongoing',
-    participants: '8 Schools',
-    category: 'Outreach'
-  },
-  {
-    title: 'AI Literacy Workshops',
-    image: '/images/workshops.png',
-    summary: 'Hands-on coding bootcamps guiding local youths through their first neural network experiments.',
-    date: 'Quarterly',
-    participants: '50+ Students',
-    category: 'Workshop'
+    category: 'Education',
+    title: "Preparing Schools For Africa's Digital Future",
+    date: 'Ongoing Initiative',
+    image: '/images/future_minds_ghana.png',
+    link: '#story-education',
+    desc: 'Setting up modern ICT labs and training educators to sustain technology adoption across regional institutions.'
   }
 ]
 
 const Events = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.15 }
-    }
-  } as any
-
   const fadeUp = {
     hidden: { opacity: 0, y: 35 },
     visible: {
@@ -64,9 +49,19 @@ const Events = () => {
     }
   } as any
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.15 }
+    }
+  } as any
+
   return (
     <section className="events-section" id="events">
       <div className="events-container">
+        
+        {/* Section Header */}
         <motion.div 
           className="events-header"
           initial="hidden"
@@ -74,16 +69,16 @@ const Events = () => {
           viewport={{ once: true }}
           variants={fadeUp}
         >
-          <div className="section-eyebrow">Activity & Presence</div>
+          <div className="section-eyebrow">Latest From The Ecosystem</div>
           <h2 className="section-title">
-            Recent Programmes & <span className="gold-text">Events</span>
+            Stories Shaping Africa's <span className="gold-text">Tech Future</span>
           </h2>
           <p className="events-section-desc">
-            Credibility comes from active execution. Explore Ebibiman’s recent courses, webinars, and developer bootcamps.
+            Explore the insights, milestones, and discussions driving technology adoption and digital impact across the continent.
           </p>
         </motion.div>
 
-        {/* Layout Grid: Large Featured on Left, Smaller Grid on Right */}
+        {/* Asymmetrical Magazine Layout Grid */}
         <motion.div 
           className="events-layout-grid"
           variants={containerVariants}
@@ -91,71 +86,62 @@ const Events = () => {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
         >
-          {/* Large Featured Event */}
-          <motion.div className="featured-event-col" variants={fadeUp}>
-            <div className="featured-event-card">
-              <div className="featured-image-wrapper">
-                <span className="event-tag-badge highlight">Featured Masterclass</span>
+          {/* Left Column: Giant Featured Card */}
+          <motion.div className="featured-story-col" variants={fadeUp}>
+            <a href={featuredStory.link} className="mag-card featured-card">
+              <div className="mag-image-wrapper">
+                <span className="mag-badge highlight">{featuredStory.category}</span>
                 <img 
-                  src="/images/AI Prompt Engineering.png" 
-                  alt="AI Prompt Engineering Masterclass" 
-                  className="featured-event-image" 
+                  src={featuredStory.image} 
+                  alt={featuredStory.title} 
+                  className="mag-image featured-parallax" 
                 />
+                <div className="mag-overlay"></div>
               </div>
-              <div className="featured-event-content">
-                <div className="event-meta-row">
-                  <div className="meta-item">
-                    <Calendar className="meta-icon" />
-                    <span>Completed May 2026</span>
-                  </div>
-                  <div className="meta-item">
-                    <Users className="meta-icon" />
-                    <span>300+ Young Leaders</span>
-                  </div>
-                </div>
-                
-                <h3 className="featured-event-title">AI & Prompt Engineering Masterclass</h3>
-                
-                <p className="featured-event-desc">
-                  An intensive workspace session focusing on equipping students with deep AI literacy, advanced prompt structure, communication frameworks, and soft skills essential to the future of cognitive work.
-                </p>
-                
-                <div className="featured-action-row">
-                  <a href="#register" className="btn-featured-cta">
-                    <span>View Event Highlights</span>
-                    <ArrowRight className="btn-arrow-icon" />
-                  </a>
+              <div className="mag-content">
+                <span className="mag-date">{featuredStory.date}</span>
+                <h3 className="mag-title">{featuredStory.title}</h3>
+                <p className="mag-desc">{featuredStory.desc}</p>
+                <div className="mag-action-link">
+                  <span>Read Story</span>
+                  <ArrowRight className="mag-arrow-icon" />
                 </div>
               </div>
-            </div>
+            </a>
           </motion.div>
 
-          {/* Smaller Events Grid */}
-          <motion.div className="secondary-events-col" variants={fadeUp}>
-            <div className="secondary-events-grid">
-              {secondaryEvents.map((event, idx) => (
-                <div className="secondary-event-card" key={idx}>
-                  <div className="secondary-image-wrapper">
-                    <span className="event-tag-badge">{event.category}</span>
-                    <img src={event.image} alt={event.title} className="secondary-event-image" />
+          {/* Right Column: Stacked Smaller Cards */}
+          <motion.div className="side-stories-col" variants={fadeUp}>
+            <div className="side-stories-stack">
+              {sideStories.map((story, idx) => (
+                <a href={story.link} className="mag-card side-card" key={idx}>
+                  <div className="mag-image-wrapper">
+                    <span className="mag-badge">{story.category}</span>
+                    <img 
+                      src={story.image} 
+                      alt={story.title} 
+                      className="mag-image" 
+                    />
+                    <div className="mag-overlay"></div>
                   </div>
-                  <div className="secondary-event-content">
-                    <div className="secondary-meta-row">
-                      <span>{event.date}</span>
-                      <span className="separator">•</span>
-                      <span>{event.participants}</span>
+                  <div className="mag-content">
+                    <span className="mag-date">{story.date}</span>
+                    <h4 className="mag-title">{story.title}</h4>
+                    <p className="mag-desc">{story.desc}</p>
+                    <div className="mag-action-link">
+                      <span>Read Story</span>
+                      <ArrowRight className="mag-arrow-icon" />
                     </div>
-                    <h4 className="secondary-event-title">{event.title}</h4>
-                    <p className="secondary-event-desc">{event.summary}</p>
                   </div>
-                </div>
+                </a>
               ))}
             </div>
           </motion.div>
+          
         </motion.div>
       </div>
     </section>
   )
 }
 
-export default Events
+export default Events;

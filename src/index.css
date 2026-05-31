@@ -27,8 +27,9 @@
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Muller Next Trial', sans-serif;
-  font-weight: 400;
+  font-family: 'PT Sans Narrow', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
 * {
@@ -44,14 +45,181 @@ html {
 body {
   background: var(--black);
   color: var(--off-white);
-  font-family: 'Muller Next Trial', sans-serif;
+  font-family: 'Inter Tight', sans-serif;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-
-
 .app {
   min-height: 100vh;
 }
+
+/* ===== GLOBAL REVEAL CONTAINER ===== */
+.app-container {
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  background-color: #173324; /* Underneath green drawer backing */
+}
+
+/* Main Layout Wrapper Page scale & translation reveal */
+.main-layout-wrapper {
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), border-radius 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: left center;
+  background-color: #FAF9F6;
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  min-height: 100vh;
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+}
+
+.main-layout-wrapper.menu-open {
+  transform: scale(0.98) translateX(38vw); /* Desktop shift to reveal green drawer */
+  border-radius: 24px;
+  box-shadow: -20px 0 50px rgba(0, 0, 0, 0.22);
+  pointer-events: none; /* Clicking wrapper will trigger close, not links */
+  user-select: none;
+}
+
+@media (max-width: 768px) {
+  .main-layout-wrapper.menu-open {
+    transform: scale(0.95) translateX(100vw); /* Shift completely off-screen on mobile */
+    border-radius: 0px;
+  }
+}
+
+/* ===== GLOBAL HEADER NAVIGATION ===== */
+.global-header {
+  position: fixed;
+  top: 30px;
+  left: 6vw;
+  right: 6vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 999;
+  pointer-events: none;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.global-header.hidden-header {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-10px);
+}
+
+/* Identical Button Styling */
+.header-btn {
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  border-radius: 100px;
+  text-decoration: none;
+  font-family: 'PT Sans Narrow', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+}
+
+/* Contrast State 1: Over Dark Hero (Default) */
+.global-header:not(.scrolled) .header-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  color: #FFFFFF;
+}
+
+.global-header:not(.scrolled) .header-btn:hover {
+  background: #FFFFFF;
+  color: #1A1A1A;
+  border-color: #FFFFFF;
+}
+
+/* Contrast State 2: Over Light Sections (Scrolled) */
+.global-header.scrolled .header-btn {
+  background: rgba(26, 26, 26, 0.05);
+  border: 1.5px solid rgba(26, 26, 26, 0.12);
+  color: #1A1A1A;
+}
+
+.global-header.scrolled .header-btn:hover {
+  background: #1A1A1A;
+  color: #FFFFFF;
+  border-color: #1A1A1A;
+}
+
+/* Button specific interactions */
+.btn-arrow {
+  width: 14px;
+  height: 14px;
+  transition: transform 0.3s ease;
+}
+
+.right-btn:hover .btn-arrow {
+  transform: translateX(4px);
+}
+
+/* Left burger lines */
+.burger-icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 14px;
+  height: 9px;
+}
+
+.burger-line {
+  width: 100%;
+  height: 1.5px;
+  background-color: currentColor;
+  transition: transform 0.3s ease;
+}
+
+.left-btn:hover .burger-line:nth-child(1) {
+  transform: translateY(0.5px);
+}
+
+.left-btn:hover .burger-line:nth-child(3) {
+  transform: translateY(-0.5px);
+}
+
+/* Text slide animation Menu -> Explore */
+.btn-text-wrapper {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  height: 16px;
+  width: 52px;
+  text-align: left;
+}
+
+.btn-text-default,
+.btn-text-hover {
+  display: block;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  font-weight: 700;
+}
+
+.btn-text-hover {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  color: #8A6D3B; /* Gold Explore Text */
+}
+
+.left-btn:hover .btn-text-default {
+  transform: translateY(-100%);
+}
+
+.left-btn:hover .btn-text-hover {
+  transform: translateY(-100%);
+}
+

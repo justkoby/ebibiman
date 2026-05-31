@@ -1,230 +1,210 @@
-/* ===== WHY SECTION CONTAINER ===== */
-.why-section {
-  padding: 120px 6vw;
-  background-color: var(--black);
+/* ===== WARM-WHITE EDITORIAL CHALLENGE SECTION ===== */
+.why-metony-light {
   position: relative;
+  padding: 60px 6vw;
+  background-color: #FAF9F6; /* Clean warm alabaster/ivory white */
   width: 100%;
   box-sizing: border-box;
   overflow: hidden;
 }
 
-.why-container {
-  max-width: 1400px;
+.why-metony-light-container {
+  max-width: 1300px;
   margin: 0 auto;
   width: 100%;
+  position: relative;
+  z-index: 2;
 }
 
-/* ===== HEADER ===== */
-.why-header {
-  margin-bottom: 80px;
-  text-align: left;
-  max-width: 800px;
-}
-
-.section-eyebrow {
+/* Small Label at Top-Left */
+.why-light-label {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 12px;
   text-transform: uppercase;
-  letter-spacing: 3px;
-  color: var(--gold);
-  margin-bottom: 16px;
+  letter-spacing: 2px;
+  color: #777570; /* Soft grey text */
+  margin-bottom: 35px;
+  text-align: left;
 }
 
-.section-title {
-  font-family: 'Muller Next Trial', sans-serif;
-  font-size: clamp(28px, 4vw, 52px);
-  font-weight: 400;
-  line-height: 1.15;
-  letter-spacing: -1px;
-  color: var(--off-white);
+/* ===== STATEMENT BLOCK ===== */
+.why-light-statement {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  max-width: 1050px;
+  margin-bottom: 30px;
 }
 
-.gold-text {
-  background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 60%, #b8860b 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  display: inline-block;
+.reveal-word {
+  display: inline;
 }
 
-/* ===== GRID LAYOUT ===== */
-.why-grid {
+.light-statement-line {
+  font-family: 'PT Sans Narrow', sans-serif;
+  font-size: clamp(26px, 4.2vw, 54px);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -1.2px;
+  color: #1A1A1A; /* Dark charcoal text */
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.light-statement-paragraph {
+  font-family: 'PT Sans Narrow', sans-serif;
+  font-size: clamp(20px, 3.2vw, 42px);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.5px;
+  color: #33312E; /* Slate charcoal */
+  margin-top: 24px;
+  text-transform: uppercase;
+}
+
+/* ===== THIN LIGHT GREY DIVIDER ===== */
+.why-light-divider {
+  width: 100%;
+  height: 1px;
+  background-color: #E2E1DC; /* Light grey divider */
+  margin: 35px 0;
+}
+
+/* ===== TWO STAT BLOCKS (SIDE-BY-SIDE) ===== */
+.why-light-stats-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: start;
+  gap: 8vw;
 }
 
-/* ===== LEFT COLUMN: STATS ===== */
-.why-left {
+.light-stat-block {
   display: flex;
   flex-direction: column;
-  gap: 24px;
-}
-
-.stat-cards {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.stat-card {
-  display: flex;
   align-items: flex-start;
-  gap: 20px;
-  padding: 24px;
-  border-radius: 16px;
-  background: rgba(253, 250, 244, 0.02);
-  border: 1px solid rgba(253, 250, 244, 0.05);
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  text-align: left;
 }
 
-.stat-card:hover {
-  background: rgba(253, 250, 244, 0.04);
-  border-color: rgba(212, 160, 23, 0.2);
-  transform: translateY(-4px);
-}
-
-.stat-icon-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
-  background: rgba(212, 160, 23, 0.08);
-  border: 1px solid rgba(212, 160, 23, 0.15);
-  flex-shrink: 0;
-  transition: all 0.3s ease;
-}
-
-.stat-card:hover .stat-icon-wrapper {
-  background: rgba(212, 160, 23, 0.15);
-  border-color: var(--gold);
-  box-shadow: 0 0 12px rgba(212, 160, 23, 0.2);
-}
-
-.stat-icon {
-  width: 20px;
-  height: 20px;
-  color: var(--gold);
-}
-
-.stat-content {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.stat-value {
-  font-family: 'Muller Next Trial', sans-serif;
-  font-size: 20px;
+.light-stat-desc {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: clamp(13px, 1.1vw, 15px);
   font-weight: 400;
-  color: var(--off-white);
-}
-
-.stat-label {
-  font-family: 'Outfit', sans-serif;
-  font-size: 14px;
-  font-weight: 300;
-  line-height: 1.6;
-  color: var(--muted);
-}
-
-/* ===== RIGHT COLUMN: NARRATIVE ===== */
-.why-right {
-  display: flex;
-  flex-direction: column;
-}
-
-.narrative-content {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.narrative-lead {
-  font-family: 'Outfit', sans-serif;
-  font-size: clamp(18px, 1.5vw, 24px);
-  font-weight: 300;
+  color: #6C6B66; /* Subdued grey */
+  margin-bottom: 16px;
   line-height: 1.5;
-  color: var(--off-white);
-  border-left: 3px solid var(--gold);
+  max-width: 380px;
+}
+
+.light-stat-value {
+  font-family: 'PT Sans Narrow', sans-serif;
+  font-size: clamp(64px, 8.5vw, 115px);
+  font-weight: 700;
+  color: #1A1A1A;
+  line-height: 0.95;
+  letter-spacing: -3.5px;
+}
+
+/* ===== FOUR SMALLER METRICS IN A ROW ===== */
+.why-light-metrics-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+
+.light-metric-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  border-left: 1px solid #E2E1DC;
   padding-left: 20px;
+  transition: border-color 0.3s ease;
+}
+
+.light-metric-cell:first-child {
+  border-left: none;
+  padding-left: 0;
+}
+
+.light-metric-cell:hover {
+  border-left-color: #8A6D3B; /* Warm gold highlight */
+}
+
+.light-metric-value {
+  font-family: 'PT Sans Narrow', sans-serif;
+  font-size: clamp(26px, 2.2vw, 36px);
+  font-weight: 700;
+  color: #1A1A1A;
+  line-height: 1;
+  margin: 0 0 6px 0;
+}
+
+.light-metric-subtitle {
+  font-family: 'PT Sans Narrow', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #8A6D3B; /* Editorial gold/bronze */
+  letter-spacing: 0.5px;
   margin-bottom: 8px;
 }
 
-.narrative-body {
-  font-family: 'Outfit', sans-serif;
-  font-size: clamp(15px, 1.1vw, 17px);
+.light-metric-desc {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 12.5px;
   font-weight: 300;
-  line-height: 1.75;
-  color: var(--muted);
-}
-
-/* ===== CTA BUTTON ===== */
-.why-cta-wrapper {
-  margin-top: 24px;
-}
-
-.btn-why-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  padding: 14px 28px;
-  border-radius: 30px;
-  background: rgba(253, 250, 244, 0.03);
-  border: 1px solid rgba(253, 250, 244, 0.15);
-  color: var(--off-white);
-  text-decoration: none;
-  font-family: 'Muller Next Trial', sans-serif;
-  font-size: 14px;
-  font-weight: 400;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  position: relative;
-  overflow: hidden;
-}
-
-.btn-why-cta:hover {
-  background: var(--gold);
-  color: var(--black);
-  border-color: var(--gold);
-  box-shadow: 0 4px 20px rgba(212, 160, 23, 0.25);
-  transform: translateY(-2px);
-}
-
-.cta-arrow {
-  width: 16px;
-  height: 16px;
-  transition: transform 0.3s ease;
-}
-
-.btn-why-cta:hover .cta-arrow {
-  transform: translateX(4px);
+  line-height: 1.45;
+  color: #61605C;
+  margin: 0;
 }
 
 /* ===== RESPONSIVE MEDIA QUERIES ===== */
 @media (max-width: 1024px) {
-  .why-grid {
-    grid-template-columns: 1fr;
-    gap: 50px;
+  .why-light-metrics-row {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+  }
+  
+  .light-metric-cell {
+    border-left: 1px solid #E2E1DC;
+    padding-left: 20px;
+  }
+  
+  .light-metric-cell:nth-child(2n+1) {
+    border-left: none;
+    padding-left: 0;
   }
 }
 
 @media (max-width: 768px) {
-  .why-section {
-    padding: 80px 6vw;
+  .why-metony-light {
+    padding: 45px 6vw;
   }
   
-  .why-header {
-    margin-bottom: 50px;
+  .why-light-label {
+    margin-bottom: 25px;
   }
   
-  .narrative-lead {
-    padding-left: 15px;
+  .why-light-statement {
+    margin-bottom: 40px;
   }
   
-  .btn-why-cta {
-    width: 100%;
-    justify-content: center;
+  .why-light-divider {
+    margin: 35px 0;
+  }
+  
+  .why-light-stats-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .why-light-metrics-row {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .light-metric-cell {
+    border-left: none;
+    padding-left: 0;
   }
 }
