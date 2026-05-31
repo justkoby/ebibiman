@@ -168,17 +168,23 @@
   margin-top: 40px;
 }
 
-/* Giant Outline Text Backdrop */
-.footer-giant-text-container {
+/* Giant Outline Text Backdrop Marquee */
+.footer-marquee-container {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
   display: flex;
-  flex-direction: column;
-  gap: 0;
   margin-bottom: 40px;
   user-select: none;
   pointer-events: none;
 }
 
-.giant-text-line {
+.footer-marquee-track {
+  display: flex;
+  animation: footer-marquee-anim 28s linear infinite;
+}
+
+.footer-marquee-text {
   font-family: 'PT Sans Narrow', sans-serif;
   font-size: clamp(48px, 10vw, 156px);
   font-weight: 900;
@@ -186,17 +192,17 @@
   line-height: 0.82;
   letter-spacing: -3.5px;
   color: transparent;
-  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.03);
-  transition: -webkit-text-stroke 0.4s ease;
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.03);
+  white-space: nowrap;
 }
 
-.giant-text-line:nth-child(2) {
-  padding-left: 2vw;
-  -webkit-text-stroke: 1.5px rgba(138, 109, 59, 0.035);
-}
-
-.giant-text-line:nth-child(3) {
-  padding-left: 4vw;
+@keyframes footer-marquee-anim {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 /* Copyright Bar */

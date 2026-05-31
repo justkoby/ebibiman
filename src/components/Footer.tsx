@@ -100,11 +100,16 @@ const Footer = () => {
         {/* Bottom Row: Giant Typography & Copyright */}
         <div className="footer-bottom-row">
           
-          {/* Giant Typography "AFRICA BUILDS." Stacks */}
-          <div className="footer-giant-text-container" aria-hidden="true">
-            <div className="giant-text-line">AFRICA BUILDS.</div>
-            <div className="giant-text-line">AFRICA BUILDS.</div>
-            <div className="giant-text-line">AFRICA BUILDS.</div>
+          {/* Giant Typography "AFRICA BUILDS." Infinite Marquee */}
+          <div className="footer-marquee-container" aria-hidden="true">
+            <div className="footer-marquee-track">
+              <span className="footer-marquee-text">
+                AFRICA BUILDS. &bull; AFRICA BUILDS. &bull; AFRICA BUILDS. &bull; AFRICA BUILDS. &bull; AFRICA BUILDS. &bull;&nbsp;
+              </span>
+              <span className="footer-marquee-text">
+                AFRICA BUILDS. &bull; AFRICA BUILDS. &bull; AFRICA BUILDS. &bull; AFRICA BUILDS. &bull; AFRICA BUILDS. &bull;&nbsp;
+              </span>
+            </div>
           </div>
           
           {/* Divider and Copyright */}
