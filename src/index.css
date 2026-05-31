@@ -46,7 +46,7 @@ body {
   background: var(--black);
   color: var(--off-white);
   font-family: 'Inter Tight', sans-serif;
-  overflow-x: hidden;
+  overflow-x: clip;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -59,7 +59,7 @@ body {
 .app-container {
   min-height: 100vh;
   position: relative;
-  overflow-x: hidden;
+  overflow-x: clip;
   background-color: #173324; /* Underneath green drawer backing */
 }
 
