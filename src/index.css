@@ -1,3 +1,19 @@
+@font-face {
+  font-family: 'Muller Next Trial';
+  src: url('/fonts/MullerNextTrial-Regular.woff2') format('woff2'),
+       url('/fonts/MullerNextTrial-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Muller Next Trial';
+  src: url('/fonts/MullerNextTrial-Heavy.woff2') format('woff2'),
+       url('/fonts/MullerNextTrial-Heavy.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
 :root {
   --gold: #D4A017;
   --gold-light: #F2CC6B;
@@ -8,6 +24,11 @@
   --black: #000000;
   --off-white: #FDFAF4;
   --muted: rgba(253,250,244,0.55);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Muller Next Trial', sans-serif;
+  font-weight: 400;
 }
 
 * {
@@ -23,42 +44,13 @@ html {
 body {
   background: var(--black);
   color: var(--off-white);
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Muller Next Trial', sans-serif;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-.hero {
-  min-height: 100vh;
-  background: var(--black);
-  display: flex;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
-  padding: 0 5vw;
-}
 
-.hero-deco {
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 50vw;
-  height: 100vh;
-  z-index: 1;
-  pointer-events: none;
-}
-
-/* ===== KENTE BAR ===== */
-.kente {
-  height: 8px;
-  background: repeating-linear-gradient(90deg,
-    var(--gold) 0 20px, var(--forest) 20px 40px,
-    var(--red) 40px 60px, var(--green) 60px 80px,
-    var(--gold-light) 80px 100px, var(--red) 100px 120px
-  );
-  width: 100%;
-}
 
 .app {
   min-height: 100vh;

@@ -1,0 +1,578 @@
+/* ===== ECOSYSTEM SECTION ===== */
+.eco-section {
+  padding: 120px 6vw;
+  background-color: var(--black);
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Subtle repeating Adinkra symbol pattern (Dwennimmen) */
+.adinkra-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 60 60'%3E%3Cpath d='M20,30 Q20,15 30,15 T40,30 T30,45 T20,30' fill='none' stroke='%23D4A017' stroke-width='0.4' opacity='0.15'/%3E%3Cpath d='M40,30 Q40,45 30,45 T20,30 T30,15 T40,30' fill='none' stroke='%23D4A017' stroke-width='0.4' opacity='0.15'/%3E%3C/svg%3E");
+  opacity: 0.12;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.eco-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+/* ===== GRID ===== */
+.eco-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 6vw;
+  align-items: center;
+}
+
+/* ===== LEFT SIDE ===== */
+.eco-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.eco-eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--gold);
+  margin-bottom: 18px;
+}
+
+.eco-title {
+  font-family: 'Muller Next Trial', sans-serif;
+  font-size: clamp(32px, 4.5vw, 56px);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -1.5px;
+  color: var(--off-white);
+  margin-bottom: 24px;
+}
+
+.gold-gradient {
+  background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 60%, #b8860b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.eco-intro {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(16px, 1.2vw, 19px);
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--muted);
+  max-width: 580px;
+  margin-bottom: 40px;
+}
+
+/* ===== STATS GRID ===== */
+.eco-stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  width: 100%;
+  max-width: 580px;
+  margin-bottom: 45px;
+}
+
+.eco-stat-card {
+  padding-left: 18px;
+  border-left: 2px solid rgba(212, 160, 23, 0.4);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: border-color 0.3s ease;
+}
+
+.eco-stat-card:hover {
+  border-color: var(--gold);
+}
+
+.eco-stat-value {
+  font-family: 'Muller Next Trial', sans-serif;
+  font-size: clamp(26px, 2.2vw, 36px);
+  font-weight: 400;
+  color: var(--off-white);
+  line-height: 1;
+}
+
+.eco-stat-label {
+  font-family: 'Outfit', sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--muted);
+}
+
+/* ===== CTA BUTTONS ===== */
+.eco-cta-actions {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.btn-eco-primary,
+.btn-eco-secondary {
+  font-family: 'Muller Next Trial', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  text-decoration: none;
+  padding: 14px 28px;
+  border-radius: 30px;
+  text-align: center;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-eco-primary {
+  background: var(--gold);
+  color: var(--black);
+  border: 1px solid var(--gold);
+  box-shadow: 0 4px 20px rgba(212, 160, 23, 0.15);
+}
+
+.btn-eco-primary:hover {
+  background: var(--gold-light);
+  border-color: var(--gold-light);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(212, 160, 23, 0.3);
+}
+
+.btn-eco-secondary {
+  background: transparent;
+  color: var(--off-white);
+  border: 1px solid rgba(253, 250, 244, 0.25);
+}
+
+.btn-eco-secondary:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  transform: translateY(-2px);
+  background: rgba(212, 160, 23, 0.05);
+}
+
+/* ===== RIGHT SIDE: GLOBE ===== */
+.eco-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.globe-wrapper-eco {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  max-width: 550px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.globe-canvas-container {
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+}
+
+.globe-canvas-container:active {
+  cursor: grabbing;
+}
+
+/* ===== GLOBE LABELS (HTML OVERLAYS) ===== */
+.globe-label {
+  pointer-events: none;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.label-card {
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.label-card.country {
+  background: rgba(8, 5, 2, 0.85);
+  border: 1px solid rgba(212, 160, 23, 0.4);
+  padding: 4px 10px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(212, 160, 23, 0.15);
+  backdrop-filter: blur(4px);
+}
+
+.label-card.country .dot {
+  width: 5px;
+  height: 5px;
+  background-color: var(--gold);
+  border-radius: 50%;
+  margin-right: 6px;
+  display: inline-block;
+  animation: labelDotPulse 1.5s infinite ease-in-out;
+}
+
+@keyframes labelDotPulse {
+  0% { transform: scale(0.8); opacity: 0.5; }
+  50% { transform: scale(1.3); opacity: 1; }
+  100% { transform: scale(0.8); opacity: 0.5; }
+}
+
+.label-card.country .text {
+  font-family: 'Muller Next Trial', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--off-white);
+}
+
+/* Smaller label formatting */
+.label-card.label {
+  opacity: 0.75;
+}
+
+.label-card.label .dot {
+  display: none;
+}
+
+.label-card.label .text {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--gold-light);
+  background: rgba(0, 0, 0, 0.6);
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid rgba(253, 250, 244, 0.05);
+}
+
+/* ===== RESPONSIVE MEDIA QUERIES ===== */
+@media (max-width: 1024px) {
+  .eco-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .eco-left {
+    align-items: center;
+    text-align: center;
+  }
+  
+  .eco-intro {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .eco-stats-grid {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .eco-cta-actions {
+    justify-content: center;
+  }
+  
+  .eco-right {
+    order: -1; /* Globe goes first on tablets/large mobile */
+  }
+  
+  .globe-wrapper-eco {
+    max-width: 450px;
+  }
+}
+
+@media (max-width: 768px) {
+  .eco-section {
+    padding: 80px 6vw;
+  }
+  
+  .eco-stats-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    max-width: 280px;
+    text-align: left;
+  }
+  
+  .eco-stat-card {
+    padding-left: 14px;
+  }
+  
+  .btn-eco-primary,
+  .btn-eco-secondary {
+    width: 100%;
+  }
+}
+
+/* ===== INTERACTIVE FLOW CHART TIMELINE ===== */
+.eco-flow-container {
+  margin-bottom: 40px;
+  margin-top: 10px;
+  width: 100%;
+  max-width: 580px;
+}
+
+.flow-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.flow-step-item {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.flow-step-item:hover {
+  background: rgba(253, 250, 244, 0.015);
+}
+
+.flow-marker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 12px;
+  align-self: stretch;
+}
+
+.flow-marker-dot {
+  width: 10px;
+  height: 10px;
+  background-color: var(--black);
+  border: 2px solid var(--gold-light);
+  border-radius: 50%;
+  box-shadow: 0 0 6px rgba(212, 160, 23, 0.4);
+  z-index: 2;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.flow-step-item:hover .flow-marker-dot {
+  transform: scale(1.4);
+  background-color: var(--gold);
+  border-color: var(--gold-light);
+  box-shadow: 0 0 12px var(--gold);
+}
+
+.flow-marker-line {
+  width: 1.5px;
+  background: linear-gradient(
+    to bottom, 
+    var(--gold) 0%, 
+    rgba(212, 160, 23, 0.1) 100%
+  );
+  flex-grow: 1;
+  z-index: 1;
+  margin-top: 4px;
+  margin-bottom: -24px;
+}
+
+.flow-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.flow-step-title {
+  font-family: 'Muller Next Trial', sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--off-white);
+  letter-spacing: -0.5px;
+  transition: color 0.3s ease;
+}
+
+.flow-step-item:hover .flow-step-title {
+  color: var(--gold);
+}
+
+.flow-step-desc {
+  font-family: 'Outfit', sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+/* ===== GLOBE CENTER HTML OVERLAY ===== */
+.globe-center-html {
+  pointer-events: none;
+  z-index: 0;
+}
+
+.globe-center-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  pointer-events: none;
+}
+
+.globe-center-text .part-one {
+  font-family: 'Muller Next Trial', sans-serif;
+  font-size: clamp(8px, 1.2vw, 10px);
+  letter-spacing: 3px;
+  font-weight: 400;
+  color: rgba(253, 250, 244, 0.45);
+}
+
+.globe-center-text .part-two {
+  font-family: 'Muller Next Trial', sans-serif;
+  font-size: clamp(14px, 2.2vw, 22px);
+  font-weight: 900;
+  letter-spacing: -0.5px;
+  color: var(--gold);
+  line-height: 1;
+  margin: 3px 0;
+  text-shadow: 0 0 10px rgba(212, 160, 23, 0.4);
+}
+
+.globe-center-text .part-three {
+  font-family: 'Muller Next Trial', sans-serif;
+  font-size: clamp(8px, 1.2vw, 10px);
+  letter-spacing: 4px;
+  font-weight: 400;
+  color: rgba(253, 250, 244, 0.45);
+}
+
+/* ===== ECO GLOBE HOVER DETAILS CARD ===== */
+.eco-hover-card {
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 370px;
+  background: rgba(8, 5, 2, 0.92);
+  border: 1px solid rgba(212, 160, 23, 0.25);
+  border-radius: 12px;
+  backdrop-filter: blur(16px);
+  z-index: 10;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+  pointer-events: none;
+}
+
+.hover-card-image-wrapper {
+  height: 100px;
+  width: 100%;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(212, 160, 23, 0.12);
+  position: relative;
+}
+
+.hover-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.85;
+}
+
+.hover-card-content {
+  padding: 14px 18px;
+}
+
+.hover-card-title {
+  font-family: 'Muller Next Trial', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--gold-light);
+  margin: 0 0 4px 0;
+  letter-spacing: -0.5px;
+}
+
+.hover-card-desc {
+  font-family: 'Outfit', sans-serif;
+  font-size: 11.5px;
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--muted);
+  margin: 0 0 12px 0;
+}
+
+.hover-card-bullets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.bullet-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(253, 250, 244, 0.03);
+  border: 1px solid rgba(253, 250, 244, 0.08);
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.bullet-tag span {
+  font-family: 'Outfit', sans-serif;
+  font-size: 10px;
+  font-weight: 300;
+  color: var(--off-white);
+}
+
+.bullet-dot {
+  width: 4px;
+  height: 4px;
+  background-color: var(--gold);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.eco-hover-card-hint {
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  pointer-events: none;
+}
+
+.eco-hover-card-hint p {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: rgba(253, 250, 244, 0.35);
+  margin: 0;
+}
+
+@media (max-width: 1024px) {
+  .eco-hover-card {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    transform: none;
+    margin: 20px auto 0 auto;
+    width: 100%;
+    max-width: 450px;
+    pointer-events: auto;
+  }
+  
+  .eco-hover-card-hint {
+    display: none;
+  }
+}

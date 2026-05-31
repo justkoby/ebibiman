@@ -1,0 +1,253 @@
+/* ===== PROGRAMMES SECTION ===== */
+.programmes-section {
+  padding: 120px 6vw;
+  background-color: var(--black);
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.programmes-section-header {
+  max-width: 1400px;
+  margin: 0 auto 100px auto;
+  text-align: left;
+}
+
+.programmes-list {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 140px; /* Generous spacing between showcase rows */
+}
+
+/* ===== ALTERNATING GRID ===== */
+.programme-showcase-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6vw;
+  align-items: center;
+}
+
+.row-reversed {
+  direction: rtl; /* HTML direction swap for column reversal */
+}
+
+.row-reversed .prog-content-col {
+  direction: ltr; /* Reset text direction to left-to-right */
+}
+
+.row-reversed .prog-visual-col {
+  direction: ltr;
+}
+
+/* ===== VISUAL SIDE ===== */
+.prog-visual-col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.prog-image-frame {
+  position: relative;
+  width: 100%;
+  max-width: 540px;
+  aspect-ratio: 4 / 3;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(253, 250, 244, 0.1);
+  background: rgba(253, 250, 244, 0.02);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  transition: border-color 0.4s ease;
+}
+
+.prog-image-frame:hover {
+  border-color: rgba(212, 160, 23, 0.35);
+}
+
+.prog-showcase-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.prog-image-frame:hover .prog-showcase-image {
+  transform: scale(1.05);
+}
+
+.prog-image-glow {
+  position: absolute;
+  inset: -20px;
+  background: radial-gradient(circle, rgba(212, 160, 23, 0.1) 0%, rgba(212, 160, 23, 0) 70%);
+  filter: blur(30px);
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+/* ===== CONTENT SIDE ===== */
+.prog-content-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.prog-icon-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(212, 160, 23, 0.05);
+  border: 1px solid rgba(212, 160, 23, 0.15);
+  padding: 6px 14px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+
+.prog-badge-icon {
+  width: 14px;
+  height: 14px;
+  color: var(--gold);
+}
+
+.prog-icon-badge span {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--gold-light);
+}
+
+.prog-showcase-title {
+  font-family: 'Muller Next Trial', sans-serif;
+  font-size: clamp(24px, 3.2vw, 42px);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -1px;
+  color: var(--off-white);
+  margin: 0 0 14px 0;
+}
+
+.prog-showcase-subtitle {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(16px, 1.3vw, 20px);
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--gold-light);
+  margin: 0 0 18px 0;
+}
+
+.prog-showcase-description {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(14px, 1.1vw, 16px);
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--muted);
+  margin: 0 0 24px 0;
+}
+
+/* ===== FOCUS TAGS ===== */
+.prog-focus-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+
+.focus-tag-item {
+  font-family: 'Outfit', sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--off-white);
+  background: rgba(253, 250, 244, 0.03);
+  border: 1px solid rgba(253, 250, 244, 0.08);
+  padding: 6px 14px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.programme-showcase-row:hover .focus-tag-item {
+  border-color: rgba(212, 160, 23, 0.15);
+  background: rgba(212, 160, 23, 0.02);
+}
+
+/* ===== CTA BUTTON ===== */
+.prog-action-row {
+  display: flex;
+  width: 100%;
+}
+
+.btn-prog-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 28px;
+  border-radius: 30px;
+  background: rgba(253, 250, 244, 0.03);
+  border: 1px solid rgba(253, 250, 244, 0.15);
+  color: var(--off-white);
+  text-decoration: none;
+  font-family: 'Muller Next Trial', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-prog-primary:hover {
+  background: var(--gold);
+  color: var(--black);
+  border-color: var(--gold);
+  box-shadow: 0 4px 20px rgba(212, 160, 23, 0.25);
+  transform: translateY(-2px);
+}
+
+.prog-btn-arrow {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s ease;
+}
+
+.btn-prog-primary:hover .prog-btn-arrow {
+  transform: translateX(4px);
+}
+
+/* ===== RESPONSIVE MEDIA QUERIES ===== */
+@media (max-width: 968px) {
+  .programme-showcase-row {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .row-reversed {
+    direction: ltr; /* Reset grid direction to normal stack */
+  }
+
+  .programmes-list {
+    gap: 80px;
+  }
+
+  .prog-visual-col {
+    order: -1; /* Always render visual on top of text on mobile */
+  }
+
+  .prog-image-frame {
+    max-width: 100%;
+  }
+
+  .btn-prog-primary {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .programmes-section {
+    padding: 80px 6vw;
+  }
+
+  .programmes-section-header {
+    margin-bottom: 50px;
+  }
+}

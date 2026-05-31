@@ -1,74 +1,137 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
+import { Menu, X } from 'lucide-react'
 import ParticleSwarm from './ParticleSwarm'
 import './Hero.css'
 
 const Hero = () => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2
+        staggerChildren: 0.1,
+        delayChildren: 0.1
       }
     }
-  }
+  } as any
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
+  const fadeUpVariants = {
+    hidden: { opacity: 0, y: 20 },
     visible: { 
       opacity: 1, 
       y: 0,
-      transition: { duration: 0.8, ease: "easeOut" } as any
+      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
     }
-  }
+  } as any
+
+  const navVariants = {
+    hidden: { opacity: 0, y: -10 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" }
+    }
+  } as any
 
   return (
     <section className="hero">
-      <motion.div 
-        className="hero-deco"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1.5, delay: 0.5 }}
+      {/* Navigation Bar */}
+      <motion.nav 
+        className="hero-nav"
+        variants={navVariants}
+        initial="hidden"
+        animate="visible"
       >
-        <ParticleSwarm />
-      </motion.div>
-      
+        <div className="nav-container">
+          <div className="nav-logo">
+            <img src="/images/logo.png" alt="ETA Logo" className="logo-image" />
+          </div>
+
+          <ul className="nav-links">
+            <li><a href="#home" className="active">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#programmes">Programmes</a></li>
+            <li><a href="#get-involved">Get Involved</a></li>
+            <li><a href="#news">News</a></li>
+          </ul>
+
+          <div className="nav-action">
+            <a href="#contact" className="btn-contact">Contact</a>
+          </div>
+
+          <button 
+            className="mobile-menu-toggle" 
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle Menu"
+          >
+            {mobileMenuOpen ? <X /> : <Menu />}
+          </button>
+        </div>
+
+        {/* Mobile Navigation Drawer */}
+        {mobileMenuOpen && (
+          <motion.div 
+            className="mobile-nav-drawer"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+          >
+            <a href="#home" onClick={() => setMobileMenuOpen(false)}>Home</a>
+            <a href="#about" onClick={() => setMobileMenuOpen(false)}>About</a>
+            <a href="#programmes" onClick={() => setMobileMenuOpen(false)}>Programmes</a>
+            <a href="#get-involved" onClick={() => setMobileMenuOpen(false)}>Get Involved</a>
+            <a href="#news" onClick={() => setMobileMenuOpen(false)}>News</a>
+            <a href="#contact" className="mobile-contact-btn" onClick={() => setMobileMenuOpen(false)}>Contact</a>
+          </motion.div>
+        )}
+      </motion.nav>
+
+      {/* Hero Content Area */}
       <motion.div 
-        className="hero-inner"
+        className="hero-grid"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
-        <motion.p className="eyebrow" variants={itemVariants}>
-          Ebibiman Tech Alliance &nbsp;·&nbsp; Africa's Indigenous Tech Movement
-        </motion.p>
-        
-        <motion.h1 className="hero-title" variants={itemVariants}>
-          Ethical.<br />
-          Indigenous.<br />
-          <span className="accent">African.</span>
-        </motion.h1>
-        
-        <motion.p className="hero-mission" variants={itemVariants}>
-          Empowering Africa's digital landscape by fostering collaboration, 
-          leveraging indigenous knowledge, and addressing ethical challenges — 
-          so Africans build technology, not just use it.
-        </motion.p>
-        
-        <motion.div className="hero-cta-row" variants={itemVariants}>
-          <button className="btn-primary">Join the Movement</button>
-          <button className="btn-ghost">Our Programmes</button>
+        {/* Left Column: Headline */}
+        <motion.div className="hero-left" variants={fadeUpVariants}>
+
+          <h1 className="hero-headline">
+            Building Africa's <br />
+            Next Generation of <br />
+            <span className="gradient-text">Ethical Technology</span> <br />
+            Creators
+          </h1>
         </motion.div>
 
-        <motion.div 
-          className="hero-scroll"
-          variants={itemVariants}
-        >
-          <div className="scroll-line"></div>
-          <span className="scroll-text">Scroll to explore</span>
+        {/* Right Column: Glowy Sphere, Subtext, CTAs */}
+        <motion.div className="hero-right" variants={fadeUpVariants}>
+          <div className="sphere-wrapper">
+            <ParticleSwarm />
+            <div className="sphere-glow-ring"></div>
+          </div>
+          
+          <div className="content-block">
+            <p className="hero-subtext">
+              Ebibiman Tech Alliance empowers young Africans to design, build, and lead technology 
+              rooted in indigenous knowledge, ethical principles, and community impact.
+            </p>
+            
+            <div className="hero-cta-actions">
+              <a href="#join" className="btn-primary-new">
+                <span>Join the Movement</span>
+              </a>
+              <a href="#partner" className="btn-secondary-new">
+                <span>Become a Partner</span>
+              </a>
+            </div>
+          </div>
         </motion.div>
       </motion.div>
+
     </section>
   )
 }

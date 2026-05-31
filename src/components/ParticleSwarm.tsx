@@ -86,7 +86,6 @@ export default function ParticleSwarm() {
   return (
     <div style={{ width: '100%', height: '100%', pointerEvents: 'none' }}>
       <Canvas camera={{ position: [0, 0, 100], fov: 60 }} gl={{ alpha: true }}>
-        <fog attach="fog" args={['#000000', 0.01]} />
         <Swarm />
         <OrbitControls autoRotate={true} enableZoom={false} enablePan={false} />
         <Effects disableGamma>

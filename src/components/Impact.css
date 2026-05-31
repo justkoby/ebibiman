@@ -1,0 +1,142 @@
+/* ===== IMPACT SECTION ===== */
+.impact-section {
+  padding: 120px 6vw;
+  background-color: var(--black);
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.impact-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.impact-header {
+  text-align: center;
+  max-width: 750px;
+  margin: 0 auto 80px auto;
+}
+
+.impact-subtitle {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(15px, 1.2vw, 18px);
+  font-weight: 300;
+  line-height: 1.6;
+  color: var(--muted);
+  margin-top: 16px;
+}
+
+/* ===== STATS ROW / GRID ===== */
+.impact-stats-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 24px;
+  width: 100%;
+}
+
+.impact-stat-panel {
+  position: relative;
+  padding: 30px 20px;
+  border-radius: 12px;
+  background: rgba(253, 250, 244, 0.01);
+  border: 1px solid rgba(253, 250, 244, 0.04);
+  border-top: 3px solid rgba(212, 160, 23, 0.3); /* Premium gold bar */
+  text-align: center;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.impact-stat-panel:hover {
+  background: rgba(253, 250, 244, 0.025);
+  border-top-color: var(--gold);
+  border-color: rgba(212, 160, 23, 0.15);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+.stat-value-glow {
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle, rgba(212, 160, 23, 0.15) 0%, rgba(212, 160, 23, 0) 70%);
+  filter: blur(15px);
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.impact-stat-panel:hover .stat-value-glow {
+  opacity: 1;
+}
+
+.impact-val {
+  font-family: 'Muller Next Trial', sans-serif;
+  font-size: clamp(32px, 3.5vw, 54px);
+  font-weight: 900;
+  color: var(--off-white);
+  line-height: 1;
+  margin: 0 0 12px 0;
+  z-index: 2;
+  letter-spacing: -1.5px;
+  transition: color 0.3s ease;
+}
+
+.impact-stat-panel:hover .impact-val {
+  color: var(--gold-light);
+}
+
+.impact-lbl {
+  font-family: 'Muller Next Trial', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--off-white);
+  margin: 0 0 10px 0;
+  letter-spacing: -0.3px;
+  z-index: 2;
+}
+
+.impact-detail {
+  font-family: 'Outfit', sans-serif;
+  font-size: 12.5px;
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--muted);
+  margin: 0;
+  z-index: 2;
+}
+
+/* ===== RESPONSIVE MEDIA QUERIES ===== */
+@media (max-width: 1024px) {
+  .impact-stats-row {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .impact-section {
+    padding: 80px 6vw;
+  }
+  
+  .impact-header {
+    margin-bottom: 50px;
+  }
+
+  .impact-stats-row {
+    grid-template-columns: 1fr; /* Stack panels on mobile */
+    gap: 16px;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+}

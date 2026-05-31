@@ -1,0 +1,145 @@
+/* ===== CTA SECTION ===== */
+.cta-section {
+  padding: 120px 6vw;
+  background-color: var(--black);
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cta-container {
+  max-width: 1100px;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+/* Background Backlight */
+.cta-bg-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(212, 160, 23, 0.08) 0%, rgba(212, 160, 23, 0) 70%);
+  filter: blur(50px);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ===== CTA CARD ===== */
+.cta-card {
+  padding: 80px 40px;
+  border-radius: 24px;
+  background: rgba(253, 250, 244, 0.015);
+  border: 1px solid rgba(253, 250, 244, 0.06);
+  text-align: center;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.4s ease;
+}
+
+.cta-card:hover {
+  border-color: rgba(212, 160, 23, 0.22);
+}
+
+.cta-heading {
+  font-family: 'Muller Next Trial', sans-serif;
+  font-size: clamp(30px, 4.2vw, 56px);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -1.5px;
+  color: var(--off-white);
+  margin: 0 0 20px 0;
+}
+
+.cta-sub {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(15px, 1.2vw, 19px);
+  font-weight: 300;
+  line-height: 1.6;
+  color: var(--muted);
+  max-width: 600px;
+  margin: 0 0 40px 0;
+}
+
+/* ===== BUTTONS ===== */
+.cta-btn-group {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.btn-cta-primary,
+.btn-cta-secondary {
+  font-family: 'Muller Next Trial', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  text-decoration: none;
+  padding: 14px 32px;
+  border-radius: 30px;
+  text-align: center;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-cta-primary {
+  background: var(--gold);
+  color: var(--black);
+  border: 1px solid var(--gold);
+  box-shadow: 0 4px 20px rgba(212, 160, 23, 0.15);
+}
+
+.btn-cta-primary:hover {
+  background: var(--gold-light);
+  border-color: var(--gold-light);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(212, 160, 23, 0.3);
+}
+
+.btn-cta-secondary {
+  background: transparent;
+  color: var(--off-white);
+  border: 1px solid rgba(253, 250, 244, 0.25);
+}
+
+.btn-cta-secondary:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  transform: translateY(-2px);
+  background: rgba(212, 160, 23, 0.05);
+}
+
+/* ===== RESPONSIVE MEDIA QUERIES ===== */
+@media (max-width: 768px) {
+  .cta-section {
+    padding: 80px 6vw;
+  }
+  
+  .cta-card {
+    padding: 50px 20px;
+  }
+
+  .cta-btn-group {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .btn-cta-primary,
+  .btn-cta-secondary {
+    width: 100%;
+  }
+}

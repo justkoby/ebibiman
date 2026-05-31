@@ -1,0 +1,112 @@
+/* ===== FAQ SECTION ===== */
+.faq-section {
+  padding: 120px 6vw;
+  background-color: var(--black);
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.faq-container {
+  max-width: 900px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.faq-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+/* ===== ACCORDIONS LIST ===== */
+.faq-accordions-list {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid rgba(253, 250, 244, 0.08);
+}
+
+.faq-accordion-item {
+  border-bottom: 1px solid rgba(253, 250, 244, 0.08);
+  transition: all 0.3s ease;
+}
+
+.faq-accordion-item:hover {
+  background: rgba(253, 250, 244, 0.005);
+}
+
+.faq-question-btn {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  outline: none;
+}
+
+.faq-question-btn span {
+  font-family: 'Muller Next Trial', sans-serif;
+  font-size: clamp(15px, 1.4vw, 19px);
+  font-weight: 400;
+  color: var(--off-white);
+  letter-spacing: -0.3px;
+  transition: color 0.3s ease;
+}
+
+.faq-accordion-item:hover .faq-question-btn span,
+.faq-accordion-item.active .faq-question-btn span {
+  color: var(--gold-light);
+}
+
+.faq-chevron-icon {
+  width: 18px;
+  height: 18px;
+  color: rgba(253, 250, 244, 0.4);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
+}
+
+.faq-accordion-item:hover .faq-chevron-icon,
+.faq-accordion-item.active .faq-chevron-icon {
+  color: var(--gold);
+}
+
+.faq-accordion-item.active .faq-chevron-icon {
+  transform: rotate(180deg);
+}
+
+/* ===== ANSWER BODY ===== */
+.faq-answer-wrapper {
+  overflow: hidden;
+}
+
+.faq-answer-text {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(13.5px, 1.1vw, 15px);
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--muted);
+  padding: 0 10px 24px 10px;
+  margin: 0;
+}
+
+/* ===== RESPONSIVE MEDIA QUERIES ===== */
+@media (max-width: 768px) {
+  .faq-section {
+    padding: 80px 6vw;
+  }
+  
+  .faq-header {
+    margin-bottom: 40px;
+  }
+  
+  .faq-question-btn {
+    padding: 20px 4px;
+  }
+  
+  .faq-answer-text {
+    padding: 0 4px 20px 4px;
+  }
+}
