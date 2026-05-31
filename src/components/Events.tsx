@@ -39,6 +39,8 @@ const sideStories: MagazineStory[] = [
   }
 ]
 
+const allStories = [featuredStory, ...sideStories]
+
 const Events = () => {
   const fadeUp = {
     hidden: { opacity: 0, y: 35 },
@@ -78,9 +80,9 @@ const Events = () => {
           </p>
         </motion.div>
 
-        {/* Asymmetrical Magazine Layout Grid */}
+        {/* Desktop Magazine Grid View */}
         <motion.div 
-          className="events-layout-grid"
+          className="events-layout-grid desktop-only"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -137,8 +139,30 @@ const Events = () => {
               ))}
             </div>
           </motion.div>
-          
         </motion.div>
+
+        {/* Mobile Horizontal Carousel View */}
+        <div className="blog-scroll mobile-only">
+          {allStories.map((story, idx) => (
+            <a href={story.link} className="blog-card" key={idx}>
+              <div className="blog-card-image-wrap">
+                <img src={story.image} alt={story.title} />
+                <span className="blog-badge">{story.category}</span>
+              </div>
+              <div className="blog-card-content">
+                <div className="blog-card-meta">
+                  <span className="blog-date">{story.date}</span>
+                </div>
+                <h3 className="blog-title">{story.title}</h3>
+                <div className="blog-action-link">
+                  <span>Read Story</span>
+                  <ArrowRight className="blog-arrow-icon" size={14} />
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+
       </div>
     </section>
   )
