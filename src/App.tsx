@@ -13,6 +13,7 @@ import FAQ from './components/FAQ'
 import CTA from './components/CTA'
 import MenuDrawer from './components/MenuDrawer'
 import Footer from './components/Footer'
+import EbiAssistant from './components/EbiAssistant'
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -80,6 +81,7 @@ function App() {
         <FAQ />
         <CTA />
         <Footer />
+        <EbiAssistant />
       </div>
     </div>
   )

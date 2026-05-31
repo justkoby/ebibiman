@@ -1,4 +1,4 @@
-﻿import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { motion } from "framer-motion"
 import "./FutureMinds.css"
 
@@ -177,18 +177,6 @@ const FutureMinds = () => {
             </div>
           </div>
 
-        </div>
-
-        {/* Bottom CTA */}
-        <div className="fm-bottom-cta">
-          <a href="#partner" className="fm-cta-btn">
-            <span>Sponsor a Future Minds Lab</span>
-            <div className="fm-cta-arrow">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path d="M3 8H13M13 8L8.5 3.5M13 8L8.5 12.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </div>
-          </a>
         </div>
 
       </div>

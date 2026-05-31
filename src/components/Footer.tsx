@@ -23,7 +23,6 @@ const Footer = () => {
           <div className="footer-info-col">
             <div className="footer-logo-wrap">
               <img src="/images/logo.png" alt="Ebibiman Tech Alliance" className="footer-logo" />
-              <span className="footer-logo-text">EBIBIMAN</span>
             </div>
             <p className="footer-mission">
               Building Africa's next generation of technology creators through education, innovation, and community impact.
