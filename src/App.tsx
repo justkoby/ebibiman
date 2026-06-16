@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { ArrowRight } from 'lucide-react'
 import Hero from './components/Hero'
+import TheProblem from './components/TheProblem'
 import WhyEbibiman from './components/WhyEbibiman'
 import Approach from './components/Approach'
 import TransitionMarquee from './components/TransitionMarquee'
@@ -14,10 +15,12 @@ import CTA from './components/CTA'
 import MenuDrawer from './components/MenuDrawer'
 import Footer from './components/Footer'
 import EbiAssistant from './components/EbiAssistant'
+import BlogPage from './components/BlogPage'
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [currentView, setCurrentView] = useState<'home' | 'nita-bill' | 'tech-issues-2026' | 'ai-coming-for-you'>('home')
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,6 +34,41 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  useEffect(() => {
+    const handleHashChange = () => {
+      if (window.location.hash === '#/blog/nita-bill') {
+        setCurrentView('nita-bill')
+        window.scrollTo(0, 0)
+      } else if (window.location.hash === '#/blog/tech-issues-2026') {
+        setCurrentView('tech-issues-2026')
+        window.scrollTo(0, 0)
+      } else if (window.location.hash === '#/blog/ai-coming-for-you') {
+        setCurrentView('ai-coming-for-you')
+        window.scrollTo(0, 0)
+      } else {
+        setCurrentView('home')
+        
+        // Handle auto-scroll to anchor when returning to home view
+        const anchor = window.location.hash.slice(1)
+        if (anchor && anchor !== 'home') {
+          // Wait for DOM update
+          setTimeout(() => {
+            const element = document.getElementById(anchor)
+            if (element) {
+              element.scrollIntoView({ behavior: 'smooth' })
+            }
+          }, 150)
+        }
+      }
+    }
+
+    // Run on mount
+    handleHashChange()
+
+    window.addEventListener('hashchange', handleHashChange)
+    return () => window.removeEventListener('hashchange', handleHashChange)
+  }, [])
+
   const handleJoinClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
     const contactSection = document.getElementById('contact')
@@ -39,10 +77,14 @@ function App() {
     }
   }
 
+  const handleBackToHome = () => {
+    window.location.hash = '#programmes'
+  }
+
   return (
     <div className={`app-container ${isMenuOpen ? 'drawer-open' : ''}`}>
       {/* Global Navigation Header */}
-      <header className={`global-header ${scrolled ? 'scrolled' : ''} ${isMenuOpen ? 'hidden-header' : ''}`}>
+      <header className={`global-header ${scrolled ? 'scrolled' : ''} ${isMenuOpen || currentView !== 'home' ? 'hidden-header' : ''}`}>
         <button className="header-btn left-btn" onClick={() => setIsMenuOpen(true)}>
           <span className="burger-icon">
             <span className="burger-line"></span>
@@ -69,19 +111,30 @@ function App() {
         className={`main-layout-wrapper ${isMenuOpen ? 'menu-open' : ''}`}
         onClick={isMenuOpen ? () => setIsMenuOpen(false) : undefined}
       >
-        <Hero />
-        <WhyEbibiman />
-        <Approach />
-        <TransitionMarquee />
-        <ProgrammesShowcase />
-        <Ecosystem />
-        <FutureMinds />
-        <Voices />
-        <Events />
-        <FAQ />
-        <CTA />
-        <Footer />
-        <EbiAssistant />
+        {currentView === 'nita-bill' ? (
+          <BlogPage articleId="nita-bill" onBack={handleBackToHome} />
+        ) : currentView === 'tech-issues-2026' ? (
+          <BlogPage articleId="tech-issues-2026" onBack={handleBackToHome} />
+        ) : currentView === 'ai-coming-for-you' ? (
+          <BlogPage articleId="ai-coming-for-you" onBack={handleBackToHome} />
+        ) : (
+          <>
+            <Hero />
+            <TheProblem />
+            <WhyEbibiman />
+            <Approach />
+            <TransitionMarquee />
+            <ProgrammesShowcase />
+            <Ecosystem />
+            <FutureMinds />
+            <Voices />
+            <Events />
+            <FAQ />
+            <CTA />
+            <Footer />
+            <EbiAssistant />
+          </>
+        )}
       </div>
     </div>
   )

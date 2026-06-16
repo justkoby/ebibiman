@@ -19,9 +19,14 @@ const menuItems = [
 
 const MenuDrawer = ({ isOpen, onClose }: MenuDrawerProps) => {
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
-    e.preventDefault()
     onClose()
     
+    if (window.location.hash.includes('/blog/')) {
+      // Let the hash change propagate normally so that App.tsx can switch back to home view
+      return
+    }
+
+    e.preventDefault()
     // Slight timeout to let the drawer close transition start before scrolling
     setTimeout(() => {
       const element = document.getElementById(targetId)

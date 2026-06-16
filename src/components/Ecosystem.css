@@ -1,4 +1,4 @@
-﻿/* ===== OUR ECOSYSTEM SECTION ===== */
+/* ===== OUR ECOSYSTEM SECTION ===== */
 .eco-section {
   position: relative;
   background-color: #FAF9F6;
@@ -358,3 +358,71 @@
     height: 34px;
   }
 }
+
+/* Custom styles for article row titles and links */
+.eco-row-title-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  text-align: left;
+}
+
+.eco-row-title.eco-row-title-article {
+  font-size: clamp(15px, 1.6vw, 20px);
+  text-transform: none; /* Sentence case for article title */
+  line-height: 1.25;
+  letter-spacing: -0.2px;
+  font-family: 'Inter Tight', sans-serif;
+  font-weight: 600;
+  color: #C8C7C2; /* Start off muted like others, becomes black on hover */
+}
+
+.eco-row-active .eco-row-title.eco-row-title-article {
+  color: #1A1A1A;
+}
+
+.eco-row-link {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  color: #8A6D3B;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: color 0.25s ease, transform 0.25s ease;
+  margin-top: 4px;
+  display: inline-flex;
+}
+
+.eco-row-link:hover {
+  color: #1A1A1A;
+  transform: translateX(2px);
+}
+
+.eco-preview-title.eco-preview-title-article {
+  font-size: 15px !important;
+  text-transform: none !important;
+  line-height: 1.35 !important;
+  font-family: 'Inter Tight', sans-serif !important;
+  font-weight: 600 !important;
+}
+
+.eco-preview-link {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  color: #8A6D3B;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: color 0.25s ease, transform 0.25s ease;
+  margin-top: 4px;
+  display: inline-flex;
+}
+
+.eco-preview-link:hover {
+  color: #1A1A1A;
+  transform: translateX(2px);
+}
+

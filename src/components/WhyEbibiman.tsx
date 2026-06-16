@@ -75,7 +75,7 @@ const WhyEbibiman = () => {
   })
 
   const text1 = "AFRICA USES TECHNOLOGY."
-  const text2 = "AFRICA MUST ALSO BUILD IT."
+  const text2 = "The Future Cannot Be Built on Forgotten Knowledge."
   const text3 = "THE NEXT GENERATION OF AFRICAN INNOVATORS SHOULD CREATE TECHNOLOGY ROOTED IN INDIGENOUS KNOWLEDGE, ETHICAL DESIGN, AND COMMUNITY IMPACT."
 
   const words1 = text1.split(/\s+/)

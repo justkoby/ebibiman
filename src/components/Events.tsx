@@ -12,15 +12,39 @@ interface MagazineStory {
 }
 
 const featuredStory: MagazineStory = {
-  category: 'Masterclass',
-  title: 'AI Prompt Engineering: Teaching Young Africans To Work Smarter With AI',
-  date: 'July 2025',
-  image: '/images/AI Prompt Engineering.png',
-  link: '#story-ai',
-  desc: 'Equipping the next generation of African builders with AI prompt structures, communication frameworks, and critical future-skills required for cognitive work.'
+  category: 'Opinion Piece',
+  title: "Ghana's Digital Future Is at Stake - The NITA Bill Must Do Better",
+  date: 'June 2025',
+  image: '/images/nita_bill_opinion.png',
+  link: '#/blog/nita-bill',
+  desc: 'Ghana is at an inflection point. The National Information Technology Authority Bill, 2025 is an opportunity to build legal architecture for the next generation. We cannot stay silent about the ways this bill, as currently drafted, could do serious harm.'
 }
 
 const sideStories: MagazineStory[] = [
+  {
+    category: 'Opinion Piece',
+    title: 'AI is coming for you!',
+    date: 'March 8, 2025',
+    image: '/images/ai_coming_for_you.png',
+    link: '#/blog/ai-coming-for-you',
+    desc: 'AI is not just a harbinger of job displacement; it is a powerful tool to revolutionize industries. But its rapid advancement raises critical questions about our future.'
+  },
+  {
+    category: 'Opinion Piece',
+    title: 'Five Technology Issues to Watch Out For in 2026',
+    date: 'June 2026',
+    image: '/images/tech_trends_2026.png',
+    link: '#/blog/tech-issues-2026',
+    desc: 'Rapid advances in AI, digital finance, connectivity, green tech, and cybersecurity are redefining work, health, and agriculture. How will Ghana navigate this transition?'
+  },
+  {
+    category: 'Masterclass',
+    title: 'AI Prompt Engineering: Teaching Young Africans To Work Smarter With AI',
+    date: 'July 2025',
+    image: '/images/AI Prompt Engineering.png',
+    link: '#story-ai',
+    desc: 'Equipping the next generation of African builders with AI prompt structures, communication frameworks, and critical future-skills required for cognitive work.'
+  },
   {
     category: 'Thought Leadership',
     title: "The Ghanaian Tech Space Is Dying: Reimagining Ghana's Technology Landscape",

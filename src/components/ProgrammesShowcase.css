@@ -203,3 +203,42 @@
   .ps-scroll-hint { display: none; }
 }
 
+/* Action Button in Cinematic Showcase */
+.ps-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 28px;
+  background-color: #FFFFFF;
+  color: #0A0A0A;
+  border-radius: 100px;
+  text-decoration: none;
+  font-family: 'PT Sans Narrow', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.08);
+}
+
+.ps-action-btn:hover {
+  background-color: var(--gold);
+  color: #000000;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(212, 160, 23, 0.25);
+}
+
+.ps-btn-arrow {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s ease;
+  stroke: currentColor;
+}
+
+.ps-action-btn:hover .ps-btn-arrow {
+  transform: translateX(4px);
+}
+
+

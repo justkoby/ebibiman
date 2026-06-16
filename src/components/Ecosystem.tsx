@@ -1,4 +1,4 @@
-﻿import { useState } from "react"
+import { useState } from "react"
 import { motion } from "framer-motion"
 import "./Ecosystem.css"
 
@@ -9,6 +9,8 @@ interface EcoItem {
   image: string
   stat?: string
   statLabel?: string
+  link?: string
+  isArticle?: boolean
 }
 
 const ecoItems: EcoItem[] = [
@@ -110,7 +112,22 @@ const Ecosystem = () => {
               >
                 <div className="eco-row-left">
                   <span className="eco-row-num">{item.num}</span>
-                  <span className="eco-row-title">{item.title}</span>
+                  <div className="eco-row-title-block">
+                    <span className={`eco-row-title ${item.isArticle ? "eco-row-title-article" : ""}`}>
+                      {item.title}
+                    </span>
+                    {item.link && (
+                      <a 
+                        href={item.link} 
+                        className="eco-row-link"
+                        onClick={(e) => {
+                          e.stopPropagation()
+                        }}
+                      >
+                        Read Full Article →
+                      </a>
+                    )}
+                  </div>
                 </div>
                 <div className="eco-row-right">
                   <div className="eco-row-tags">
@@ -142,7 +159,12 @@ const Ecosystem = () => {
                   </div>
                   <div className="eco-preview-info">
                     <span className="eco-preview-num">{activeItem.num}</span>
-                    <h3 className="eco-preview-title">{activeItem.title}</h3>
+                    <h3 className={`eco-preview-title ${activeItem.isArticle ? "eco-preview-title-article" : ""}`}>{activeItem.title}</h3>
+                    {activeItem.link && (
+                      <a href={activeItem.link} className="eco-preview-link">
+                        Read Full Article →
+                      </a>
+                    )}
                     {activeItem.stat && (
                       <div className="eco-preview-stat">
                         <span className="eco-preview-stat-val">{activeItem.stat}</span>
