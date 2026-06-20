@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { ArrowRight } from 'lucide-react'
 import Hero from './components/Hero'
 import TheProblem from './components/TheProblem'
+import AfricanKnowledgeAtlas from './components/AfricanKnowledgeAtlas'
 import WhyEbibiman from './components/WhyEbibiman'
 import Approach from './components/Approach'
 import TransitionMarquee from './components/TransitionMarquee'
@@ -84,7 +85,7 @@ function App() {
   return (
     <div className={`app-container ${isMenuOpen ? 'drawer-open' : ''}`}>
       {/* Global Navigation Header */}
-      <header className={`global-header ${scrolled ? 'scrolled' : ''} ${isMenuOpen || currentView !== 'home' ? 'hidden-header' : ''}`}>
+      <header className={`global-header ${scrolled ? 'scrolled' : ''} ${currentView !== 'home' ? 'hidden-header' : ''}`}>
         <button className="header-btn left-btn" onClick={() => setIsMenuOpen(true)}>
           <span className="burger-icon">
             <span className="burger-line"></span>
@@ -121,6 +122,7 @@ function App() {
           <>
             <Hero />
             <TheProblem />
+            <AfricanKnowledgeAtlas />
             <WhyEbibiman />
             <Approach />
             <TransitionMarquee />
