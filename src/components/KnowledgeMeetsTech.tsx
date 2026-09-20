@@ -147,12 +147,9 @@ const KnowledgeMeetsTech: React.FC = () => {
         >
           <div className="kmt-epilogue-inner">
             <span className="kmt-epilogue-eyebrow">THE CORE INQUIRY</span>
-            <h3 className="kmt-epilogue-statement">
+            <h3 className="kmt-epilogue-statement" style={{ marginBottom: 0 }}>
               What could we build when one informs the other?
             </h3>
-            <p className="kmt-epilogue-sub" style={{ marginBottom: 0 }}>
-              By grounding the most advanced computational architectures in African linguistic, ecological, and cultural knowledge systems, we move from being consumers of foreign technologies to pioneering creators of human-centered innovation.
-            </p>
           </div>
         </motion.div>
 

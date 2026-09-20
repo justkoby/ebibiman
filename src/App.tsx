@@ -10,7 +10,6 @@ import TransitionMarquee from './components/TransitionMarquee'
 import ProgrammesShowcase from './components/ProgrammesShowcase'
 import Ecosystem from './components/Ecosystem'
 import Events from './components/Events'
-import BusinessModel from './components/BusinessModel'
 import Voices from './components/Voices'
 import CTA from './components/CTA'
 import MenuDrawer from './components/MenuDrawer'
@@ -20,12 +19,13 @@ import BlogPage from './components/BlogPage'
 import ArticlesPage from './components/ArticlesPage'
 import EventsPage from './components/EventsPage'
 import SolutionsPage from './components/SolutionsPage'
+import AcademyPage from './components/AcademyPage'
 import ScrollToTop from './components/ScrollToTop'
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const [currentView, setCurrentView] = useState<'home' | 'nita-bill' | 'tech-issues-2026' | 'ai-coming-for-you' | 'reproducing-mind' | 'digital-innovation-facade' | 'articles' | 'events-page' | 'solutions'>('home')
+  const [currentView, setCurrentView] = useState<'home' | 'nita-bill' | 'tech-issues-2026' | 'ai-coming-for-you' | 'reproducing-mind' | 'digital-innovation-facade' | 'articles' | 'events-page' | 'solutions' | 'academy'>('home')
 
   useEffect(() => {
     const handleScroll = () => {
@@ -65,12 +65,15 @@ function App() {
       } else if (window.location.hash === '#/solutions' || window.location.hash === '#/eta-solutions') {
         setCurrentView('solutions')
         window.scrollTo(0, 0)
+      } else if (window.location.hash === '#/academy' || window.location.hash === '#/eta-academy') {
+        setCurrentView('academy')
+        window.scrollTo(0, 0)
       } else {
         setCurrentView('home')
         
         // Handle auto-scroll to anchor when returning to home view
         const anchor = window.location.hash.slice(1)
-        if (anchor && anchor !== 'home' && !anchor.startsWith('/')) {
+        if (anchor && anchor !== 'home' && anchor !== 'hero' && !anchor.startsWith('/')) {
           // Wait for DOM update
           setTimeout(() => {
             const element = document.getElementById(anchor)
@@ -78,6 +81,8 @@ function App() {
               element.scrollIntoView({ behavior: 'smooth' })
             }
           }, 150)
+        } else {
+          window.scrollTo(0, 0)
         }
       }
     }
@@ -98,7 +103,8 @@ function App() {
   }
 
   const handleBackToHome = () => {
-    window.location.hash = '#events'
+    window.location.hash = ''
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   return (
@@ -144,6 +150,8 @@ function App() {
           <EventsPage onBack={handleBackToHome} />
         ) : currentView === 'solutions' ? (
           <SolutionsPage onBack={handleBackToHome} />
+        ) : currentView === 'academy' ? (
+          <AcademyPage onBack={handleBackToHome} />
         ) : (
           <>
             <Hero />
@@ -157,7 +165,6 @@ function App() {
             <Ecosystem />
             <Voices />
             <Events />
-            <BusinessModel />
             <CTA />
             <Footer />
             <EbiAssistant />

@@ -14,6 +14,7 @@ import {
   ExternalLink,
   Loader2
 } from 'lucide-react'
+import Footer from './Footer'
 import './SolutionsPage.css'
 
 interface SolutionsPageProps {
@@ -1542,6 +1543,9 @@ const SolutionsPage: React.FC<SolutionsPageProps> = ({ onBack }) => {
           </div>
         </div>
       </section>
+
+      {/* Footer of the main landing page */}
+      <Footer />
 
       {/* ========================================================= */}
       {/* DISCOVERY & DEMO FORWARDING INTERACTIVE MODAL */}

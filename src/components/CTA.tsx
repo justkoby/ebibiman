@@ -14,6 +14,7 @@ interface ActionCard {
   categoryName: string
   modalTitle: string
   modalDesc: string
+  href?: string
 }
 
 const pathways: ActionCard[] = [
@@ -21,17 +22,18 @@ const pathways: ActionCard[] = [
     id: 'think',
     title: 'THINK WITH US',
     desc: 'Researchers, institutions and partners exploring technology and African society.',
-    linkText: 'Partner With ETA',
+    linkText: 'CONTACT US',
     icon: Lightbulb,
     categoryName: 'Think With Us · Research & Institutional Partnership',
-    modalTitle: 'Partner With ETA (Think With Us)',
+    modalTitle: 'Contact Us (Think With Us)',
     modalDesc: 'Collaborate on research, policy, ethical tech frameworks, and institutional initiatives.'
   },
   {
     id: 'learn',
     title: 'LEARN WITH US',
     desc: 'People and organisations developing capabilities for a changing technological environment.',
-    linkText: 'Explore Academy',
+    linkText: 'EXPLORE ACADEMY',
+    href: '#/academy',
     icon: GraduationCap,
     categoryName: 'Learn With Us · Academy & Capability Development',
     modalTitle: 'Explore Academy (Learn With Us)',
@@ -41,7 +43,8 @@ const pathways: ActionCard[] = [
     id: 'build',
     title: 'BUILD WITH US',
     desc: 'Organisations solving real problems through technology, AI and intelligent systems.',
-    linkText: 'Explore Solutions',
+    linkText: 'EXPLORE SOLUTIONS',
+    href: '#/solutions',
     icon: Cpu,
     categoryName: 'Build With Us · Technology Solutions & AI Systems',
     modalTitle: 'Explore Solutions (Build With Us)',
@@ -203,14 +206,25 @@ const CTA: React.FC = () => {
                 <p className="cta-act-desc">{card.desc}</p>
                 
                 <div className="cta-act-btn-row">
-                  <button 
-                    type="button" 
-                    onClick={(e) => handleOpenModal(e, card.id)} 
-                    className="btn-cta-act"
-                  >
-                    <span>{card.linkText}</span>
-                    <ArrowRight className="cta-btn-arrow" />
-                  </button>
+                  {card.href ? (
+                    <a 
+                      href={card.href} 
+                      className="btn-cta-act"
+                      style={{ textDecoration: 'none' }}
+                    >
+                      <span>{card.linkText}</span>
+                      <ArrowRight className="cta-btn-arrow" />
+                    </a>
+                  ) : (
+                    <button 
+                      type="button" 
+                      onClick={(e) => handleOpenModal(e, card.id)} 
+                      className="btn-cta-act"
+                    >
+                      <span>{card.linkText}</span>
+                      <ArrowRight className="cta-btn-arrow" />
+                    </button>
+                  )}
                 </div>
               </motion.div>
             )

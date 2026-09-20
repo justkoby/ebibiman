@@ -92,13 +92,18 @@ const Footer: React.FC = () => {
               <h4 className="footer-col-title">Academy</h4>
               <ul className="footer-col-links">
                 <li>
-                  <a href="#programmes" onClick={(e) => handleSmoothScroll(e, '#programmes')}>
+                  <a href="#/academy">
                     Learning Programmes
                   </a>
                 </li>
                 <li>
-                  <a href="#programmes" onClick={(e) => handleSmoothScroll(e, '#programmes')}>
-                    Corporate Learning
+                  <a href="#/academy">
+                    Corporate Training
+                  </a>
+                </li>
+                <li>
+                  <a href="#/academy">
+                    Young Learners
                   </a>
                 </li>
                 <li><a href="#/events-page">Workshops</a></li>

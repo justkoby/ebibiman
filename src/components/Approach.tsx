@@ -31,7 +31,7 @@ const approachCards: ApproachCardData[] = [
     title: 'ETA ACADEMY',
     desc: 'Learning experiences that help people, businesses and institutions understand and use emerging technology meaningfully.',
     cta: 'EXPLORE ACADEMY',
-    link: '#/events-page',
+    link: '#/academy',
     bgImage: '/images/pattern-2.jpg'
   },
   {
@@ -41,7 +41,7 @@ const approachCards: ApproachCardData[] = [
     title: 'ETA SOLUTIONS',
     desc: 'We design digital and intelligent systems around real organisational problems, while exploring how technology can be built around African contexts and knowledge.',
     cta: 'EXPLORE SOLUTIONS',
-    link: '#solutions',
+    link: '#/solutions',
     bgImage: '/images/pattern-3.jpg'
   }
 ]
@@ -71,7 +71,7 @@ const Approach = () => {
   return (
     <section className="approach-section" id="approach">
       <div className="approach-container">
-        
+
         {/* Section Header */}
         <div className="approach-header">
           <div className="approach-eyebrow">Our Approach</div>
@@ -81,7 +81,7 @@ const Approach = () => {
         </div>
 
         {/* 3 Large Approach Cards Grid */}
-        <motion.div 
+        <motion.div
           className="approach-cards-grid"
           variants={containerVariants}
           initial="hidden"
@@ -91,33 +91,33 @@ const Approach = () => {
           {approachCards.map((card) => {
             const Icon = card.icon
             return (
-              <motion.a 
+              <motion.a
                 href={card.link}
-                className="approach-card" 
+                className="approach-card"
                 variants={cardVariants}
                 key={card.id}
                 style={{ textDecoration: 'none' }}
               >
                 {/* Background Image inside the Card */}
-                <div 
+                <div
                   className="approach-card-bg"
                   style={{ backgroundImage: `url(${card.bgImage})` }}
                 ></div>
-                
+
                 {/* Dark Overlay over the Background Image */}
                 <div className="approach-card-overlay"></div>
 
                 {/* White Container holding Card Content */}
                 <div className="approach-card-inner">
                   <span className="approach-card-label">{card.label}</span>
-                  
+
                   <div className="approach-card-icon-circle">
                     <Icon className="approach-card-icon" />
                   </div>
 
                   <h3 className="approach-card-title">{card.title}</h3>
                   <p className="approach-card-desc">{card.desc}</p>
-                  
+
                   <div className="approach-card-cta">
                     <span>{card.cta}</span>
                     <ArrowRight className="approach-card-arrow" />

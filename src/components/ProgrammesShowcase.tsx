@@ -31,12 +31,12 @@ const slides: ShowcaseSlide[] = [
     link: "#/events-page"
   },
   {
-    id: "ghanaian-tech-space-dying",
-    videoSrc: "https://res.cloudinary.com/justkoby/video/upload/v1780201589/9365273-hd_1920_1080_25fps_qylb8r.mp4",
-    title: ["THE GHANAIAN", "TECH SPACE", "IS DYING"],
-    tags: ["Webinar Forum", "Ecosystem", "Tech Policy"],
-    stat: "WEBINAR",
-    statLabel: "Webinar Series",
+    id: "html-masterclass",
+    videoSrc: "/images/vcvdfd.mp4",
+    title: ["HTML", "MASTERCLASS"],
+    tags: ["Web Development", "Frontend Skills", "Hands-on Code"],
+    stat: "MASTERCLASS",
+    statLabel: "Masterclass Series",
     link: "#/events-page"
   }
 ]

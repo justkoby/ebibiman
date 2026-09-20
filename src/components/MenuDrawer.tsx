@@ -9,6 +9,7 @@ interface MenuDrawerProps {
 const menuItems = [
   { label: 'Home', target: '#hero' },
   { label: 'About', target: '#the-problem' },
+  { label: 'Academy', target: '#/academy' },
   { label: 'Solutions', target: '#/solutions' },
   { label: 'Articles', target: '#/articles' },
   { label: 'Events', target: '#/events-page' },
