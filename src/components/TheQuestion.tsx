@@ -17,7 +17,7 @@ export default function TheQuestion() {
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
         >
-          <span className="question-eyebrow">03 — THE QUESTION FACING US</span>
+          <span className="question-eyebrow">THE QUESTION FACING US</span>
         </motion.div>
 
         {/* Main Editorial Headline */}

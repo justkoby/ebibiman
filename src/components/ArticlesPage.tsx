@@ -48,6 +48,17 @@ const articlesData: Article[] = [
     author: "Samuel Sasu Adonteng, Peter Kwasi Kodjie, Margaret Edem Gasu & Rexford Akrong",
     image: "/images/tech_trends_2026.png",
     link: "#/blog/tech-issues-2026"
+  },
+  {
+    id: 'digital-innovation-facade',
+    title: "GHANA’S DIGITAL INNOVATION IS A FAÇADE",
+    tagline: "Yet, beneath this promising narrative lies a stark reality: a persistent digital divide, limited rural connectivity, and an overdependence on foreign technologies.",
+    category: "Tech Policy & Advocacy",
+    date: "January 16, 2025",
+    readTime: "5 min read",
+    author: "Samuel Sasu Adonteng & Margaret Edem Gasu",
+    image: "/images/digital_innovation_facade.png",
+    link: "#/blog/digital-innovation-facade"
   }
 ]
 

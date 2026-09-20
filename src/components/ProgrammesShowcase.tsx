@@ -13,31 +13,31 @@ interface ShowcaseSlide {
 
 const slides: ShowcaseSlide[] = [
   {
-    id: "nita-opinion",
+    id: "young-leaders-governance",
     videoSrc: "https://res.cloudinary.com/justkoby/video/upload/v1780201601/11025564-hd_4096_2160_25fps_t8lj3l.mp4",
-    title: ["GHANA'S DIGITAL", "FUTURE AT STAKE", "THE NITA BILL"],
-    tags: ["Tech Policy", "Opinion Piece", "Digital Rights"],
-    stat: "READ",
-    statLabel: "Opinion Piece",
-    link: "#/blog/nita-bill"
+    title: ["EQUIPPING YOUNG LEADERS", "FOR GOVERNANCE", "IN THE DIGITAL AGE"],
+    tags: ["Leadership Seminar", "Digital Influence", "AI & Governance"],
+    stat: "RECAP",
+    statLabel: "Leadership Seminar",
+    link: "#/events-page"
   },
   {
-    id: "ai-coming-for-you",
+    id: "ai-prompt-engineering",
     videoSrc: "https://res.cloudinary.com/justkoby/video/upload/v1780198737/bg-video_pnwybf.mp4",
-    title: ["AI IS COMING", "FOR YOU!", ""],
-    tags: ["Artificial Intelligence", "Ethics", "Future Work"],
-    stat: "READ",
-    statLabel: "Opinion Piece",
-    link: "#/blog/ai-coming-for-you"
+    title: ["AI PROMPT", "ENGINEERING", "MASTERCLASS"],
+    tags: ["Masterclass", "Prompt Engineering", "Applied AI"],
+    stat: "MASTERCLASS",
+    statLabel: "Hands-on Masterclass",
+    link: "#/events-page"
   },
   {
-    id: "tech-issues-2026",
+    id: "ghanaian-tech-space-dying",
     videoSrc: "https://res.cloudinary.com/justkoby/video/upload/v1780201589/9365273-hd_1920_1080_25fps_qylb8r.mp4",
-    title: ["FIVE TECH ISSUES", "TO WATCH FOR", "IN 2026"],
-    tags: ["Thought Leadership", "Future Trends", "AI & Tech"],
-    stat: "READ",
-    statLabel: "Opinion Piece",
-    link: "#/blog/tech-issues-2026"
+    title: ["THE GHANAIAN", "TECH SPACE", "IS DYING"],
+    tags: ["Webinar Forum", "Ecosystem", "Tech Policy"],
+    stat: "WEBINAR",
+    statLabel: "Webinar Series",
+    link: "#/events-page"
   }
 ]
 
@@ -138,7 +138,7 @@ const ProgrammesShowcase = () => {
             </div>
             {current.link ? (
               <a href={current.link} className="ps-action-btn">
-                <span>Read Full Article</span>
+                <span>Explore Event</span>
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="ps-btn-arrow">
                   <path d="M3 8H13M13 8L8.5 3.5M13 8L8.5 12.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>

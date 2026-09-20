@@ -189,7 +189,81 @@
 }
 
 /* For future real images: replace background-color with an <img> */
-/* .fm-visual-slide img { width:100%; height:100%; object-fit:cover; } */
+.fm-slide-image-wrapper {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.fm-slide-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.fm-slide-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(10, 10, 10, 0.2) 0%, rgba(10, 10, 10, 0.82) 100%);
+}
+
+.fm-slide-content-overlay {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  right: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 3;
+}
+
+.fm-slide-badge {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #FAF9F6;
+  background: #8A6D3B;
+  padding: 4px 12px;
+  border-radius: 100px;
+}
+
+.fm-slide-date {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: #E2DDD5;
+}
+
+/* Events All CTA Button */
+.fm-events-all-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #FAF9F6;
+  padding: 12px 24px;
+  border-radius: 100px;
+  font-family: 'PT Sans Narrow', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  margin-top: 20px;
+}
+
+.fm-events-all-btn:hover {
+  background: #8A6D3B;
+  border-color: #8A6D3B;
+  color: #FFFFFF;
+  transform: translateX(4px);
+}
 
 /* Placeholder inner content */
 .fm-placeholder-inner {

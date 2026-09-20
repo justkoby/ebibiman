@@ -8,13 +8,12 @@ interface MenuDrawerProps {
 
 const menuItems = [
   { label: 'Home', target: '#hero' },
-  { label: 'About', target: '#why-ebibiman' },
+  { label: 'About', target: '#the-problem' },
   { label: 'Approach', target: '#approach' },
+  { label: 'Solutions', target: '#ecosystem' },
   { label: 'Articles', target: '#/articles' },
   { label: 'Events', target: '#/events-page' },
   { label: 'Programmes', target: '#programmes' },
-  { label: 'Future Minds Ghana', target: '#future-minds' },
-  { label: 'FAQ', target: '#faq' },
   { label: 'Contact', target: '#contact' }
 ]
 

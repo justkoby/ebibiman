@@ -54,18 +54,19 @@
   max-width: 580px;
 }
 
-/* ===== 3-COLUMN RESPONSIVE GRID ===== */
-.events-layout-grid {
+/* ===== ASYMMETRIC GRID: 1 BIG CARD + 3 NEWS CARDS ===== */
+.events-asymmetric-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1.15fr 1fr;
   gap: 32px;
   align-items: stretch;
   width: 100%;
 }
 
-.events-grid-item {
+.events-feature-col {
   display: flex;
   height: 100%;
+  width: 100%;
 }
 
 /* ===== MAGAZINE CARDS ===== */
@@ -83,13 +84,217 @@
               box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
   width: 100%;
-  height: 100%;
 }
 
 .mag-card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-4px);
   border-color: #8A6D3B; /* Accent gold outline on hover */
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08); /* Soft shadows for light theme */
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.07);
+}
+
+/* Big Featured Card */
+.mag-card-featured {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.mag-card-featured .mag-image-wrapper {
+  aspect-ratio: 16 / 9;
+  max-height: 235px;
+  flex-shrink: 0;
+}
+
+.mag-card-featured .mag-content {
+  padding: 22px 22px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+
+.mag-card-featured .mag-date {
+  margin-bottom: 8px;
+}
+
+.mag-title-featured {
+  font-size: clamp(19px, 1.6vw, 22px);
+  line-height: 1.18;
+  margin-bottom: 8px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.mag-desc-featured {
+  font-size: 13.5px;
+  line-height: 1.55;
+  margin-bottom: 14px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ===== RIGHT COLUMN: NEWS POST LIST (THUMBNAIL LEFT, DETAILS RIGHT) ===== */
+.events-news-list-col {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+}
+
+.news-row-wrapper {
+  display: flex;
+  flex: 1;
+  width: 100%;
+}
+
+.news-row-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 16px;
+  background: #FFFFFF;
+  border: 1px solid #E2E1DC;
+  border-radius: 14px;
+  text-decoration: none;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
+}
+
+.news-row-item:hover {
+  transform: translateY(-3px);
+  border-color: #8A6D3B;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.05);
+}
+
+/* Compact Thumbnail on Left */
+.news-row-thumb-wrap {
+  width: 120px;
+  height: 88px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  background: #F0EFEA;
+}
+
+.news-row-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.news-row-item:hover .news-row-thumb {
+  transform: scale(1.08);
+}
+
+.news-row-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.15) 0%, transparent 100%);
+  opacity: 0.6;
+}
+
+/* Content on Right */
+.news-row-content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.news-row-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10.5px;
+}
+
+.news-row-tag {
+  color: #8A6D3B;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.news-row-meta-dot {
+  color: #C0BEB8;
+  font-size: 9px;
+}
+
+.news-row-date {
+  color: #888480;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.news-row-title {
+  font-family: 'PT Sans Narrow', sans-serif;
+  font-size: clamp(16px, 1.3vw, 19px);
+  font-weight: 700;
+  color: #1A1A1A;
+  line-height: 1.2;
+  margin: 0 0 6px 0;
+  letter-spacing: -0.3px;
+  transition: color 0.3s ease;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.news-row-item:hover .news-row-title {
+  color: #8A6D3B;
+}
+
+.news-row-desc {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: #6C6B66;
+  margin: 0 0 8px 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.news-row-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'PT Sans Narrow', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: #8A6D3B;
+  margin-top: 2px;
+  transition: gap 0.3s ease;
+}
+
+.news-row-arrow {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.news-row-item:hover .news-row-arrow {
+  transform: translateX(4px);
 }
 
 /* Image Wrappers */
@@ -290,10 +495,10 @@
 
 /* ===== RESPONSIVE BREAKPOINTS ===== */
 
-/* Tablet: 2 columns */
-@media (max-width: 1024px) {
-  .events-layout-grid {
-    grid-template-columns: repeat(2, 1fr);
+/* Tablet & Smaller Desktops */
+@media (max-width: 960px) {
+  .events-asymmetric-grid {
+    grid-template-columns: 1fr;
     gap: 28px;
   }
 }
@@ -308,8 +513,7 @@
     margin-bottom: 40px;
   }
 
-  .events-layout-grid {
-    grid-template-columns: 1fr;
+  .events-asymmetric-grid {
     gap: 24px;
   }
 
@@ -319,11 +523,32 @@
 
   .events-view-all-wrapper {
     margin-top: 40px;
+    flex-direction: column;
   }
 
   .events-view-all-btn {
     width: 100%;
     justify-content: center;
     padding: 15px 24px;
+  }
+}
+
+@media (max-width: 540px) {
+  .news-row-item {
+    gap: 14px;
+    padding: 16px;
+  }
+
+  .news-row-thumb-wrap {
+    width: 100px;
+    height: 85px;
+  }
+
+  .news-row-title {
+    font-size: 16px;
+  }
+
+  .news-row-desc {
+    display: none; /* Hide excerpt on very small screens for ultra-compact look */
   }
 }

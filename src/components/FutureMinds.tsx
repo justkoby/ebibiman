@@ -1,45 +1,63 @@
 import { useEffect, useRef, useState } from "react"
 import { motion } from "framer-motion"
+import { ArrowRight } from "lucide-react"
 import "./FutureMinds.css"
 
 interface Phase {
   num: string
   title: string
+  category: string
+  date: string
   desc: string
-  // placeholder color for now — user will swap in real images later
+  image: string
   placeholderColor: string
 }
 
 const phases: Phase[] = [
   {
     num: "01",
-    title: "ICT LAB SETUP",
-    desc: "We equip schools with computers, networking, and digital infrastructure — creating a foundation for meaningful technology education.",
-    placeholderColor: "#2A2A2A"
-  },
-  {
-    num: "02",
-    title: "DIGITAL LITERACY",
-    desc: "Students gain practical technology skills integrated into their everyday learning — from basic computing to creative problem solving.",
+    title: "EQUIPPING YOUNG LEADERS FOR GOVERNANCE IN THE DIGITAL AGE",
+    category: "Leadership Seminar",
+    date: "13 July 2025",
+    desc: "ETA led a breakout session on “Digital Influence, AI & Leadership in Governance” at the TBS SRC Leadership Seminar 2025, empowering young leaders to use technology intelligently, influence responsibly, and lead ethically.",
+    image: "/images/unmutre.jpeg",
     placeholderColor: "#1E1E2E"
   },
   {
-    num: "03",
-    title: "TEACHER TRAINING",
-    desc: "Educators receive hands-on training to confidently lead digital lessons, ensuring technology adoption is sustained long-term.",
+    num: "02",
+    title: "AI PROMPT ENGINEERING MASTERCLASS",
+    category: "Masterclass",
+    date: "July 2025",
+    desc: "Equipping the next generation of African builders with advanced AI prompt structures, cognitive frameworks, and critical future-skills required for an AI-shaped workforce.",
+    image: "/images/AI Prompt Engineering.png",
     placeholderColor: "#1A2A1A"
   },
   {
-    num: "04",
-    title: "TECH CLUBS & INNOVATION",
-    desc: "Students explore coding, AI, robotics, and creative problem solving — discovering what it means to be a builder of technology.",
+    num: "03",
+    title: "THE GHANAIAN TECH SPACE IS DYING",
+    category: "Webinar",
+    date: "25 April 2025",
+    desc: "A landmark forum bringing industry leaders, policymakers, founders, and students together to challenge digital policy bottlenecks, examine foreign technology reliance, and architect sustainable tech ecosystems.",
+    image: "/images/Responsible Tech Educationship.png",
     placeholderColor: "#2A1A10"
   },
   {
-    num: "05",
-    title: "COMMUNITY ACCESS",
-    desc: "Labs become shared resources for parents, local communities, and young adults — extending the impact beyond the school gates.",
+    num: "04",
+    title: "WEB DEVELOPMENT MASTERCLASS: ONLINE EDITION",
+    category: "Masterclass",
+    date: "March 2025",
+    desc: "An intensive hands-on masterclass introducing young African builders to the fundamentals of modern web development, semantic HTML, and responsive CSS.",
+    image: "/images/masterclass.jpeg",
     placeholderColor: "#1A1A2A"
+  },
+  {
+    num: "05",
+    title: "LEARNING THROUGH PLAY: EARLY DIGITAL LITERACY",
+    category: "Workshop",
+    date: "Quarterly Tours",
+    desc: "Experiential coding, spatial puzzles, and hands-on technology discovery designed to ignite computational thinking in young African minds across schools and community hubs.",
+    image: "/images/learning_through_play.png",
+    placeholderColor: "#2A2A2A"
   }
 ]
 
@@ -86,7 +104,7 @@ const FutureMinds = () => {
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
-          <span className="fm-eyebrow">Future Minds Ghana</span>
+          <span className="fm-eyebrow">ETA Gatherings & Masterclasses</span>
           <div className="fm-header-grid">
             <h2 className="fm-title">
               BUILDING THE NEXT<br />
@@ -94,9 +112,7 @@ const FutureMinds = () => {
               AFRICAN INNOVATORS
             </h2>
             <p className="fm-subtitle">
-              Future Minds Ghana equips schools with technology,
-              trains educators, and creates opportunities for students
-              to become creators of technology rather than consumers.
+              Explore our masterclasses, seminars, public debates, and hands-on workshops empowering African youth to lead, build, and innovate with technology.
             </p>
           </div>
         </motion.div>
@@ -121,11 +137,22 @@ const FutureMinds = () => {
                   {i < phases.length - 1 && <div className="fm-phase-line"></div>}
                 </div>
                 <div className="fm-phase-content">
+                  <span className="fm-slide-badge" style={{ marginBottom: "10px", display: "inline-block" }}>
+                    {phase.category}
+                  </span>
                   <h3 className="fm-phase-title">{phase.title}</h3>
                   <p className="fm-phase-desc">{phase.desc}</p>
                 </div>
               </motion.div>
             ))}
+
+            {/* View All Events Link */}
+            <div style={{ marginTop: "24px" }}>
+              <a href="#/events-page" className="fm-events-all-btn">
+                <span>View All Events & Programmes</span>
+                <ArrowRight size={15} />
+              </a>
+            </div>
           </div>
 
           {/* Right: Sticky Visual Panel */}
@@ -138,18 +165,25 @@ const FutureMinds = () => {
                     className={`fm-visual-slide ${activeIndex === i ? "fm-visual-active" : ""}`}
                     style={{ backgroundColor: phase.placeholderColor }}
                   >
-                    {/* Placeholder — user will replace with real images */}
-                    <div className="fm-placeholder-inner">
-                      <div className="fm-placeholder-icon">
-                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                          <rect x="8" y="12" width="32" height="22" rx="3" stroke="rgba(255,255,255,0.2)" strokeWidth="1.5"/>
-                          <path d="M16 34V38M32 34V38M12 38H36" stroke="rgba(255,255,255,0.2)" strokeWidth="1.5" strokeLinecap="round"/>
-                          <circle cx="24" cy="23" r="5" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5"/>
-                        </svg>
+                    {phase.image ? (
+                      <div className="fm-slide-image-wrapper">
+                        <img 
+                          src={phase.image} 
+                          alt={phase.title} 
+                          className="fm-slide-img" 
+                        />
+                        <div className="fm-slide-img-overlay"></div>
+                        <div className="fm-slide-content-overlay">
+                          <span className="fm-slide-badge">{phase.category}</span>
+                          <span className="fm-slide-date">{phase.date}</span>
+                        </div>
                       </div>
-                      <span className="fm-placeholder-label">{phase.num}</span>
-                      <span className="fm-placeholder-title">{phase.title}</span>
-                    </div>
+                    ) : (
+                      <div className="fm-placeholder-inner">
+                        <span className="fm-placeholder-label">{phase.num}</span>
+                        <span className="fm-placeholder-title">{phase.title}</span>
+                      </div>
+                    )}
                   </div>
                 ))}
 

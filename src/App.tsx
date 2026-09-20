@@ -3,16 +3,15 @@ import { ArrowRight } from 'lucide-react'
 import Hero from './components/Hero'
 import TheProblem from './components/TheProblem'
 import AfricanKnowledgeAtlas from './components/AfricanKnowledgeAtlas'
-import TheQuestion from './components/TheQuestion'
-import WhyEbibiman from './components/WhyEbibiman'
+// import WhyEbibiman from './components/WhyEbibiman'
+import KnowledgeMeetsTech from './components/KnowledgeMeetsTech'
 import Approach from './components/Approach'
 import TransitionMarquee from './components/TransitionMarquee'
 import ProgrammesShowcase from './components/ProgrammesShowcase'
 import Ecosystem from './components/Ecosystem'
 import Events from './components/Events'
-import FutureMinds from './components/FutureMinds'
+import BusinessModel from './components/BusinessModel'
 import Voices from './components/Voices'
-import FAQ from './components/FAQ'
 import CTA from './components/CTA'
 import MenuDrawer from './components/MenuDrawer'
 import Footer from './components/Footer'
@@ -20,11 +19,12 @@ import EbiAssistant from './components/EbiAssistant'
 import BlogPage from './components/BlogPage'
 import ArticlesPage from './components/ArticlesPage'
 import EventsPage from './components/EventsPage'
+import ScrollToTop from './components/ScrollToTop'
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const [currentView, setCurrentView] = useState<'home' | 'nita-bill' | 'tech-issues-2026' | 'ai-coming-for-you' | 'articles' | 'events-page'>('home')
+  const [currentView, setCurrentView] = useState<'home' | 'nita-bill' | 'tech-issues-2026' | 'ai-coming-for-you' | 'digital-innovation-facade' | 'articles' | 'events-page'>('home')
 
   useEffect(() => {
     const handleScroll = () => {
@@ -48,6 +48,9 @@ function App() {
         window.scrollTo(0, 0)
       } else if (window.location.hash === '#/blog/ai-coming-for-you') {
         setCurrentView('ai-coming-for-you')
+        window.scrollTo(0, 0)
+      } else if (window.location.hash === '#/blog/digital-innovation-facade') {
+        setCurrentView('digital-innovation-facade')
         window.scrollTo(0, 0)
       } else if (window.location.hash === '#/articles') {
         setCurrentView('articles')
@@ -101,10 +104,7 @@ function App() {
             <span className="burger-line"></span>
             <span className="burger-line"></span>
           </span>
-          <span className="btn-text-wrapper">
-            <span className="btn-text-default">Menu</span>
-            <span className="btn-text-hover">Explore</span>
-          </span>
+          <span className="btn-text">Menu</span>
         </button>
 
         <a href="#contact" className="header-btn right-btn" onClick={handleJoinClick}>
@@ -127,6 +127,8 @@ function App() {
           <BlogPage articleId="tech-issues-2026" onBack={handleBackToHome} />
         ) : currentView === 'ai-coming-for-you' ? (
           <BlogPage articleId="ai-coming-for-you" onBack={handleBackToHome} />
+        ) : currentView === 'digital-innovation-facade' ? (
+          <BlogPage articleId="digital-innovation-facade" onBack={handleBackToHome} />
         ) : currentView === 'articles' ? (
           <ArticlesPage onBack={handleBackToHome} />
         ) : currentView === 'events-page' ? (
@@ -136,19 +138,19 @@ function App() {
             <Hero />
             <TheProblem />
             <AfricanKnowledgeAtlas />
-            <TheQuestion />
-            <WhyEbibiman />
+            {/* <WhyEbibiman /> */}
+            <KnowledgeMeetsTech />
             <Approach />
             <TransitionMarquee />
             <ProgrammesShowcase />
             <Ecosystem />
-            <FutureMinds />
             <Voices />
             <Events />
-            <FAQ />
+            <BusinessModel />
             <CTA />
             <Footer />
             <EbiAssistant />
+            <ScrollToTop />
           </>
         )}
       </div>

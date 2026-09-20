@@ -37,6 +37,14 @@ const latestStories: ArticleItem[] = [
     image: '/images/tech_trends_2026.png',
     link: '#/blog/tech-issues-2026',
     desc: 'Rapid advances in AI, digital finance, connectivity, green tech, and cybersecurity are redefining work, health, and agriculture. How will Ghana and Africa navigate this critical transition?'
+  },
+  {
+    category: 'Tech Policy & Advocacy',
+    title: "Ghana's Digital Innovation Is a Façade",
+    date: 'Jan. 2025',
+    image: '/images/digital_innovation_facade.png',
+    link: '#/blog/digital-innovation-facade',
+    desc: 'Beneath the promising digital narrative lies a persistent divide, limited rural connectivity, and an overdependence on foreign technologies. How can Africa build genuine digital sovereignty?'
   }
 ]
 
@@ -79,30 +87,31 @@ const Events: React.FC = () => {
           </p>
         </motion.div>
 
-        {/* 3-Column Responsive Grid (Desktop: 3 cols, Tablet: 2 cols, Mobile: 1 col) */}
+        {/* Asymmetric Layout: 1 Big Card on Left, 2 Stacked Cards on Right */}
         <motion.div 
-          className="events-layout-grid"
+          className="events-asymmetric-grid"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
         >
-          {latestStories.map((story, idx) => (
-            <motion.div className="events-grid-item" variants={fadeUp} key={idx}>
-              <a href={story.link} className="mag-card">
+          {/* Big Featured Card on Left */}
+          {latestStories[0] && (
+            <motion.div className="events-feature-col" variants={fadeUp}>
+              <a href={latestStories[0].link} className="mag-card mag-card-featured">
                 <div className="mag-image-wrapper">
-                  <span className="mag-badge">{story.category}</span>
+                  <span className="mag-badge">{latestStories[0].category}</span>
                   <img 
-                    src={story.image} 
-                    alt={story.title} 
+                    src={latestStories[0].image} 
+                    alt={latestStories[0].title} 
                     className="mag-image" 
                   />
                   <div className="mag-overlay"></div>
                 </div>
                 <div className="mag-content">
-                  <span className="mag-date">{story.date}</span>
-                  <h3 className="mag-title">{story.title}</h3>
-                  <p className="mag-desc">{story.desc}</p>
+                  <span className="mag-date">{latestStories[0].date}</span>
+                  <h3 className="mag-title mag-title-featured">{latestStories[0].title}</h3>
+                  <p className="mag-desc mag-desc-featured">{latestStories[0].desc}</p>
                   <div className="mag-action-link">
                     <span>Read Article</span>
                     <ArrowRight className="mag-arrow-icon" />
@@ -110,7 +119,38 @@ const Events: React.FC = () => {
                 </div>
               </a>
             </motion.div>
-          ))}
+          )}
+
+          {/* Right Column: News Post List (Small Thumbnail on Left, Details on Right) */}
+          <div className="events-news-list-col">
+            {latestStories.slice(1).map((story, idx) => (
+              <motion.div className="news-row-wrapper" variants={fadeUp} key={idx}>
+                <a href={story.link} className="news-row-item">
+                  <div className="news-row-thumb-wrap">
+                    <img 
+                      src={story.image} 
+                      alt={story.title} 
+                      className="news-row-thumb" 
+                    />
+                    <div className="news-row-overlay"></div>
+                  </div>
+                  <div className="news-row-content">
+                    <div className="news-row-meta">
+                      <span className="news-row-tag">{story.category}</span>
+                      <span className="news-row-meta-dot">•</span>
+                      <span className="news-row-date">{story.date}</span>
+                    </div>
+                    <h3 className="news-row-title">{story.title}</h3>
+                    <p className="news-row-desc">{story.desc}</p>
+                    <div className="news-row-action">
+                      <span>Read Article</span>
+                      <ArrowRight size={13} className="news-row-arrow" />
+                    </div>
+                  </div>
+                </a>
+              </motion.div>
+            ))}
+          </div>
         </motion.div>
 
         {/* View All Actions (Direct links to Dedicated Articles & Events Pages) */}

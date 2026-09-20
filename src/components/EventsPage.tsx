@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { motion } from 'framer-motion'
-import { ArrowLeft, ArrowRight, Calendar, MapPin, Tag, Search, Sparkles } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { ArrowLeft, ArrowRight, Calendar, MapPin, Search, Sparkles, X } from 'lucide-react'
 import './EventsPage.css'
 
 interface EventItem {
@@ -9,20 +9,42 @@ interface EventItem {
   category: string
   date: string
   location: string
-  status: 'Upcoming' | 'Active' | 'Ongoing Series' | 'Registration Opening'
+  status: 'Upcoming' | 'Active' | 'Ongoing Series' | 'Registration Opening' | 'Event Recap' | 'Completed'
   image: string
   desc: string
   link: string
+  fullStory?: string[]
 }
 
 const eventsData: EventItem[] = [
+  {
+    id: 'young-leaders-governance-2025',
+    title: 'Equipping Young Leaders for Governance in the Digital Age',
+    category: 'Leadership Seminar',
+    date: '13 July 2025',
+    location: 'TBS SRC Leadership Seminar 2025',
+    status: 'Event Recap',
+    image: '/images/unmutre.jpeg',
+    desc: 'ETA led a breakout session on “Digital Influence, AI & Leadership in Governance” at the TBS SRC Leadership Seminar 2025, challenging young leaders to use technology intelligently, influence responsibly, and lead ethically.',
+    fullStory: [
+      'Ebibiman Tech Alliance (ETA) had the opportunity to lead a breakout session on “Digital Influence, AI & Leadership in Governance” at the TBS SRC Leadership Seminar 2025.',
+      'Our session focused on preparing young leaders for a leadership environment increasingly shaped by technology, artificial intelligence and digital communication.',
+      'We explored how participants can use digital influence responsibly, recognising that leadership today extends beyond physical spaces. What leaders post, share and communicate online can shape opinions, build trust and influence the communities they represent.',
+      'We also introduced participants to the growing role of artificial intelligence in leadership and governance. Beyond simply using AI tools, we encouraged them to think critically about how AI can support research, decision-making, communication and problem-solving, while remaining conscious of issues such as misinformation, bias, privacy and responsible use.',
+      'A key part of our conversation was ethical digital leadership. Technology may make leadership faster and more efficient, but accountability, integrity and sound judgement cannot be automated. Young leaders must understand when and how technology should be used and remain responsible for the decisions they make with it.',
+      'Finally, we challenged participants to think about technology within the African context. Innovation should not require us to abandon our identity. Our cultures, indigenous knowledge and understanding of our communities can help shape technological solutions that are more relevant to the people they are intended to serve.',
+      'For ETA, the goal was simple: to leave participants with a different understanding of leadership in the digital age.',
+      'Use technology intelligently. Influence responsibly. Lead ethically. And ensure that as Africa embraces the digital future, we also help shape it.'
+    ],
+    link: '#recap'
+  },
   {
     id: 'ai-prompt-engineering',
     title: 'AI Prompt Engineering: Teaching Young Africans To Work Smarter With AI',
     category: 'Masterclass',
     date: 'July 2025',
     location: 'Virtual & Regional Cohorts',
-    status: 'Upcoming',
+    status: 'Completed',
     image: '/images/AI Prompt Engineering.png',
     desc: 'Equipping the next generation of African builders with advanced AI prompt structures, cognitive frameworks, and critical future-skills required for an AI-shaped workforce.',
     link: '#contact'
@@ -30,34 +52,23 @@ const eventsData: EventItem[] = [
   {
     id: 'webinar-series',
     title: "The Ghanaian Tech Space Is Dying: Reimagining Ghana's Technology Landscape",
-    category: 'Webinar Series',
-    date: 'Monthly Series',
-    location: 'Live Stream & Hybrid Panel',
-    status: 'Ongoing Series',
-    image: '/images/webinar_series.png',
-    desc: 'Bringing industry leaders, policymakers, founders, and students together to challenge digital policy bottlenecks and architect sustainable tech ecosystems.',
+    category: 'Webinar',
+    date: '25 April 2025',
+    location: 'Live Stream & Virtual Panel',
+    status: 'Completed',
+    image: '/images/Responsible Tech Educationship.png',
+    desc: 'A landmark one-time forum bringing industry leaders, policymakers, founders, and students together to challenge digital policy bottlenecks and architect sustainable tech ecosystems.',
     link: '#contact'
   },
   {
-    id: 'future-minds-labs',
-    title: "Preparing Schools For Africa's Digital Future",
-    category: 'Education Outreach',
-    date: 'Ongoing Initiative',
-    location: 'Regional High Schools & Colleges',
-    status: 'Active',
-    image: '/images/future_minds_ghana.png',
-    desc: 'Deploying modern ICT equipment, teacher training curricula, and hands-on mentorship across underserved institutions to democratize digital access.',
-    link: '#future-minds'
-  },
-  {
-    id: 'responsible-tech',
-    title: 'Responsible Tech Educationship',
-    category: 'Fellowship',
-    date: '2025 - 2026 Cohort',
-    location: 'Pan-African Hybrid Fellowship',
-    status: 'Upcoming',
-    image: '/images/Responsible Tech Educationship.png',
-    desc: 'Nurturing ethical, human-centered technology creators grounded in African developmental realities, digital rights, and community welfare.',
+    id: 'masterclass-online-edition',
+    title: 'Masterclass: Online Edition - Start Your Journey in Web Development',
+    category: 'Masterclass',
+    date: '1st - 31st March 2025',
+    location: 'Online Edition',
+    status: 'Completed',
+    image: '/images/masterclass.jpeg',
+    desc: 'An intensive hands-on masterclass introducing young African builders to the fundamentals of modern web development, semantic HTML, and responsive CSS.',
     link: '#contact'
   },
   {
@@ -70,21 +81,10 @@ const eventsData: EventItem[] = [
     image: '/images/learning_through_play.png',
     desc: 'Experiential coding, spatial puzzles, and hands-on technology discovery designed to ignite computational thinking in young African minds.',
     link: '#ecosystem'
-  },
-  {
-    id: 'tech-symposium',
-    title: 'Indigenous Knowledge × Emerging Tech Annual Symposium',
-    category: 'Summit',
-    date: 'Q4 2026',
-    location: 'Accra, Ghana & Global Stream',
-    status: 'Registration Opening',
-    image: '/images/tech_talks.png',
-    desc: 'An international gathering uniting historians, indigenous elders, software engineers, and AI researchers to explore African computational paradigms.',
-    link: '#contact'
   }
 ]
 
-const categories = ['All', 'Masterclass', 'Webinar Series', 'Education Outreach', 'Fellowship', 'Workshop', 'Summit']
+const categories = ['All', 'Leadership Seminar', 'Masterclass', 'Webinar', 'Workshop']
 
 interface EventsPageProps {
   onBack: () => void
@@ -93,6 +93,7 @@ interface EventsPageProps {
 const EventsPage: React.FC<EventsPageProps> = ({ onBack }) => {
   const [selectedCategory, setSelectedCategory] = useState('All')
   const [searchQuery, setSearchQuery] = useState('')
+  const [selectedEventModal, setSelectedEventModal] = useState<EventItem | null>(null)
 
   const filteredEvents = eventsData.filter((ev) => {
     const matchesCat = selectedCategory === 'All' || ev.category.toLowerCase() === selectedCategory.toLowerCase()
@@ -101,6 +102,13 @@ const EventsPage: React.FC<EventsPageProps> = ({ onBack }) => {
                           ev.category.toLowerCase().includes(searchQuery.toLowerCase())
     return matchesCat && matchesSearch
   })
+
+  const handleEventClick = (e: React.MouseEvent, ev: EventItem) => {
+    if (ev.fullStory) {
+      e.preventDefault()
+      setSelectedEventModal(ev)
+    }
+  }
 
   return (
     <div className="events-page">
@@ -161,7 +169,11 @@ const EventsPage: React.FC<EventsPageProps> = ({ onBack }) => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: idx * 0.08 }}
             >
-              <div className="event-full-card">
+              <div 
+                className="event-full-card"
+                onClick={(e) => handleEventClick(e, ev)}
+                style={{ cursor: ev.fullStory ? 'pointer' : 'default' }}
+              >
                 <div className="event-card-img-wrap">
                   <span className="event-card-badge">{ev.category}</span>
                   <span className={`event-status-pill ${ev.status.toLowerCase().replace(/\s+/g, '-')}`}>
@@ -187,10 +199,24 @@ const EventsPage: React.FC<EventsPageProps> = ({ onBack }) => {
                   <p className="event-card-desc">{ev.desc}</p>
 
                   <div className="event-card-footer">
-                    <a href={ev.link} className="event-action-btn">
-                      <span>Register / Learn More</span>
-                      <ArrowRight className="action-arrow" />
-                    </a>
+                    {ev.fullStory ? (
+                      <button 
+                        className="event-action-btn"
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          setSelectedEventModal(ev)
+                        }}
+                        style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}
+                      >
+                        <span>Read Event Recap</span>
+                        <ArrowRight className="action-arrow" />
+                      </button>
+                    ) : (
+                      <a href={ev.link} className="event-action-btn">
+                        <span>Register / Learn More</span>
+                        <ArrowRight className="action-arrow" />
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>
@@ -208,6 +234,87 @@ const EventsPage: React.FC<EventsPageProps> = ({ onBack }) => {
         )}
 
       </div>
+
+      {/* Event Details Modal */}
+      <AnimatePresence>
+        {selectedEventModal && (
+          <motion.div 
+            className="event-modal-backdrop"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedEventModal(null)}
+          >
+            <motion.div 
+              className="event-modal-dialog"
+              initial={{ scale: 0.95, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.95, opacity: 0, y: 20 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button 
+                className="event-modal-close-btn"
+                onClick={() => setSelectedEventModal(null)}
+                title="Close Modal"
+              >
+                <X size={18} />
+              </button>
+
+              <div className="event-modal-image-wrap">
+                <img 
+                  src={selectedEventModal.image} 
+                  alt={selectedEventModal.title} 
+                  className="event-modal-img" 
+                />
+              </div>
+
+              <div className="event-modal-inner">
+                <div className="event-modal-badges-row">
+                  <span className="event-modal-category">{selectedEventModal.category}</span>
+                  <span className={`event-status-pill ${selectedEventModal.status.toLowerCase().replace(/\s+/g, '-')}`} style={{ position: 'static' }}>
+                    {selectedEventModal.status}
+                  </span>
+                </div>
+
+                <h2 className="event-modal-title">{selectedEventModal.title}</h2>
+
+                <div className="event-modal-meta">
+                  <div className="event-meta-pill">
+                    <Calendar size={14} className="meta-icon" />
+                    <span>{selectedEventModal.date}</span>
+                  </div>
+                  <div className="event-meta-pill">
+                    <MapPin size={14} className="meta-icon" />
+                    <span>{selectedEventModal.location}</span>
+                  </div>
+                </div>
+
+                <div className="event-modal-body">
+                  {selectedEventModal.fullStory?.map((paragraph, pIdx) => (
+                    <p key={pIdx}>{paragraph}</p>
+                  ))}
+
+                  <div className="event-modal-key-takeaways">
+                    <h4>ETA Takeaway:</h4>
+                    <p>
+                      "Use technology intelligently. Influence responsibly. Lead ethically. And ensure that as Africa embraces the digital future, we also help shape it."
+                    </p>
+                  </div>
+                </div>
+
+                <div className="event-modal-footer">
+                  <button 
+                    className="event-modal-done-btn"
+                    onClick={() => setSelectedEventModal(null)}
+                  >
+                    Close Recap
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   )
 }

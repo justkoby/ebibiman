@@ -11,9 +11,9 @@ const Hero = () => {
   const badgeY = useTransform(scrollY, [0, 800], [0, -35])
 
   // Smooth scroll helper for bottom menu button
-  const handleScrollToEcosystem = (e: React.MouseEvent) => {
+  const handleScrollToExplore = (e: React.MouseEvent) => {
     e.preventDefault()
-    const target = document.getElementById('ecosystem')
+    const target = document.getElementById('the-problem')
     if (target) {
       target.scrollIntoView({ behavior: 'smooth' })
     }
@@ -65,7 +65,8 @@ const Hero = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4, duration: 1.2 }}
         >
-          ETA is an African technology social enterprise exploring the intersection of emerging technology, indigenous knowledge and African development. We think, teach and build toward technological systems grounded in African realities.
+          AFRICA HAS ALWAYS HAD THE KNOWLEDGE.<br />
+          NOW, WE BUILD WITH IT.
         </motion.p>
       </div>
 
@@ -90,7 +91,7 @@ const Hero = () => {
         </div>
       </motion.div>
 
-      {/* Bottom Center Button: Explore Ecosystem Menu */}
+      {/* Bottom Center Button: Explore ETA */}
       <motion.div
         className="bottom-menu-container"
         initial={{ opacity: 0, y: 30 }}
@@ -98,11 +99,11 @@ const Hero = () => {
         transition={{ delay: 1.1, duration: 0.8 }}
       >
         <a
-          href="#ecosystem"
+          href="#the-problem"
           className="btn-bottom-menu"
-          onClick={handleScrollToEcosystem}
+          onClick={handleScrollToExplore}
         >
-          <span>Explore Ecosystem</span>
+          <span>Explore ETA</span>
           <Compass className="menu-icon-spin" />
         </a>
       </motion.div>
@@ -115,7 +116,7 @@ const Hero = () => {
         transition={{ delay: 1.3, duration: 0.8 }}
       >
         <ChevronDown className="bounce-arrow" />
-        <span>Discover The Ecosystem</span>
+        <span>Discover ETA</span>
       </motion.div>
     </section>
   )

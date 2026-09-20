@@ -12,16 +12,87 @@ interface ChatMessage {
   links?: { label: string; targetId: string }[]
 }
 
+interface FAQKnowledge {
+  keywords: string[]
+  question: string
+  answer: string
+  targetLinks?: { label: string; targetId: string }[]
+}
+
+const FAQ_KNOWLEDGE_BASE: FAQKnowledge[] = [
+  {
+    keywords: ["what is", "about eta", "about ebibiman", "who are you", "what do you do", "mission", "purpose"],
+    question: "What is Ebibiman Tech Alliance?",
+    answer: "Ebibiman Tech Alliance (ETA) is an African technology social enterprise exploring the intersection of emerging technology, indigenous knowledge, and African development. We think, teach, and build toward technological systems grounded in African realities—ensuring African builders are active creators rather than passive consumers.",
+    targetLinks: [
+      { label: "Our Approach", targetId: "approach" },
+      { label: "Our Solutions", targetId: "ecosystem" },
+      { label: "Get in Touch", targetId: "contact" }
+    ]
+  },
+  {
+    keywords: ["who can join", "eligibility", "can i join", "audience", "requirements", "apply", "who is this for"],
+    question: "Who can join ETA?",
+    answer: "Our programs are open to students, developers, educators, researchers, and technology enthusiasts who want to build a career in software, AI, prompt engineering, or ethical tech design. We offer tracks for high schoolers, university students, and advanced bootcamps for professionals.",
+    targetLinks: [
+      { label: "Programmes in Motion", targetId: "programmes" },
+      { label: "Contact Us", targetId: "contact" }
+    ]
+  },
+  {
+    keywords: ["school", "schools", "participate", "ict teacher", "lab setup", "high school", "students"],
+    question: "How can schools participate?",
+    answer: "Schools across Ghana and Africa can partner with us to benefit from our youth initiatives. We assist in configuring digital learning environments, training ICT teachers, and setting up weekly tech clubs to guide students in creative computing, AI literacy, and practical software design.",
+    targetLinks: [
+      { label: "Get in Touch", targetId: "contact" }
+    ]
+  },
+  {
+    keywords: ["partner", "partnership", "sponsor", "sponsorship", "organizations", "hire", "collaborate"],
+    question: "How can organizations partner?",
+    answer: "Organizations can collaborate with us by sponsoring specific educational programs, providing mentorship, or partnering on community initiatives. Enterprises can also partner with ETA Solutions to build custom AI workflows, digital systems, and document automations tailored to their operations.",
+    targetLinks: [
+      { label: "ETA Solutions", targetId: "ecosystem" },
+      { label: "Contact Our Team", targetId: "contact" }
+    ]
+  },
+  {
+    keywords: ["cost", "price", "fee", "free", "pricing", "how much", "payment", "scholarship"],
+    question: "Is there a cost to join?",
+    answer: "Most of our flagship community initiatives, webinars, and youth outreaches are completely free of charge, supported by our partners. For specialized advanced masterclasses, we offer extensive scholarships and subsidized rates.",
+    targetLinks: [
+      { label: "Programmes in Motion", targetId: "programmes" },
+      { label: "Inquire via Contact", targetId: "contact" }
+    ]
+  },
+  {
+    keywords: ["solution", "service", "consulting", "automation", "ai adoption", "document", "build"],
+    question: "What services does ETA Solutions offer?",
+    answer: "ETA Solutions works with organizations across 4 core areas:\n\n1. **AI & Automation**: Intelligent workflow agents & automated processing.\n2. **Digital Solutions**: Custom software, web architectures, and mobile systems.\n3. **AI Adoption & Consulting**: Readiness audits, team training, and implementation roadmaps.\n4. **Document & Data Automations**: Enterprise unstructured data extraction & archival pipelines.",
+    targetLinks: [
+      { label: "Explore Solutions", targetId: "ecosystem" },
+      { label: "Contact Our Team", targetId: "contact" }
+    ]
+  },
+  {
+    keywords: ["contact", "email", "phone", "reach", "location", "touch"],
+    question: "How do I contact ETA?",
+    answer: "You can reach our team directly at **ebibimantech@gmail.com** or fill out the quick contact form on our page.",
+    targetLinks: [
+      { label: "Contact Form", targetId: "contact" }
+    ]
+  }
+]
+
 const NAV_KEYWORDS = [
-  { keywords: ["future minds", "ghana", "lab", "sponsor", "lab setup"], targetId: "future-minds", name: "Future Minds Ghana" },
-  { keywords: ["event", "webinar", "debate", "masterclass", "news", "insight"], targetId: "events", name: "News, Events & Insights" },
-  { keywords: ["ecosystem", "student", "educator", "school", "community"], targetId: "ecosystem", name: "Our Ecosystem" },
-  { keywords: ["contact", "join", "partner", "touch", "email", "get involved"], targetId: "contact", name: "Get Involved / Contact" },
-  { keywords: ["about", "who", "mission", "why", "ebibiman"], targetId: "why-ebibiman", name: "About Ebibiman" },
-  { keywords: ["approach", "how", "method", "strategy"], targetId: "approach", name: "Our Approach" },
-  { keywords: ["faq", "question", "help", "how to"], targetId: "faq", name: "FAQs" },
-  { keywords: ["programme", "course", "ai", "prompt", "literacy"], targetId: "programmes", name: "Programmes in Motion" },
+  { keywords: ["event", "webinar", "debate", "masterclass", "news", "insight", "stories"], targetId: "events", name: "News, Events & Insights" },
+  { keywords: ["ecosystem", "solutions", "automation", "consulting"], targetId: "ecosystem", name: "ETA Solutions" },
+  { keywords: ["contact", "join", "partner", "touch", "email", "get involved", "mentor"], targetId: "contact", name: "Get Involved / Contact" },
+  { keywords: ["problem", "question", "mission", "about"], targetId: "the-problem", name: "The Question Facing Us" },
+  { keywords: ["approach", "how", "method", "strategy", "think", "teach", "build"], targetId: "approach", name: "Our Approach" },
+  { keywords: ["programme", "course", "ai", "prompt", "literacy", "motion"], targetId: "programmes", name: "Programmes in Motion" },
   { keywords: ["voices", "saying", "speak", "leader", "quote"], targetId: "voices", name: "What Tech Leaders Are Saying" },
+  { keywords: ["business model", "engine", "loop"], targetId: "business-model", name: "How The Model Works" },
   { keywords: ["home", "top", "hero"], targetId: "hero", name: "Home" }
 ]
 
@@ -37,7 +108,7 @@ const EbiAssistant = () => {
       {
         id: "welcome",
         sender: "bot",
-        text: "Hello! 👋 I'm Ebi, your Ebibiman Navigation Assistant. I can help you find programmes, explore events, learn about Future Minds Ghana, or discover partnership opportunities. Select an option below or type a section name to go there directly!",
+        text: "Hello! 👋 I'm Ebi, your Ebibiman Assistant. You can ask me any question about ETA, our programs, solutions, partnership opportunities, or how to get involved. Select an option below or ask me anything!",
         timestamp: new Date(),
         isQuickActions: true
       }
@@ -107,38 +178,36 @@ const EbiAssistant = () => {
       let botResponse = ""
       let targetLinks: { label: string; targetId: string }[] = []
 
-      if (action.includes("Student")) {
-        botResponse = "Ebibiman equips students with practical technology skills to go from users of tech to builders. Here are relevant pathways:\n\n• **AI Prompt Engineering**: Master AI tools and coding fundamentals.\n• **Future Minds Ghana**: Join tech & coding clubs in fully equipped digital labs.\n• **Learning Through Play**: Build creative, analytical, and digital skills through interactive gaming."
+      if (action.includes("Student") || action.includes("Builder")) {
+        botResponse = "Ebibiman equips students and young developers with practical technology skills to go from users of tech to builders:\n\n• **AI Prompt Engineering Masterclasses**: Master practical AI toolchains and advanced prompt design.\n• **Digital Literacy & Coding Clubs**: Hands-on computing rooted in practical problem solving.\n• **Leadership & Governance in AI**: Preparing young minds for an AI-shaped future."
         targetLinks = [
-          { label: "View Programmes", targetId: "programmes" },
-          { label: "Future Minds Labs", targetId: "future-minds" },
-          { label: "Explore Ecosystem", targetId: "ecosystem" }
+          { label: "Programmes in Motion", targetId: "programmes" },
+          { label: "Explore Solutions", targetId: "ecosystem" },
+          { label: "Get in Touch", targetId: "contact" }
         ]
-      } else if (action.includes("Educator")) {
-        botResponse = "We empower educators to comfortably lead digital classrooms and sustain technology adoption:\n\n• **Teacher Training**: Practical digital skill development integrated with curriculums.\n• **School Outreach**: Direct networking and digital classroom setup.\n• **Responsible Tech Educationship**: Resources on digital citizenship and ethics."
+      } else if (action.includes("Educator") || action.includes("School")) {
+        botResponse = "We collaborate with schools and educators to lead digital classrooms and build computational thinking:\n\n• **Teacher Development**: Practical digital skills and AI workflows.\n• **School Partnerships**: Direct curriculum and tech club setup.\n• **Ethical Tech**: Resources on digital citizenship and accountability."
         targetLinks = [
           { label: "Our Approach", targetId: "approach" },
-          { label: "Future Minds Ghana", targetId: "future-minds" },
-          { label: "Ecosystem View", targetId: "ecosystem" }
+          { label: "Contact Our Team", targetId: "contact" }
         ]
-      } else if (action.includes("Partner")) {
-        botResponse = "Thank you for joining the movement! We collaborate with organizations, leaders, and communities to scale impact:\n\n• **Lab Sponsorship**: Setup digital infrastructure in public schools.\n• **Program Funding**: Sponsor courses like AI and software coding.\n• **Mentorship**: Guide students in tech & innovation clubs."
+      } else if (action.includes("Partner") || action.includes("Organization")) {
+        botResponse = "We collaborate with companies, institutions, and leaders across Africa:\n\n• **ETA Solutions**: Deploy custom AI agents, web architectures, and document automations.\n• **Program Sponsorship**: Fund masterclasses and community cohorts.\n• **Mentorship**: Guide students in technical and leadership tracks."
         targetLinks = [
-          { label: "Get in Touch", targetId: "contact" },
-          { label: "Lab Details", targetId: "future-minds" }
+          { label: "ETA Solutions", targetId: "ecosystem" },
+          { label: "Contact Us", targetId: "contact" }
         ]
-      } else if (action.includes("Events")) {
-        botResponse = "Stay active with the Ebibiman community. We host discussions, masterclasses, and panels:\n\n• **AI Masterclass**: Coding and prompt design workshop updates.\n• **Ecosystem Webinars**: Dynamic thought-leadership discussions.\n• **Tech Space Debates**: Engaging youth on digital issues."
+      } else if (action.includes("Events") || action.includes("Stories")) {
+        botResponse = "Stay active with the ETA ecosystem through our seminars, masterclasses, and thought pieces:\n\n• **Equipping Young Leaders**: Governance in the Digital Age.\n• **AI Prompt Engineering**: Hands-on Masterclasses.\n• **The Ghanaian Tech Space**: Policy & ecosystem debates."
         targetLinks = [
-          { label: "Browse Events", targetId: "events" },
-          { label: "Leader Insights", targetId: "voices" }
+          { label: "Browse Stories & Events", targetId: "events" },
+          { label: "Leader Voices", targetId: "voices" }
         ]
-      } else if (action.includes("Ecosystem")) {
-        botResponse = "Our collaborative ecosystem links students, educators, and tech innovators. Select an area to explore:"
+      } else if (action.includes("Solutions")) {
+        botResponse = "ETA Solutions builds digital systems around how people actually work:\n\n1. AI & Automation\n2. Digital Solutions\n3. AI Adoption & Consulting\n4. Document & Data Automations"
         targetLinks = [
-          { label: "About Ebibiman", targetId: "why-ebibiman" },
-          { label: "Our Approach", targetId: "approach" },
-          { label: "Frequently Asked Questions", targetId: "faq" }
+          { label: "View Solutions", targetId: "ecosystem" },
+          { label: "Contact Us", targetId: "contact" }
         ]
       }
 
@@ -173,14 +242,34 @@ const EbiAssistant = () => {
       }
     ])
 
-    // Generate smart navigation or general guidance response
+    // Generate intelligent FAQ answer or smart navigation
     setTimeout(() => {
       const lowerText = userText.toLowerCase()
-      let matchedNav = NAV_KEYWORDS.find((nav) =>
-        nav.keywords.some((keyword) => lowerText.includes(keyword))
+      const botMsgId = Math.random().toString(36).substring(7)
+
+      // 1. Check FAQ Knowledge Base first
+      const matchedFAQ = FAQ_KNOWLEDGE_BASE.find((item) =>
+        item.keywords.some((keyword) => lowerText.includes(keyword))
       )
 
-      const botMsgId = Math.random().toString(36).substring(7)
+      if (matchedFAQ) {
+        setMessages((prev) => [
+          ...prev,
+          {
+            id: botMsgId,
+            sender: "bot",
+            text: matchedFAQ.answer,
+            timestamp: new Date(),
+            links: matchedFAQ.targetLinks
+          }
+        ])
+        return
+      }
+
+      // 2. Check Navigation Keywords
+      const matchedNav = NAV_KEYWORDS.find((nav) =>
+        nav.keywords.some((keyword) => lowerText.includes(keyword))
+      )
 
       if (matchedNav) {
         setMessages((prev) => [
@@ -188,13 +277,13 @@ const EbiAssistant = () => {
           {
             id: botMsgId,
             sender: "bot",
-            text: `I've found details on **${matchedNav!.name}**. Let me scroll you there right away!`,
+            text: `I've found details on **${matchedNav.name}**. Let me scroll you there right away!`,
             timestamp: new Date()
           }
         ])
         
         setTimeout(() => {
-          const element = document.getElementById(matchedNav!.targetId)
+          const element = document.getElementById(matchedNav.targetId)
           if (element) {
             element.scrollIntoView({ behavior: "smooth" })
             if (window.innerWidth < 768) {
@@ -203,19 +292,19 @@ const EbiAssistant = () => {
           }
         }, 500)
       } else {
-        // Fallback response with navigation menu
+        // Fallback response with helpful suggestions
         setMessages((prev) => [
           ...prev,
           {
             id: botMsgId,
             sender: "bot",
-            text: "I couldn't find a specific section matching your request. I can scroll you to any of these areas directly:\n\n• **About Ebibiman**\n• **Programmes**\n• **Future Minds Ghana**\n• **Ecosystem**\n• **Events**\n• **FAQ**\n• **Contact**\n\nOr check out these profiles:",
+            text: "I can help answer questions about ETA's mission, courses, solutions, eligibility, or scroll you to any section on the page. Feel free to ask or choose an option below:",
             timestamp: new Date(),
             isQuickActions: true
           }
         ])
       }
-    }, 500)
+    }, 450)
   }
 
   return (

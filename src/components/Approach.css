@@ -19,7 +19,10 @@
 /* Header */
 .approach-header {
   margin-bottom: 60px;
-  text-align: left;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .approach-eyebrow {
@@ -28,25 +31,20 @@
   text-transform: uppercase;
   letter-spacing: 2px;
   color: #777570;
-  margin-bottom: 20px;
-}
-
-.approach-header-grid {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 40px;
-  align-items: flex-end;
+  margin-bottom: 16px;
+  display: block;
 }
 
 .approach-title {
   font-family: 'PT Sans Narrow', sans-serif;
-  font-size: clamp(32px, 5.2vw, 68px);
+  font-size: clamp(30px, 4.8vw, 68px);
   font-weight: 700;
-  line-height: 0.95;
+  line-height: 1;
   letter-spacing: -2px;
   color: #1A1A1A;
   margin: 0;
   text-transform: uppercase;
+  text-align: center;
 }
 
 .approach-subtitle {
@@ -192,28 +190,27 @@
   flex-grow: 1;
 }
 
-/* CTA appearing on hover */
+/* CTA inside card */
 .approach-card-cta {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 8px;
   font-family: 'PT Sans Narrow', sans-serif;
-  font-size: 14px;
+  font-size: 13.5px;
   font-weight: 700;
   text-transform: uppercase;
+  letter-spacing: 0.5px;
   color: #8A6D3B;
-  opacity: 0;
-  height: 0;
-  overflow: hidden;
-  transition: opacity 0.4s ease, height 0.4s ease, margin-top 0.4s ease;
-  margin-top: 0;
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid #F0EFEA;
+  width: 100%;
+  transition: all 0.3s ease;
 }
 
 .approach-card:hover .approach-card-cta {
-  opacity: 1;
-  height: 20px;
-  margin-top: 20px;
+  color: #1A1A1A;
 }
 
 .approach-card-arrow {

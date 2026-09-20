@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { GraduationCap, Cpu, Network, ArrowRight } from 'lucide-react'
+import { BookOpen, GraduationCap, Cpu, ArrowRight } from 'lucide-react'
 import './Approach.css'
 
 interface ApproachCardData {
@@ -8,32 +8,40 @@ interface ApproachCardData {
   icon: any
   title: string
   desc: string
+  cta: string
+  link: string
   bgImage: string
 }
 
 const approachCards: ApproachCardData[] = [
   {
-    id: 'education',
-    label: 'Learn',
-    icon: GraduationCap,
-    title: 'TECH EDUCATION & DIGITAL SKILLS',
-    desc: 'Through workshops, masterclasses, and practical training, we help young Africans develop the skills needed to thrive in the digital economy.',
+    id: 'insights',
+    label: '01 / THINK',
+    icon: BookOpen,
+    title: 'ETA INSIGHTS',
+    desc: 'Technology does not exist outside society. We examine how AI, policy, indigenous knowledge and emerging technologies are reshaping African life.',
+    cta: 'EXPLORE INSIGHTS',
+    link: '#/articles',
     bgImage: '/images/pattern-1.jpg'
   },
   {
-    id: 'innovation',
-    label: 'Build',
-    icon: Cpu,
-    title: 'AI & INNOVATION PROGRAMMES',
-    desc: 'From prompt engineering to responsible technology design, participants learn how to create meaningful solutions for African challenges.',
+    id: 'academy',
+    label: '02 / TEACH',
+    icon: GraduationCap,
+    title: 'ETA ACADEMY',
+    desc: 'Learning experiences that help people, businesses and institutions understand and use emerging technology meaningfully.',
+    cta: 'EXPLORE ACADEMY',
+    link: '#/events-page',
     bgImage: '/images/pattern-2.jpg'
   },
   {
-    id: 'connect',
-    label: 'Connect',
-    icon: Network,
-    title: 'COMMUNITY & ECOSYSTEM BUILDING',
-    desc: 'We bring together students, educators, industry leaders, and communities to create opportunities, partnerships, and lasting impact.',
+    id: 'solutions',
+    label: '03 / BUILD',
+    icon: Cpu,
+    title: 'ETA SOLUTIONS',
+    desc: 'We design digital and intelligent systems around real organisational problems, while exploring how technology can be built around African contexts and knowledge.',
+    cta: 'EXPLORE SOLUTIONS',
+    link: '#solutions',
     bgImage: '/images/pattern-3.jpg'
   }
 ]
@@ -67,17 +75,9 @@ const Approach = () => {
         {/* Section Header */}
         <div className="approach-header">
           <div className="approach-eyebrow">Our Approach</div>
-          <div className="approach-header-grid">
-            <h2 className="approach-title">
-              HOW WE TURN<br />
-              CURIOSITY INTO<br />
-              CREATORS
-            </h2>
-            <p className="approach-subtitle">
-              Through education, innovation, community engagement, and ethical technology practices, 
-              we equip young Africans to become builders—not just consumers—of technology.
-            </p>
-          </div>
+          <h2 className="approach-title">
+            WE THINK. WE TEACH. WE BUILD.
+          </h2>
         </div>
 
         {/* 3 Large Approach Cards Grid */}
@@ -91,10 +91,12 @@ const Approach = () => {
           {approachCards.map((card) => {
             const Icon = card.icon
             return (
-              <motion.div 
+              <motion.a 
+                href={card.link}
                 className="approach-card" 
                 variants={cardVariants}
                 key={card.id}
+                style={{ textDecoration: 'none' }}
               >
                 {/* Background Image inside the Card */}
                 <div 
@@ -117,11 +119,11 @@ const Approach = () => {
                   <p className="approach-card-desc">{card.desc}</p>
                   
                   <div className="approach-card-cta">
-                    <span>Learn More</span>
+                    <span>{card.cta}</span>
                     <ArrowRight className="approach-card-arrow" />
                   </div>
                 </div>
-              </motion.div>
+              </motion.a>
             )
           })}
         </motion.div>

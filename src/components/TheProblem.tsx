@@ -1,51 +1,58 @@
 import { motion } from 'framer-motion'
+import { ArrowRight } from 'lucide-react'
 import './TheProblem.css'
 
 const TheProblem = () => {
   return (
-    <section className="the-problem-section" id="problem">
+    <section className="the-problem-section" id="the-problem">
       <div className="the-problem-container">
-        <motion.div 
-          className="problem-label-wrapper"
+        {/* Eyebrow Label */}
+        <motion.div
+          className="problem-eyebrow-wrapper"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.8 }}
         >
-          <span className="problem-tag">The Problem</span>
-          <h2 className="problem-title">What happens when tradition meets <br /> innovation in tech?</h2>
+          <span className="problem-tag">THE QUESTION FACING US</span>
         </motion.div>
 
-        <div className="problem-content-grid">
-          <motion.div 
-            className="problem-lead-text"
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <h3>Why Indigenous Technology Matters</h3>
-          </motion.div>
+        {/* Main Editorial Headline */}
+        <motion.div
+          className="problem-headline-wrapper"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.9, delay: 0.1 }}
+        >
+          <h2 className="problem-headline">
+            WHAT HAPPENS WHEN<br />
+            TECHNOLOGY STARTS<br />
+            REPRODUCING NOT MERELY<br />
+            WHAT YOUR HANDS CAN DO,<br />
+            <span className="problem-highlight">BUT WHAT YOUR MIND CAN DO?</span>
+          </h2>
+        </motion.div>
 
-          <motion.div 
-            className="problem-body-text"
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-          >
-            <p>
-              Long before computers, African societies developed systems for communication, agriculture, architecture, governance, medicine, and trade.
-            </p>
-            <p>
-              Yet much of this knowledge remains undocumented, underutilized, or at risk of disappearing.
-            </p>
-            <p className="problem-highlight">
-              The challenge is not that Africa lacks innovation.<br />
-              The challenge is that we have forgotten how much innovation already exists.
-            </p>
-          </motion.div>
-        </div>
+        {/* Supporting Text & CTA Row */}
+        <motion.div
+          className="problem-footer-row"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.9, delay: 0.2 }}
+        >
+          <p className="problem-supporting-text">
+            “AI is changing work, education and economic opportunity. For African societies, the challenge is bigger than adoption. We need to understand what these technologies mean for us and participate in shaping what comes next.”
+          </p>
+
+          <div className="problem-cta-wrapper">
+            <a href="#/blog/ai-coming-for-you" className="problem-cta-btn">
+              <span>READ THE ARTICLE</span>
+              <ArrowRight size={16} className="problem-cta-arrow" />
+            </a>
+          </div>
+        </motion.div>
       </div>
     </section>
   )

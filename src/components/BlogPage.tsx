@@ -1,16 +1,30 @@
 import React, { useState } from 'react'
-import { ArrowLeft, BookOpen, User, Calendar, Award, Link as LinkIcon, Check } from 'lucide-react'
+import { ArrowLeft, BookOpen, User, Calendar, Award, Link as LinkIcon, Check, ExternalLink } from 'lucide-react'
 import './BlogPage.css'
 
+interface ExternalPublication {
+  name: string
+  url: string
+}
+
 interface BlogPageProps {
-  articleId: 'nita-bill' | 'tech-issues-2026' | 'ai-coming-for-you'
+  articleId: 'nita-bill' | 'tech-issues-2026' | 'ai-coming-for-you' | 'digital-innovation-facade'
   onBack: () => void
 }
 
 const BlogPage: React.FC<BlogPageProps> = ({ articleId, onBack }) => {
   const [copied, setCopied] = useState(false)
 
-  const articleDetails = {
+  const articleMap: Record<string, {
+    category: string
+    title: string
+    tagline: string
+    authors: string
+    date: string
+    image: string
+    caption: string
+    externalPublications?: ExternalPublication[]
+  }> = {
     'nita-bill': {
       category: 'Tech Policy & Advocacy',
       title: "Ghana's Digital Future Is at Stake - The NITA Bill Must Do Better",
@@ -36,9 +50,27 @@ const BlogPage: React.FC<BlogPageProps> = ({ articleId, onBack }) => {
       authors: "Samuel Sasu Adonteng & Margaret Edem Gasu",
       date: "Sept. 2026",
       image: "/images/What Happens When Technology Starts Reproducing Not Merely What Your Hands Can Do, but What Your Mind Can Do.jpeg",
-      caption: "What Happens When Technology Starts Reproducing Not Merely What Your Hands Can Do, but What Your Mind Can Do?"
+      caption: "What Happens When Technology Starts Reproducing Not Merely What Your Hands Can Do, but What Your Mind Can Do?",
+      externalPublications: [
+        { name: 'The Herald Ghana', url: 'https://theheraldghana.com/ai-is-coming-for-you/' },
+        { name: 'MyABC Live', url: 'https://myabclive.com/article-ai-is-coming-for-you/' }
+      ]
+    },
+    'digital-innovation-facade': {
+      category: 'Tech Policy & Advocacy',
+      title: "GHANA’S DIGITAL INNOVATION IS A FAÇADE",
+      tagline: "Yet, beneath this promising narrative lies a stark reality: a persistent digital divide, limited rural connectivity, and an overdependence on foreign technologies.",
+      authors: "Samuel Sasu Adonteng & Margaret Edem Gasu",
+      date: "January 16, 2025",
+      image: "/images/digital_innovation_facade.png",
+      caption: "Conceptual illustration representing Ghana's digital transformation, connectivity networks, and indigenous technology systems.",
+      externalPublications: [
+        { name: 'Ghananews247', url: 'https://ghananews247.com/ghanas-digital-innovation-is-a-facade/' }
+      ]
     }
-  }[articleId]
+  }
+
+  const articleDetails = articleMap[articleId] || articleMap['ai-coming-for-you']
 
   const shareUrl = window.location.href
   const shareTitle = articleDetails.title
@@ -142,6 +174,26 @@ const BlogPage: React.FC<BlogPageProps> = ({ articleId, onBack }) => {
             </div>
           </div>
         </div>
+        {/* External Publications Section */}
+        {articleDetails.externalPublications && articleDetails.externalPublications.length > 0 && (
+          <div className="blog-external-publications">
+            <span className="external-pub-label">ALSO PUBLISHED BY</span>
+            <div className="external-pub-badges">
+              {articleDetails.externalPublications.map((pub, idx) => (
+                <a
+                  key={idx}
+                  href={pub.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="external-pub-badge"
+                >
+                  <span>{pub.name}</span>
+                  <ExternalLink size={12} className="external-icon" />
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Featured Image */}
         <div className="blog-featured-image-wrap">
@@ -418,7 +470,7 @@ const BlogPage: React.FC<BlogPageProps> = ({ articleId, onBack }) => {
                 </div>
               </div>
             </>
-          ) : (
+          ) : articleId === 'ai-coming-for-you' ? (
             /* AI IS COMING FOR YOU ARTICLE CONTENT */
             <>
               <p className="blog-intro-lead">
@@ -552,7 +604,59 @@ const BlogPage: React.FC<BlogPageProps> = ({ articleId, onBack }) => {
                 </ul>
               </div>
             </>
-          )}
+          ) : articleId === 'digital-innovation-facade' ? (
+            /* GHANA’S DIGITAL INNOVATION IS A FAÇADE CONTENT */
+            <>
+              <p className="blog-intro-lead">
+                Ghana’s digital transformation has been progressive, celebrated for its groundbreaking achievements in mobile financial services, innovative digital payment systems, and a thriving tech startup ecosystem.
+              </p>
+              <p>
+                With internet penetration at 68.2% and mobile penetration soaring past 134%, the nation seems poised for technological greatness. Yet, beneath this promising narrative lies a stark reality: a persistent digital divide, limited rural connectivity, and an overdependence on foreign technologies. These challenges threaten to unravel the gains made so far. As the Fourth Industrial Revolution (4IR) sweeps across global economies, Ghana cannot afford to repeat the mistakes of the industrialization era. The stakes are higher now than ever before, and the time to act is now.
+              </p>
+              <p>
+                At the heart of Ghana’s digital journey is its robust mobile money ecosystem, a beacon of financial inclusion that has redefined the region’s digital landscape. Transactions surpassed $36 billion in 2020 and reached an astounding GHS 576 billion in the first quarter of 2024 alone. Complementing this success are e-government platforms like Ghana.gov and GhanaPost GPS, which have revolutionized public service delivery. However, even as these innovations shine, they cast a shadow on the challenges that persist. Nearly one-third of the population—31.8%—remains offline, with rural communities disproportionately affected by expensive data costs and insufficient infrastructure. Digital literacy gaps further widen this divide, leaving many unable to leverage the benefits of technology. To compound the problem, Ghana struggles with weak e-waste management and regulatory frameworks that lag behind the demands of a fast-evolving digital ecosystem.
+              </p>
+              <p>
+                The Ghana Digital Economy Policy and Strategy articulates an ambitious vision: to position the nation as a regional digital hub that champions inclusivity, innovation, and sustainability. But while the vision is bold, the execution falters. Over-reliance on foreign technologies marginalizes local talent and innovation, preventing the country from fully owning its digital destiny. Weak collaboration with the private sector and inadequate support for indigenous tech ecosystems hinder the ability to build a sustainable digital economy. Without prioritizing homegrown solutions, Ghana risks being relegated to the role of a perpetual consumer of global technology, forfeiting its opportunity to become a creator and leader in the 4IR.
+              </p>
+              <p className="blog-pull-quote">
+                "To truly realize its potential, Ghana must address the root of its challenges. Bridging the digital divide is non-negotiable."
+              </p>
+              <p>
+                Expanding rural connectivity, reducing data costs, and incentivizing investments in underserved areas are critical first steps.
+              </p>
+              <p>
+                At the core of this transformation lies indigenous innovation—supporting startups that solve local problems, providing access to capital, and fostering public-private partnerships that empower entrepreneurs. Ghana’s youthful population, with its median age of 20.7 years, offers an unparalleled opportunity to drive this change.
+              </p>
+              <p>
+                Equipping this generation with digital skills in cutting-edge technologies like artificial intelligence and blockchain can prepare them to compete globally. At the same time, agile regulatory frameworks and a commitment to environmental stewardship, including robust e-waste management and circular economy models, are essential to ensuring a sustainable digital future.
+              </p>
+              <p>
+                Ghana’s digital journey is undeniably impressive, but it is far from complete. The Fourth Industrial Revolution presents a golden opportunity for the nation to move from a passive consumer to a pioneering creator of technology. Achieving this will require a unified effort from the government, private sector, and civil society to break down barriers, foster innovation, and align digital strategies with broader development goals.
+              </p>
+              <p style={{ fontWeight: 600, color: '#1A1A1A', fontSize: '1.1em' }}>
+                This is Ghana’s moment to lead Africa’s digital transformation, turning what might appear as a façade into a legacy of inclusive and sustainable progress. The time to rise is now, and the future is ours to shape.
+              </p>
+
+              {/* Byline Section */}
+              <div className="blog-author-byline">
+                <div className="byline-title">Written By:</div>
+                <div className="byline-names">
+                  <div>Samuel Sasu Adonteng</div>
+                  <div>Margaret Edem Gasu</div>
+                </div>
+                <div className="byline-role">Co-Founders, Ebibiman Tech Alliance</div>
+              </div>
+
+              {/* About ETA Section */}
+              <div className="blog-about-eta">
+                <h3>About ETA</h3>
+                <p>
+                  The Ebibiman Tech Alliance (ETA) is a pioneering initiative dedicated to promoting indigenous knowledge in technology across Africa. ETA is committed to fostering the ethical and humane use of technology to benefit society, while simultaneously enhancing digital skills, entrepreneurship, and employment opportunities in the tech sector. As a knowledge-generating center, ETA aspires to be at the forefront of technology research, innovation and education on the continent driven by young people.
+                </p>
+              </div>
+            </>
+          ) : null}
         </div>
 
         {/* Footer Actions */}

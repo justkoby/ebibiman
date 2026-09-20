@@ -1,5 +1,5 @@
-import { useState } from "react"
 import { motion } from "framer-motion"
+import { ArrowRight } from "lucide-react"
 import "./Ecosystem.css"
 
 interface EcoItem {
@@ -16,45 +16,27 @@ interface EcoItem {
 const ecoItems: EcoItem[] = [
   {
     num: "01",
-    title: "AI MASTERCLASSES",
-    tags: ["Prompt Engineering", "AI Literacy", "Future Skills"],
-    image: "/images/AI Prompt Engineering.png",
-    stat: "150+",
-    statLabel: "Participants"
+    title: "AI & AUTOMATION",
+    tags: ["Workflow Optimization", "Intelligent Systems", "Process Automation"],
+    image: "/images/tech_trends_2026.png"
   },
   {
     num: "02",
-    title: "ETA WEBINAR SERIES",
-    tags: ["Industry Conversations", "Thought Leadership", "Innovation Discussions"],
-    image: "/images/webinar_series.png",
-    stat: "12+",
-    statLabel: "Sessions"
+    title: "DIGITAL SOLUTIONS",
+    tags: ["Custom Platforms", "Digital Infrastructure", "Sovereign Systems"],
+    image: "/images/pattern-1.jpg"
   },
   {
     num: "03",
-    title: "FUTURE MINDS GHANA",
-    tags: ["ICT Labs", "Teacher Training", "Digital Literacy"],
-    image: "/images/future_minds_ghana.png",
-    stat: "5+",
-    statLabel: "Schools"
+    title: "AI ADOPTION & CONSULTING",
+    tags: ["Organizational AI", "Capability Assessment", "Strategic Roadmaps"],
+    image: "/images/workshops.png"
   },
   {
     num: "04",
-    title: "RESPONSIBLE TECH EDUCATIONSHIP",
-    tags: ["Ethical Technology", "Indigenous Innovation", "Community Impact"],
-    image: "/images/Responsible Tech Educationship.png"
-  },
-  {
-    num: "05",
-    title: "LEARNING THROUGH PLAY",
-    tags: ["Children", "Creativity", "Technology Exploration"],
-    image: "/images/learning_through_play.png"
-  },
-  {
-    num: "06",
-    title: "PARTNERS & COMMUNITIES",
-    tags: ["Schools", "NGOs", "Universities", "Sponsors"],
-    image: "/images/school_outreach.png"
+    title: "DOCUMENT & DATA AUTOMATIONS",
+    tags: ["Smart Workflows", "Intelligent Extraction", "Contextual Data"],
+    image: "/images/pattern-3.jpg"
   }
 ]
 
@@ -68,65 +50,42 @@ const rowVariants = {
 } as any
 
 const Ecosystem = () => {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
-
-  const activeItem = hoveredIndex !== null ? ecoItems[hoveredIndex] : null
-
   return (
-    <section className="eco-section" id="ecosystem">
+    <section className="eco-section" id="solutions">
       <div className="eco-container">
 
         {/* Section Header */}
         <div className="eco-header">
-          <span className="eco-eyebrow">Our Ecosystem</span>
+          <span className="eco-eyebrow">ETA SOLUTIONS</span>
           <div className="eco-header-grid">
             <h2 className="eco-title">
-              BUILDING AFRICA'S<br />
-              TECHNOLOGY<br />
-              ECOSYSTEM
+              WE BEGIN WITH THE PROBLEM.
             </h2>
             <p className="eco-subtitle">
-              We connect students, educators, communities,
-              industry leaders, and technology partners
-              to create lasting digital impact across Africa.
+              We study how work actually happens, identify where technology can create meaningful value, and design systems around the people and organisations that will use them.
             </p>
           </div>
         </div>
 
-        {/* Main Grid: List Left + Preview Right */}
+        {/* Full-width Solutions List */}
         <div className="eco-body-grid">
-
-          {/* Left: Numbered List */}
           <div className="eco-list">
             {ecoItems.map((item, i) => (
               <motion.div
                 key={item.num}
-                className={`eco-row ${hoveredIndex === i ? "eco-row-active" : ""}`}
+                className="eco-row"
                 custom={i}
                 variants={rowVariants}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: "-60px" }}
-                onMouseEnter={() => setHoveredIndex(i)}
-                onMouseLeave={() => setHoveredIndex(null)}
               >
                 <div className="eco-row-left">
                   <span className="eco-row-num">{item.num}</span>
                   <div className="eco-row-title-block">
-                    <span className={`eco-row-title ${item.isArticle ? "eco-row-title-article" : ""}`}>
+                    <span className="eco-row-title">
                       {item.title}
                     </span>
-                    {item.link && (
-                      <a 
-                        href={item.link} 
-                        className="eco-row-link"
-                        onClick={(e) => {
-                          e.stopPropagation()
-                        }}
-                      >
-                        Read Full Article →
-                      </a>
-                    )}
                   </div>
                 </div>
                 <div className="eco-row-right">
@@ -144,55 +103,16 @@ const Ecosystem = () => {
               </motion.div>
             ))}
           </div>
-
-          {/* Right: Sticky Preview Panel */}
-          <div className="eco-preview-panel">
-            <div className="eco-preview-inner">
-              {activeItem ? (
-                <div className="eco-preview-card" key={activeItem.num}>
-                  <div className="eco-preview-img-wrap">
-                    <img
-                      src={activeItem.image}
-                      alt={activeItem.title}
-                      className="eco-preview-img"
-                    />
-                  </div>
-                  <div className="eco-preview-info">
-                    <span className="eco-preview-num">{activeItem.num}</span>
-                    <h3 className={`eco-preview-title ${activeItem.isArticle ? "eco-preview-title-article" : ""}`}>{activeItem.title}</h3>
-                    {activeItem.link && (
-                      <a href={activeItem.link} className="eco-preview-link">
-                        Read Full Article →
-                      </a>
-                    )}
-                    {activeItem.stat && (
-                      <div className="eco-preview-stat">
-                        <span className="eco-preview-stat-val">{activeItem.stat}</span>
-                        <span className="eco-preview-stat-lbl">{activeItem.statLabel}</span>
-                      </div>
-                    )}
-                    <div className="eco-preview-tags">
-                      {activeItem.tags.map((tag, i) => (
-                        <span key={i} className="eco-preview-tag">{tag}</span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              ) : (
-                <div className="eco-preview-empty">
-                  <div className="eco-preview-empty-icon">
-                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                      <circle cx="16" cy="16" r="14" stroke="currentColor" strokeWidth="1.5" strokeDasharray="4 3"/>
-                      <path d="M10 16H22M22 16L17 11M22 16L17 21" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </div>
-                  <p>Hover a row to explore</p>
-                </div>
-              )}
-            </div>
-          </div>
-
         </div>
+
+        {/* Bottom CTA */}
+        <div className="eco-cta-wrapper">
+          <a href="#contact" className="eco-cta-btn">
+            <span>EXPLORE ETA SOLUTIONS</span>
+            <ArrowRight size={15} />
+          </a>
+        </div>
+
       </div>
     </section>
   )

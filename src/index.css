@@ -146,10 +146,6 @@ body {
   border-color: #ffffff;
 }
 
-.global-header:not(.scrolled) .left-btn:hover .btn-text-hover {
-  color: #000000;
-}
-
 /* Overrides removed: header buttons will inherit transparent styling when not scrolled */
 
 
@@ -189,38 +185,6 @@ body {
   transform: translateY(-0.5px);
 }
 
-/* Text slide animation Menu -> Explore */
-.btn-text-wrapper {
-  position: relative;
-  display: inline-block;
-  overflow: hidden;
-  height: 16px;
-  width: 52px;
-  text-align: left;
-}
-
-.btn-text-default,
-.btn-text-hover {
-  display: block;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  font-weight: 700;
-}
-
-.btn-text-hover {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  color: #ffffff;
-}
-
-.left-btn:hover .btn-text-default {
-  transform: translateY(-100%);
-}
-
-.left-btn:hover .btn-text-hover {
-  transform: translateY(-100%);
-}
-
 /* ==== Responsive adjustments for header buttons ==== */
 @media (max-width: 480px) {
   .global-header {
@@ -250,8 +214,4 @@ body {
   background: #ffffff;
   color: #000000;
   border-color: #ffffff;
-}
-
-.global-header.scrolled .left-btn:hover .btn-text-hover {
-  color: #000000;
 }

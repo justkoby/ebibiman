@@ -55,12 +55,10 @@
   max-width: 440px;
 }
 
-/* ===== BODY GRID: LIST + PREVIEW ===== */
+/* ===== BODY: FULL-WIDTH SOLUTIONS LIST ===== */
 .eco-body-grid {
-  display: grid;
-  grid-template-columns: 1fr 340px;
-  gap: 60px;
-  align-items: start;
+  display: block;
+  width: 100%;
 }
 
 /* ===== NUMBERED LIST ===== */
@@ -73,11 +71,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 22px 0;
+  padding: 26px 0;
   border-top: 1px solid #E2E1DC;
-  cursor: pointer;
   gap: 24px;
-  transition: border-color 0.35s ease;
+  transition: all 0.35s ease;
 }
 
 .eco-row:last-child {
@@ -87,53 +84,54 @@
 .eco-row-left {
   display: flex;
   align-items: center;
-  gap: 22px;
+  gap: 24px;
   flex: 1;
 }
 
 .eco-row-num {
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 12px;
-  color: #B0AFAA;
+  font-size: 13px;
+  color: #8A6D3B;
+  font-weight: 700;
   letter-spacing: 1px;
   min-width: 24px;
-  transition: color 0.35s ease;
 }
 
 .eco-row-title {
   font-family: 'PT Sans Narrow', sans-serif;
-  font-size: clamp(18px, 2.2vw, 28px);
+  font-size: clamp(20px, 2.5vw, 32px);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: -0.5px;
-  color: #C8C7C2;
+  color: #1A1A1A;
   transition: color 0.35s ease;
+}
+
+.eco-row:hover .eco-row-title {
+  color: #8A6D3B;
 }
 
 .eco-row-right {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 18px;
 }
 
-/* Tags — hidden by default, shown on hover */
+/* Tags — visible by default */
 .eco-row-tags {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
   justify-content: flex-end;
-  max-width: 300px;
-  opacity: 0;
-  transform: translateX(8px);
-  transition: opacity 0.35s ease, transform 0.35s ease;
 }
 
 .eco-row-tag {
   font-family: 'Inter Tight', sans-serif;
   font-size: 11px;
   color: #8A6D3B;
-  padding: 4px 10px;
-  border: 1px solid rgba(138, 109, 59, 0.3);
+  padding: 5px 12px;
+  background: rgba(138, 109, 59, 0.08);
+  border: 1px solid rgba(138, 109, 59, 0.25);
   border-radius: 100px;
   text-transform: uppercase;
   letter-spacing: 0.4px;
@@ -149,173 +147,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #C0BFB9;
+  color: #1A1A1A;
   flex-shrink: 0;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* ===== ACTIVE ROW STATES ===== */
-.eco-row-active .eco-row-num {
-  color: #8A6D3B;
-}
-
-.eco-row-active .eco-row-title {
-  color: #1A1A1A;
-}
-
-.eco-row-active .eco-row-tags {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.eco-row-active .eco-arrow-circle {
-  border-color: #1A1A1A;
-  background-color: #1A1A1A;
+.eco-row:hover .eco-arrow-circle {
+  border-color: #8A6D3B;
+  background-color: #8A6D3B;
   color: #FFFFFF;
-  transform: rotate(45deg);
+  transform: translateX(4px);
 }
 
-.eco-row-active {
-  border-color: #B0AFAA;
-}
-
-/* ===== RIGHT PREVIEW PANEL ===== */
-.eco-preview-panel {
-  position: sticky;
-  top: 120px;
-}
-
-.eco-preview-inner {
-  width: 100%;
-  height: 380px;
-  border-radius: 20px;
-  overflow: hidden;
-  background-color: #F0EFEA;
-  border: 1px solid #E2E1DC;
-}
-
-/* Preview card with image */
-.eco-preview-card {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  animation: eco-preview-enter 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-@keyframes eco-preview-enter {
-  from { opacity: 0; transform: translateY(12px) scale(0.98); }
-  to   { opacity: 1; transform: translateY(0) scale(1); }
-}
-
-.eco-preview-img-wrap {
-  flex: 1;
-  overflow: hidden;
-}
-
-.eco-preview-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.eco-preview-card:hover .eco-preview-img {
-  transform: scale(1.04);
-}
-
-.eco-preview-info {
-  padding: 18px 20px;
-  background: #FFFFFF;
-  border-top: 1px solid #E2E1DC;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.eco-preview-num {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  color: #8A6D3B;
-}
-
-.eco-preview-title {
-  font-family: 'PT Sans Narrow', sans-serif;
-  font-size: 15px;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: #1A1A1A;
-  margin: 0;
-  letter-spacing: -0.3px;
-  line-height: 1.2;
-}
-
-.eco-preview-stat {
-  display: flex;
-  align-items: baseline;
-  gap: 6px;
-}
-
-.eco-preview-stat-val {
-  font-family: 'PT Sans Narrow', sans-serif;
-  font-size: 28px;
-  font-weight: 700;
-  color: #1A1A1A;
-  line-height: 1;
-  letter-spacing: -1px;
-}
-
-.eco-preview-stat-lbl {
-  font-family: 'Inter Tight', sans-serif;
-  font-size: 11px;
-  color: #8A8880;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.eco-preview-tags {
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
-}
-
-.eco-preview-tag {
-  font-family: 'Inter Tight', sans-serif;
-  font-size: 10px;
-  color: #6C6B66;
-  padding: 3px 9px;
-  border: 1px solid #E2E1DC;
-  border-radius: 100px;
-  text-transform: uppercase;
-  letter-spacing: 0.3px;
-}
-
-/* Empty state */
-.eco-preview-empty {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  color: #C0BFB9;
-}
-
-.eco-preview-empty-icon {
-  color: #C8C7C2;
-}
-
-.eco-preview-empty p {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: #C0BFB9;
-  margin: 0;
-}
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 1100px) {
@@ -424,5 +267,45 @@
 .eco-preview-link:hover {
   color: #1A1A1A;
   transform: translateX(2px);
+}
+
+/* ===== BOTTOM CTA ===== */
+.eco-cta-wrapper {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+.eco-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background-color: #1A1A1A;
+  color: #FFFFFF;
+  padding: 15px 30px;
+  border-radius: 9999px;
+  text-decoration: none;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.eco-cta-btn:hover {
+  background-color: #8A6D3B;
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(138, 109, 59, 0.25);
+}
+
+.eco-cta-btn svg {
+  transition: transform 0.3s ease;
+}
+
+.eco-cta-btn:hover svg {
+  transform: translateX(4px);
 }
 
