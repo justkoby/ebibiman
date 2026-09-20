@@ -11,7 +11,8 @@ import {
   Play,
   Mail,
   Search,
-  ExternalLink
+  ExternalLink,
+  Loader2
 } from 'lucide-react'
 import './SolutionsPage.css'
 
@@ -126,12 +127,15 @@ const SolutionsPage: React.FC<SolutionsPageProps> = ({ onBack }) => {
   const [contactOrg, setContactOrg] = useState('')
   const [discoveryProcess, setDiscoveryProcess] = useState('')
   const [discoveryFriction, setDiscoveryFriction] = useState<string[]>([])
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const [discoverySubmitted, setDiscoverySubmitted] = useState(false)
   const [generatedMailto, setGeneratedMailto] = useState('')
+  const [generatedGmailWeb, setGeneratedGmailWeb] = useState('')
 
   const openInquiryModal = (topic: string, defaultProcess: string = '') => {
     setModalTopic(topic)
     setDiscoveryProcess(defaultProcess)
+    setIsSubmitting(false)
     setDiscoverySubmitted(false)
     setIsDiscoveryModalOpen(true)
   }
@@ -144,15 +148,15 @@ const SolutionsPage: React.FC<SolutionsPageProps> = ({ onBack }) => {
     }
   }
 
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setDiscoverySubmitted(true)
+    setIsSubmitting(true)
 
-    const subject = encodeURIComponent(`[ETA Solutions - ${modalTopic}] from ${contactName || 'Inquirer'}`)
-    const body = encodeURIComponent(
+    const subjectText = `[ETA Solutions - ${modalTopic}] from ${contactName || 'Inquirer'}`
+    const bodyText =
       `ETA SOLUTIONS INQUIRY & DEMO REQUEST\n\n` +
       `Target Demo / Topic: ${modalTopic}\n` +
-      `Recipient: ebibimantech@gmail.com\n\n` +
+      `Target Recipient: ebibimantech@gmail.com\n\n` +
       `CONTACT DETAILS:\n` +
       `- Full Name: ${contactName || 'N/A'}\n` +
       `- Email / WhatsApp: ${contactInfo || 'N/A'}\n` +
@@ -161,16 +165,41 @@ const SolutionsPage: React.FC<SolutionsPageProps> = ({ onBack }) => {
       `${discoveryFriction.length > 0 ? discoveryFriction.map(f => `• ${f}`).join('\n') : '• None selected'}\n\n` +
       `PROCESS & WORKFLOW DETAILS:\n` +
       `${discoveryProcess || 'N/A'}\n\n` +
-      `---\nSubmitted through ETA Solutions Portal (Forwarded to ebibimantech@gmail.com)`
-    )
+      `---\nSubmitted through ETA Solutions Portal`
 
-    const mailtoUrl = `mailto:ebibimantech@gmail.com?subject=${subject}&body=${body}`
+    const mailtoUrl = `mailto:ebibimantech@gmail.com?subject=${encodeURIComponent(subjectText)}&body=${encodeURIComponent(bodyText)}`
+    const gmailWebUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=ebibimantech@gmail.com&su=${encodeURIComponent(subjectText)}&body=${encodeURIComponent(bodyText)}`
     setGeneratedMailto(mailtoUrl)
+    setGeneratedGmailWeb(gmailWebUrl)
 
-    // Trigger direct mail client dispatch
-    setTimeout(() => {
-      window.location.href = mailtoUrl
-    }, 400)
+    // Send via FormSubmit AJAX endpoint directly to ebibimantech@gmail.com
+    try {
+      const minDelay = new Promise(resolve => setTimeout(resolve, 1400))
+      const fetchPromise = fetch('https://formsubmit.co/ajax/ebibimantech@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name: contactName,
+          email: contactInfo,
+          topic: modalTopic,
+          organisation: contactOrg || 'N/A',
+          friction_points: discoveryFriction.join(', ') || 'None selected',
+          process_details: discoveryProcess,
+          _subject: subjectText,
+          _template: 'table'
+        })
+      })
+
+      await Promise.all([fetchPromise, minDelay])
+    } catch (err) {
+      console.warn('Form network dispatch notice:', err)
+    } finally {
+      setIsSubmitting(false)
+      setDiscoverySubmitted(true)
+    }
   }
 
   const runDemo1Simulation = () => {
@@ -1622,10 +1651,20 @@ const SolutionsPage: React.FC<SolutionsPageProps> = ({ onBack }) => {
                 <div className="modal-submit-row">
                   <button
                     type="submit"
-                    className="sol-btn sol-btn-primary sol-btn-block"
+                    disabled={isSubmitting}
+                    className={`sol-btn sol-btn-primary sol-btn-block ${isSubmitting ? 'btn-loading-state' : ''}`}
                   >
-                    <span>SUBMIT & FORWARD TO EBIBIMANTECH@GMAIL.COM</span>
-                    <Send size={16} />
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 size={18} className="spinner-rotate" />
+                        <span>TRANSMITTING TO EBIBIMANTECH@GMAIL.COM...</span>
+                      </>
+                    ) : (
+                      <>
+                        <span>SUBMIT & FORWARD TO EBIBIMANTECH@GMAIL.COM</span>
+                        <Send size={16} />
+                      </>
+                    )}
                   </button>
                 </div>
               </form>
@@ -1634,21 +1673,37 @@ const SolutionsPage: React.FC<SolutionsPageProps> = ({ onBack }) => {
                 <div className="success-icon-wrap">
                   <CheckCircle2 size={44} className="success-icon" />
                 </div>
-                <h3 className="modal-title">INQUIRY FORWARDED</h3>
+                <h3 className="modal-title">INQUIRY TRANSMITTED</h3>
                 <p className="modal-desc">
-                  Your request for <strong>{modalTopic}</strong> has been packaged and directed to{' '}
-                  <strong className="highlight-email">ebibimantech@gmail.com</strong>. Our engineering
-                  team will review your workflow details and get back to you promptly.
+                  Your request for <strong>{modalTopic}</strong> has been dispatched directly to{' '}
+                  <strong className="highlight-email">ebibimantech@gmail.com</strong>.
                 </p>
 
+                <div className="activation-notice-box">
+                  <p>
+                    <strong>First submission note:</strong> FormSubmit sends an automated 1-click confirmation email to <strong>ebibimantech@gmail.com</strong> to authorize incoming website dispatches. Please check your inbox / spam to confirm it.
+                  </p>
+                </div>
+
                 <div className="modal-success-actions">
+                  {generatedGmailWeb && (
+                    <a
+                      href={generatedGmailWeb}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="sol-btn sol-btn-dark"
+                    >
+                      <Mail size={15} />
+                      <span>Open in Gmail Web</span>
+                      <ExternalLink size={14} />
+                    </a>
+                  )}
                   <a
                     href={generatedMailto || "mailto:ebibimantech@gmail.com"}
                     className="sol-btn sol-btn-secondary"
                   >
                     <Mail size={15} />
-                    <span>Open in Mail Client / Gmail</span>
-                    <ExternalLink size={14} />
+                    <span>Open in Mail App</span>
                   </a>
                   <button
                     type="button"

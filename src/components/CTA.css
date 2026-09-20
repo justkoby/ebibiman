@@ -411,6 +411,61 @@
   color: #000000;
 }
 
+.cta-success-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 16px 0 24px 0;
+}
+
+.cta-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 100px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.cta-gmail-btn {
+  background: #D4A017;
+  color: #000000;
+  border: 1px solid #D4A017;
+}
+
+.cta-gmail-btn:hover {
+  background: #FFFFFF;
+  border-color: #FFFFFF;
+  transform: translateY(-1px);
+}
+
+.cta-mail-btn {
+  background: rgba(255, 255, 255, 0.1);
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.cta-mail-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+.spinner-rotate {
+  animation: spinLoader 0.9s linear infinite;
+}
+
+@keyframes spinLoader {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
 /* ===== RESPONSIVE MEDIA QUERIES ===== */
 @media (max-width: 1024px) {
   .cta-action-cards-grid {

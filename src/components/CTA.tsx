@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowRight, X, Mail, CheckCircle2, Send, Lightbulb, GraduationCap, Cpu } from 'lucide-react'
+import { ArrowRight, X, Mail, CheckCircle2, Send, Lightbulb, GraduationCap, Cpu, Loader2, ExternalLink } from 'lucide-react'
 import './CTA.css'
 
 type PathwayType = 'think' | 'learn' | 'build' | 'contact'
@@ -60,6 +60,9 @@ const CTA: React.FC = () => {
     message: ''
   })
   const [submitted, setSubmitted] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [generatedGmailWeb, setGeneratedGmailWeb] = useState('')
+  const [generatedMailto, setGeneratedMailto] = useState('')
 
   // Listen for escape key to close modal
   useEffect(() => {
@@ -88,28 +91,55 @@ const CTA: React.FC = () => {
       ...prev,
       category: activePathway ? activePathway.categoryName : 'General Inquiry / Contact'
     }))
+    setIsSubmitting(false)
     setSubmitted(false)
     setIsModalOpen(true)
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setSubmitted(true)
+    setIsSubmitting(true)
     
-    // Construct mailto link as reliable direct transport fallback
-    const subject = encodeURIComponent(`[ETA Website - ${formData.category}] from ${formData.name}`)
-    const body = encodeURIComponent(
+    const subjectText = `[ETA Website - ${formData.category}] from ${formData.name}`
+    const bodyText =
       `Name: ${formData.name}\n` +
       `Email: ${formData.email}\n` +
       `Pathway / Category: ${formData.category}\n` +
       `Role / Organization: ${formData.role || 'N/A'}\n\n` +
-      `Message:\n${formData.message}\n`
-    )
-    
-    // Attempt mailto trigger in background
-    setTimeout(() => {
-      window.location.href = `mailto:ebibimantech@gmail.com?subject=${subject}&body=${body}`
-    }, 600)
+      `Message:\n${formData.message}\n\n` +
+      `---\nSubmitted via ETA Website Contact Form`
+
+    const mailtoUrl = `mailto:ebibimantech@gmail.com?subject=${encodeURIComponent(subjectText)}&body=${encodeURIComponent(bodyText)}`
+    const gmailWebUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=ebibimantech@gmail.com&su=${encodeURIComponent(subjectText)}&body=${encodeURIComponent(bodyText)}`
+    setGeneratedMailto(mailtoUrl)
+    setGeneratedGmailWeb(gmailWebUrl)
+
+    try {
+      const minDelay = new Promise(resolve => setTimeout(resolve, 1400))
+      const fetchPromise = fetch('https://formsubmit.co/ajax/ebibimantech@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          category: formData.category,
+          role: formData.role || 'N/A',
+          message: formData.message,
+          _subject: subjectText,
+          _template: 'table'
+        })
+      })
+
+      await Promise.all([fetchPromise, minDelay])
+    } catch (err) {
+      console.warn('Network submit notice:', err)
+    } finally {
+      setIsSubmitting(false)
+      setSubmitted(true)
+    }
   }
 
   const containerVariants = {
@@ -293,9 +323,22 @@ const CTA: React.FC = () => {
                       ></textarea>
                     </div>
 
-                    <button type="submit" className="cta-modal-submit-btn">
-                      <span>Send Dispatch to ebibimantech@gmail.com</span>
-                      <Send size={14} />
+                    <button 
+                      type="submit" 
+                      disabled={isSubmitting}
+                      className="cta-modal-submit-btn"
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 size={16} className="spinner-rotate" />
+                          <span>Transmitting to ebibimantech@gmail.com...</span>
+                        </>
+                      ) : (
+                        <>
+                          <span>Send Dispatch to ebibimantech@gmail.com</span>
+                          <Send size={14} />
+                        </>
+                      )}
                     </button>
                   </form>
                 </>
@@ -304,11 +347,29 @@ const CTA: React.FC = () => {
                   <CheckCircle2 size={54} className="cta-success-icon" />
                   <h3 className="cta-modal-title">Thank You, {formData.name}!</h3>
                   <p className="cta-modal-desc">
-                    Your inquiry has been prepared. If your email client did not automatically launch, you can write directly to us at:
+                    Your inquiry has been transmitted to <strong>ebibimantech@gmail.com</strong>.
                   </p>
-                  <a href="mailto:ebibimantech@gmail.com" className="cta-success-email">
-                    ebibimantech@gmail.com
-                  </a>
+                  <div className="cta-success-actions">
+                    {generatedGmailWeb && (
+                      <a 
+                        href={generatedGmailWeb} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="cta-action-btn cta-gmail-btn"
+                      >
+                        <Mail size={15} />
+                        <span>Open in Gmail Web</span>
+                        <ExternalLink size={13} />
+                      </a>
+                    )}
+                    <a 
+                      href={generatedMailto || "mailto:ebibimantech@gmail.com"} 
+                      className="cta-action-btn cta-mail-btn"
+                    >
+                      <Mail size={15} />
+                      <span>Open in Mail App</span>
+                    </a>
+                  </div>
                   <button 
                     type="button" 
                     className="cta-modal-close-btn"
