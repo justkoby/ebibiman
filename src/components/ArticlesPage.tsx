@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import { motion } from 'framer-motion'
-import { ArrowLeft, ArrowRight, BookOpen, Clock, Calendar, Search } from 'lucide-react'
+import { ArrowLeft, BookOpen, Clock, Calendar, ArrowRight, Search } from 'lucide-react'
 import './ArticlesPage.css'
 
 interface Article {
@@ -17,7 +16,7 @@ interface Article {
 
 const articlesData: Article[] = [
   {
-    id: 'ai-coming-for-you',
+    id: 'reproducing-mind',
     title: "What Happens When Technology Starts Reproducing Not Merely What Your Hands Can Do, but What Your Mind Can Do?",
     tagline: "What happens to a developing economy when technology begins automating the very cognitive skills we have spent decades telling young people to acquire?",
     category: "Editorial",
@@ -25,7 +24,7 @@ const articlesData: Article[] = [
     readTime: "6 min read",
     author: "Samuel Sasu Adonteng & Margaret Edem Gasu",
     image: "/images/What Happens When Technology Starts Reproducing Not Merely What Your Hands Can Do, but What Your Mind Can Do.jpeg",
-    link: "#/blog/ai-coming-for-you"
+    link: "#/blog/reproducing-mind"
   },
   {
     id: 'nita-bill',
@@ -35,7 +34,7 @@ const articlesData: Article[] = [
     date: "June 2026",
     readTime: "7 min read",
     author: "Samuel Sasu Adonteng & Margaret Edem Gasu",
-    image: "/images/nita_bill_opinion.png",
+    image: "/images/image-1.jpeg",
     link: "#/blog/nita-bill"
   },
   {
@@ -46,8 +45,19 @@ const articlesData: Article[] = [
     date: "Feb. 2026",
     readTime: "8 min read",
     author: "Samuel Sasu Adonteng, Peter Kwasi Kodjie, Margaret Edem Gasu & Rexford Akrong",
-    image: "/images/tech_trends_2026.png",
+    image: "/images/image-6.jpg",
     link: "#/blog/tech-issues-2026"
+  },
+  {
+    id: 'ai-coming-for-you',
+    title: "AI is coming for you!",
+    tagline: "The headline may sound ominous, but the reality of artificial intelligence (AI) is far more nuanced. Exploring AI's transformative potential, workforce disruption, and the double-edged sword for society.",
+    category: "Editorial",
+    date: "March 8, 2025",
+    readTime: "8 min read",
+    author: "Samuel Sasu Adonteng & Margaret Edem Gasu",
+    image: "/images/image-4.jpg",
+    link: "#/blog/ai-coming-for-you"
   },
   {
     id: 'digital-innovation-facade',
@@ -57,7 +67,7 @@ const articlesData: Article[] = [
     date: "January 16, 2025",
     readTime: "5 min read",
     author: "Samuel Sasu Adonteng & Margaret Edem Gasu",
-    image: "/images/digital_innovation_facade.png",
+    image: "/images/image-3.jpeg",
     link: "#/blog/digital-innovation-facade"
   }
 ]
@@ -73,10 +83,11 @@ const ArticlesPage: React.FC<ArticlesPageProps> = ({ onBack }) => {
   const [searchQuery, setSearchQuery] = useState('')
 
   const filteredArticles = articlesData.filter((article) => {
-    const matchesCategory = selectedCategory === 'All' || article.category.toLowerCase() === selectedCategory.toLowerCase()
-    const matchesSearch = article.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                          article.tagline.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                          article.category.toLowerCase().includes(searchQuery.toLowerCase())
+    const matchesCategory = selectedCategory === 'All' || article.category === selectedCategory
+    const matchesSearch =
+      article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      article.tagline.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      article.author.toLowerCase().includes(searchQuery.toLowerCase())
     return matchesCategory && matchesSearch
   })
 
@@ -97,7 +108,7 @@ const ArticlesPage: React.FC<ArticlesPageProps> = ({ onBack }) => {
             <BookOpen className="eyebrow-icon" />
             <span>ETA Editorial & Insights</span>
           </div>
-          <h1 className="articles-page-title">Articles & Essays</h1>
+          <h1 className="articles-page-title">Articles</h1>
           <p className="articles-page-desc">
             Rigorous analysis, critical perspectives, and forward-looking research on emerging technology, indigenous knowledge, and African socio-economic transformation.
           </p>
@@ -118,10 +129,10 @@ const ArticlesPage: React.FC<ArticlesPageProps> = ({ onBack }) => {
           </div>
 
           <div className="articles-search-wrap">
-            <Search className="search-icon" />
-            <input 
-              type="text" 
-              placeholder="Search articles..." 
+            <Search className="search-icon" size={16} />
+            <input
+              type="text"
+              placeholder="Search articles, topics, authors..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="articles-search-input"
@@ -131,61 +142,54 @@ const ArticlesPage: React.FC<ArticlesPageProps> = ({ onBack }) => {
 
         {/* Articles Grid */}
         <div className="articles-grid">
-          {filteredArticles.map((article, idx) => (
-            <motion.div 
-              key={article.id}
-              className="article-card-col"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: idx * 0.1 }}
-            >
-              <a href={article.link} className="article-main-card">
-                <div className="article-card-img-wrap">
-                  <span className="article-card-badge">{article.category}</span>
-                  <img src={article.image} alt={article.title} className="article-card-img" />
-                  <div className="article-card-overlay"></div>
-                </div>
-
-                <div className="article-card-content">
-                  <div className="article-card-meta">
-                    <span className="meta-info">
-                      <Calendar size={12} className="meta-icon" />
-                      {article.date}
-                    </span>
-                    <span className="meta-divider">•</span>
-                    <span className="meta-info">
-                      <Clock size={12} className="meta-icon" />
-                      {article.readTime}
-                    </span>
+          {filteredArticles.length > 0 ? (
+            filteredArticles.map((art) => (
+              <div key={art.id} className="article-card-col">
+                <a href={art.link} className="article-main-card">
+                  <div className="article-card-img-wrap">
+                    <span className="article-card-badge">{art.category}</span>
+                    <img src={art.image} alt={art.title} className="article-card-img" />
+                    <div className="article-card-overlay"></div>
                   </div>
 
-                  <h2 className="article-card-title">{article.title}</h2>
-                  <p className="article-card-tagline">{article.tagline}</p>
-                  
-                  <div className="article-card-author">
-                    <span className="author-label">Author:</span>
-                    <span className="author-name">{article.author}</span>
-                  </div>
+                  <div className="article-card-content">
+                    <div className="article-card-meta">
+                      <span className="meta-info">
+                        <Calendar size={12} />
+                        {art.date}
+                      </span>
+                      <span className="meta-divider">•</span>
+                      <span className="meta-info">
+                        <Clock size={12} />
+                        {art.readTime}
+                      </span>
+                    </div>
 
-                  <div className="article-card-action">
-                    <span>Read Full Article</span>
-                    <ArrowRight className="action-arrow" />
+                    <h3 className="article-card-title">{art.title}</h3>
+                    <p className="article-card-tagline">{art.tagline}</p>
+
+                    <div className="article-card-author">
+                      <span className="author-label">By</span>
+                      <span className="author-name">{art.author}</span>
+                    </div>
+
+                    <div className="article-card-action">
+                      <span>Read Article</span>
+                      <ArrowRight className="action-arrow" />
+                    </div>
                   </div>
-                </div>
-              </a>
-            </motion.div>
-          ))}
+                </a>
+              </div>
+            ))
+          ) : (
+            <div className="articles-no-results">
+              <p>No articles found matching your search or filter.</p>
+              <button onClick={() => { setSelectedCategory('All'); setSearchQuery('') }} className="articles-reset-btn">
+                Reset Filters
+              </button>
+            </div>
+          )}
         </div>
-
-        {filteredArticles.length === 0 && (
-          <div className="articles-no-results">
-            <p>No articles found matching your query.</p>
-            <button onClick={() => { setSelectedCategory('All'); setSearchQuery('') }} className="articles-reset-btn">
-              Reset Filters
-            </button>
-          </div>
-        )}
-
       </div>
     </div>
   )

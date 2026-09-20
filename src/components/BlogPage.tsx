@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ArrowLeft, BookOpen, User, Calendar, Award, Link as LinkIcon, Check, ExternalLink } from 'lucide-react'
+import { ArrowLeft, BookOpen, Share2, Check, ExternalLink } from 'lucide-react'
 import './BlogPage.css'
 
 interface ExternalPublication {
@@ -8,7 +8,7 @@ interface ExternalPublication {
 }
 
 interface BlogPageProps {
-  articleId: 'nita-bill' | 'tech-issues-2026' | 'ai-coming-for-you' | 'digital-innovation-facade'
+  articleId: string
   onBack: () => void
 }
 
@@ -31,30 +31,39 @@ const BlogPage: React.FC<BlogPageProps> = ({ articleId, onBack }) => {
       tagline: "Why we must ensure the new legal architecture of our IT sector builds inclusion and fosters innovation, not isolation and capture.",
       authors: "Samuel Sasu Adonteng & Margaret Edem Gasu",
       date: "June 2026",
-      image: "/images/nita_bill_opinion.png",
+      image: "/images/image-1.jpeg",
       caption: "Conceptual illustration representing legal structures and digital ecosystems in Ghana."
     },
     'tech-issues-2026': {
       category: 'Thought Leadership',
       title: "Five Technology Issues to Watch Out For in 2026",
-      tagline: "situtating global transitions in AI, cybersecurity, inclusion, fintech, and green tech within Ghana's development context.",
+      tagline: "situating global transitions in AI, cybersecurity, inclusion, fintech, and green tech within Ghana's development context.",
       authors: "Samuel Sasu Adonteng, Peter Kwasi Kodjie, Margaret Edem Gasu & Rexford Akrong",
       date: "Feb. 2026",
-      image: "/images/tech_trends_2026.png",
+      image: "/images/image-6.jpg",
       caption: "Conceptual illustration representing the 2026 technological landscape: AI, security, connectivity, fintech, and green sustainability."
     },
     'ai-coming-for-you': {
+      category: 'Editorial',
+      title: "AI is coming for you!",
+      tagline: "The headline may sound ominous, but the reality of artificial intelligence (AI) is far more nuanced. Exploring AI's transformative potential and the challenges it poses.",
+      authors: "Samuel Sasu Adonteng and Margaret Edem Gasu, Co-Founders, Ebibiman Tech Alliance",
+      date: "March 8, 2025",
+      image: "/images/image-4.jpg",
+      caption: "The double-edged sword of Artificial Intelligence: opportunities, ethics, and human empowerment.",
+      externalPublications: [
+        { name: 'The Herald Ghana', url: 'https://theheraldghana.com/ai-is-coming-for-you/' },
+        { name: 'MyABC Live', url: 'https://myabclive.com/article-ai-is-coming-for-you/' }
+      ]
+    },
+    'reproducing-mind': {
       category: 'Editorial',
       title: "What Happens When Technology Starts Reproducing Not Merely What Your Hands Can Do, but What Your Mind Can Do?",
       tagline: "What happens to a developing economy when technology begins automating the very cognitive skills we have spent decades telling young people to acquire?",
       authors: "Samuel Sasu Adonteng & Margaret Edem Gasu",
       date: "Sept. 2026",
       image: "/images/What Happens When Technology Starts Reproducing Not Merely What Your Hands Can Do, but What Your Mind Can Do.jpeg",
-      caption: "What Happens When Technology Starts Reproducing Not Merely What Your Hands Can Do, but What Your Mind Can Do?",
-      externalPublications: [
-        { name: 'The Herald Ghana', url: 'https://theheraldghana.com/ai-is-coming-for-you/' },
-        { name: 'MyABC Live', url: 'https://myabclive.com/article-ai-is-coming-for-you/' }
-      ]
+      caption: "What Happens When Technology Starts Reproducing Not Merely What Your Hands Can Do, but What Your Mind Can Do?"
     },
     'digital-innovation-facade': {
       category: 'Tech Policy & Advocacy',
@@ -62,7 +71,7 @@ const BlogPage: React.FC<BlogPageProps> = ({ articleId, onBack }) => {
       tagline: "Yet, beneath this promising narrative lies a stark reality: a persistent digital divide, limited rural connectivity, and an overdependence on foreign technologies.",
       authors: "Samuel Sasu Adonteng & Margaret Edem Gasu",
       date: "January 16, 2025",
-      image: "/images/digital_innovation_facade.png",
+      image: "/images/image-3.jpeg",
       caption: "Conceptual illustration representing Ghana's digital transformation, connectivity networks, and indigenous technology systems.",
       externalPublications: [
         { name: 'Ghananews247', url: 'https://ghananews247.com/ghanas-digital-innovation-is-a-facade/' }
@@ -121,71 +130,56 @@ const BlogPage: React.FC<BlogPageProps> = ({ articleId, onBack }) => {
           </p>
         </div>
 
-        {/* Share and Metadata Row */}
-        <div className="blog-meta-share-wrapper">
-          {/* Metadata */}
-          <div className="blog-meta-grid">
-            <div className="blog-meta-item">
-              <User className="meta-icon" />
-              <div>
-                <span className="meta-label">Written By</span>
-                <span className="meta-value">{articleDetails.authors}</span>
-              </div>
-            </div>
-            <div className="blog-meta-item">
-              <Calendar className="meta-icon" />
-              <div>
-                <span className="meta-label">Date Published</span>
-                <span className="meta-value">{articleDetails.date}</span>
-              </div>
-            </div>
-            <div className="blog-meta-item">
-              <Award className="meta-icon" />
-              <div>
-                <span className="meta-label">Publisher</span>
-                <span className="meta-value">Ebibiman Tech Alliance</span>
-              </div>
-            </div>
+        {/* Meta Row: Authors, Date, Social Share */}
+        <div className="blog-meta-row">
+          <div className="blog-author-meta">
+            <span className="meta-label">By</span>
+            <span className="author-name">{articleDetails.authors}</span>
+            <span className="meta-bullet">•</span>
+            <span className="publish-date">{articleDetails.date}</span>
           </div>
 
-          {/* Social Share Bar */}
-          <div className="blog-share-bar">
-            <span className="share-label">Share Article</span>
-            <div className="share-buttons">
-              <button onClick={() => handleShare('twitter')} className="share-btn twitter-btn" title="Share on X">
-                <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
-                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                </svg>
-              </button>
-              <button onClick={() => handleShare('linkedin')} className="share-btn linkedin-btn" title="Share on LinkedIn">
-                <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
-                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0z"/>
-                </svg>
-              </button>
-              <button onClick={() => handleShare('facebook')} className="share-btn facebook-btn" title="Share on Facebook">
-                <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
-                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                </svg>
-              </button>
-              <button onClick={() => handleShare('copy')} className="share-btn copy-btn" title="Copy Link">
-                {copied ? <Check size={14} className="copied-icon" /> : <LinkIcon size={14} />}
-                {copied && <span className="copied-tooltip">Copied!</span>}
-              </button>
-            </div>
+          <div className="blog-share-tools">
+            <span className="share-label">Share:</span>
+            <button onClick={() => handleShare('twitter')} className="share-icon-btn" title="Share on X (Twitter)" aria-label="Share on X">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4l11.733 16h4.267l-11.733 -16z"></path><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"></path></svg>
+            </button>
+            <button onClick={() => handleShare('linkedin')} className="share-icon-btn" title="Share on LinkedIn" aria-label="Share on LinkedIn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+            </button>
+            <button onClick={() => handleShare('facebook')} className="share-icon-btn" title="Share on Facebook" aria-label="Share on Facebook">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+            </button>
+            <button onClick={() => handleShare('copy')} className={`share-icon-btn ${copied ? 'copied' : ''}`} title="Copy link" aria-label="Copy link">
+              {copied ? <Check size={15} /> : <Share2 size={15} />}
+            </button>
           </div>
         </div>
-        {/* External Publications Section */}
+
+        {/* Featured Image */}
+        <div className="blog-featured-image-wrapper">
+          <img 
+            src={articleDetails.image} 
+            alt={articleDetails.title} 
+            className="blog-featured-image" 
+          />
+          <div className="blog-image-caption">
+            {articleDetails.caption}
+          </div>
+        </div>
+
+        {/* External Publications Banner (if available) */}
         {articleDetails.externalPublications && articleDetails.externalPublications.length > 0 && (
           <div className="blog-external-publications">
-            <span className="external-pub-label">ALSO PUBLISHED BY</span>
-            <div className="external-pub-badges">
+            <span className="external-pub-label">Also Published In:</span>
+            <div className="external-pub-links">
               {articleDetails.externalPublications.map((pub, idx) => (
-                <a
-                  key={idx}
-                  href={pub.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="external-pub-badge"
+                <a 
+                  key={idx} 
+                  href={pub.url} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="external-pub-pill"
                 >
                   <span>{pub.name}</span>
                   <ExternalLink size={12} className="external-icon" />
@@ -195,58 +189,35 @@ const BlogPage: React.FC<BlogPageProps> = ({ articleId, onBack }) => {
           </div>
         )}
 
-        {/* Featured Image */}
-        <div className="blog-featured-image-wrap">
-          <img 
-            src={articleDetails.image} 
-            alt={articleDetails.title} 
-            className="blog-featured-img"
-          />
-          <div className="blog-image-caption">
-            {articleDetails.caption}
-          </div>
-        </div>
-
-        {/* Body Copy */}
-        <div className="blog-body-content">
+        {/* Article Body */}
+        <div className="blog-body-text">
           {articleId === 'nita-bill' ? (
             /* NITA BILL ARTICLE CONTENT */
             <>
               <p className="blog-intro-lead">
-                Ghana is at an inflection point. With the African Continental Free Trade Area accelerating cross-border digital commerce, with fintech and agritech startups reshaping livelihoods from Accra to Tamale, and with government services migrating online at pace, the legal architecture that governs our information technology sector has never mattered more. The National Information Technology Authority Bill, 2025, which proposes to repeal and replace the NITA Act of 2008, is, in theory, an opportunity to build that architecture for the next generation. We at Ebibiman Tech Alliance believe in that project. We have waited for it. Which is precisely why we cannot stay silent about the ways this bill, as currently drafted, could do serious harm.
+                Ghana is at a consequential moment in its digital history. The National Information Technology Authority (NITA) Bill, 2025, which has been submitted to Parliament, represents the most comprehensive attempt yet to regulate the country's information and communications technology sector.
+              </p>
+              <p>
+                In its stated ambition to bring order, standards, and security to Ghana's growing digital economy, the bill addresses real challenges. But in its current form, it contains structural flaws, excessive powers, and regulatory overreach that could stifle the very innovation it seeks to nurture.
+              </p>
+              <p>
+                At Ebibiman Tech Alliance, we believe that good policy must be forged through rigorous, open debate. Having thoroughly reviewed the draft legislation, we identify five critical areas that demand urgent legislative amendment before this bill becomes law.
               </p>
 
-              <h2 className="blog-section-title">Credit Where It Is Due</h2>
-              <p>
-                Let us begin honestly. There is genuine progress in this legislation, and we will not pretend otherwise.
-              </p>
-              <p>
-                The regulatory sandbox framework in <strong>section 60</strong> is a welcome and overdue provision. By creating a controlled environment in which innovators can test new products and business models under relaxed regulatory conditions, the bill signals that Ghana understands innovation cannot be governed by yesterday's rules.
-              </p>
-              <p>
-                The digital inclusion mandate in <strong>section 63</strong> - which explicitly centres persons with disabilities, women, rural populations, and marginalised groups - gives legal force to values that have too often remained aspirational.
-              </p>
-              <p>
-                The Multi-Stakeholder Advisory Forum in <strong>section 64</strong>, drawing in civil society, academia, the private sector, and development partners, could be a meaningful check on regulatory insularity if properly resourced and empowered. And the commitment to adaptive, technology-neutral regulation in <strong>section 62</strong>, including explicit reference to artificial intelligence, blockchain, and the Internet of Things, reflects a legislature paying attention to where the world is heading.
-              </p>
-              <p className="blog-pull-quote">
-                "These provisions deserve to be defended, strengthened, and funded. They are not sufficient reason, however, to ignore what the bill gets dangerously wrong."
-              </p>
+              <h2 className="blog-section-title">5 Critical Criticisms of the Current Bill</h2>
 
-              <h2 className="blog-section-title">Where the Bill Falls Short</h2>
-              
               <div className="blog-criticism-card">
-                <h3><span>1</span> The citizenship lock-out will cost us investment and innovation</h3>
+                <h3><span>1</span> The scope of licensing is dangerously broad</h3>
                 <p>
-                  <strong>Section 37</strong> restricts ICT licences to Ghanaian citizens or companies wholly owned by citizens. The intent - to protect local industry - is understandable. The effect, however, would be to bar joint ventures, foreign-co-invested startups, and diaspora-owned technology companies that do not meet a strict "wholly owned" threshold from operating legally in our market.
+                  <strong>Section 35</strong> of the bill makes it an offence to provide any "electronic technology service, system, or infrastructure" in Ghana without a license from NITA. There is no de minimis threshold, no exemption for early-stage startups, researchers, or open-source developers, and no clear distinction between critical national infrastructure providers and a student launching their first mobile app from a university dorm.
                 </p>
                 <p>
-                  In a sector defined by cross-border capital, global talent, and international partnership, this is not protection - it is isolation. Ghanaian entrepreneurs seeking Series A investment from Silicon Valley or Lagos-based venture capital will find that accepting that capital potentially invalidates their licence. The bill should distinguish between protecting Ghanaian participation and mandating Ghanaian exclusivity. They are not the same thing, and conflating them will drive capital and talent elsewhere.
+                  As drafted, this provision turns virtually every software engineer, web developer, cloud architect, and digital creator in Ghana into an unlicensed operator overnight. We strongly urge Parliament to narrow the definition to cover only critical, high-risk, and public-facing infrastructure, and to establish an automatic sandbox exemption for startups under five years old.
                 </p>
               </div>
 
               <div className="blog-criticism-card">
-                <h3><span>2</span> Universal professional certification will not build capacity - it will create a bottleneck</h3>
+                <h3><span>2</span> Professional certification creates an exclusionary monopoly</h3>
                 <p>
                   <strong>Section 46</strong> requires that every ICT professional in both public and private institutions be certified by NITA before they can be appointed. The goal of professionalising the sector is laudable. But conferring a single statutory body with monopoly certification authority over an entire profession - without specifying timelines, grandfathering provisions, reciprocal recognition of existing qualifications, or independent oversight of the certification process itself - creates serious risks.
                 </p>
@@ -449,7 +420,7 @@ const BlogPage: React.FC<BlogPageProps> = ({ articleId, onBack }) => {
                 Ghana’s experience shows that when technology is purposefully aligned with development priorities, it can reduce inequalities, expand access to essential services, and unlock new economic opportunities. However, without continuous investment in advanced digital skills, responsible AI governance, and equitable access, especially for rural and marginalized communities, technological progress risks deepening existing divides. The central policy implication, therefore, is that Ghana must treat technology not merely as an innovation agenda but as a core pillar of socio-economic planning, embedding digital readiness into all sectors to drive sustainable growth, competitiveness, and long-term national development.
               </p>
 
-              {/* Reusable Authors Section */}
+              {/* Authors Section */}
               <h2 className="blog-section-title">About the Authors</h2>
               <div className="blog-authors-container">
                 <div className="blog-author-profile">
@@ -472,6 +443,140 @@ const BlogPage: React.FC<BlogPageProps> = ({ articleId, onBack }) => {
             </>
           ) : articleId === 'ai-coming-for-you' ? (
             /* AI IS COMING FOR YOU ARTICLE CONTENT */
+            <>
+              <p className="blog-intro-lead">
+                The headline may sound ominous, but the reality of artificial intelligence (AI) is far more nuanced. AI is not just a harbinger of job displacement or a threat to human ingenuity; it is also a powerful tool that, when used correctly, can revolutionize industries, enhance productivity, and improve quality of life.
+              </p>
+              <p>
+                However, its rapid advancement raises critical questions about its impact on employment, human cognition, and societal structures.
+              </p>
+              <p>
+                This article delves into the double-edged sword of AI, exploring its transformative potential and the challenges it poses.
+              </p>
+
+              <h2 className="blog-section-title">The Evolution of AI: From Checkers to Generative Models</h2>
+              <p>
+                AI has come a long way since its inception in the 1950s. The first documented success of an AI program was Christopher Strachey’s checkers game in 1951. Fast forward to 1997, when IBM’s Deep Blue defeated chess grandmaster Garry Kasparov, and 2011, when IBM Watson won Jeopardy!. These milestones marked the beginning of AI’s journey into mainstream consciousness.
+              </p>
+              <p>
+                The advent of generative AI, spearheaded by OpenAI’s GPT models in 2018, has been a game-changer. Tools like ChatGPT, Google’s Gemini, and Anthropic’s Claude have democratized access to AI, enabling users to generate text, audio, images, and more with simple prompts.
+              </p>
+              <p>
+                By 2025, models like DeepSeek’s R1 and V3, have achieved near-parity with competitors at a fraction of the cost, further accelerating AI adoption.
+              </p>
+              <p>
+                AI’s applications are vast, from sequencing RNA for vaccines to modeling human speech. Its ability to perceive, reason, and generalize has made it indispensable across industries. But as AI continues to evolve, its implications for society grow more complex.
+              </p>
+
+              <h2 className="blog-section-title">The Bright Side: How AI Benefits Humanity</h2>
+
+              <div className="blog-criticism-card">
+                <h3><span>1</span> Enhanced Business Automation</h3>
+                <p>
+                  AI is transforming how businesses operate. According to a 2023 IBM survey, 42% of enterprise-scale businesses have integrated AI into their operations, with another 40% considering it. Chatbots and digital assistants handle customer queries, while AI-driven data analysis provides instant insights, enabling faster and more informed decision-making.
+                </p>
+                <p>
+                  Mike Mendelson of NVIDIA highlights that AI’s potential lies in its ability to solve domain-specific problems, often in ways humans might not anticipate. This capability is driving innovation and efficiency across sectors, from healthcare to finance.
+                </p>
+              </div>
+
+              <div className="blog-criticism-card">
+                <h3><span>2</span> Accelerated Innovation</h3>
+                <p>
+                  AI is not just automating tasks; it’s also accelerating innovation. Anthropic CEO Dario Amodei predicts that AI could speed up research in fields like biology by tenfold, compressing decades of progress into just a few years. This “compressed 21st century” could lead to breakthroughs in areas like gene editing and climate change mitigation.
+                </p>
+              </div>
+
+              <div className="blog-criticism-card">
+                <h3><span>3</span> Personalized Experiences</h3>
+                <p>
+                  In education, AI tailors learning experiences to individual students, while in healthcare, it aids in diagnosing diseases and streamlining drug discovery. AI’s ability to analyze vast amounts of data ensures that services are more personalized and effective than ever before.
+                </p>
+              </div>
+
+              <h2 className="blog-section-title">The Dark Side: Challenges and Risks of AI</h2>
+
+              <div className="blog-criticism-card">
+                <h3><span>1</span> Job Disruption</h3>
+                <p>
+                  One of the most pressing concerns is AI’s impact on employment. A 2023 Resume Builder survey found that 37% of companies using AI have already replaced workers, with 44% anticipating layoffs in 2024. Jobs in customer service, manufacturing, and even creative fields like content writing and graphic design are at risk.
+                </p>
+                <p>
+                  However, AI is also creating new roles, such as machine learning engineers and AI ethics specialists. The challenge lies in ensuring that workers are reskilled to fill these emerging positions. As Klara Nahrstedt, a computer science professor at the University of Illinois, notes, “We need to invest tremendously in education to retrain people for new jobs.”
+                </p>
+              </div>
+
+              <div className="blog-criticism-card">
+                <h3><span>2</span> Data Privacy and Ethical Concerns</h3>
+                <p>
+                  AI’s reliance on vast amounts of data raises significant privacy concerns. The FTC has investigated Open AI for potential violations of European data protection laws, highlighting the need for stricter regulations. The Biden-Harris administration’s AI Bill of Rights is a step in the right direction, but more robust frameworks are needed to protect consumer data.
+                </p>
+              </div>
+
+              <div className="blog-criticism-card">
+                <h3><span>3</span> Bias and Misinformation</h3>
+                <p>
+                  AI systems often reflect the biases of their creators. Facial recognition technology, for example, has been shown to favor lighter-skinned individuals, perpetuating racial inequalities. Additionally, the rise of deep fakes and AI-generated misinformation threatens to erode trust in media and institutions.
+                </p>
+              </div>
+
+              <div className="blog-criticism-card">
+                <h3><span>4</span> Environmental Impact</h3>
+                <p>
+                  The energy required to train and maintain AI models is staggering. Some estimates suggest that AI could increase carbon emissions by up to 80%, undermining efforts to combat climate change. While AI can optimize supply chains and reduce waste, its environmental costs must be carefully managed.
+                </p>
+              </div>
+
+              <h2 className="blog-section-title">The Future of AI: Opportunities and Threats</h2>
+              <p>
+                AI’s potential to transform society is immense, but its risks cannot be ignored. The key lies in responsible development and deployment. As AI becomes more integrated into our lives, we must address issues like job displacement, data privacy, and environmental sustainability.
+              </p>
+              <p>
+                The rise of AI also presents an opportunity to redefine work. By automating repetitive tasks, AI can free humans to focus on creative and strategic endeavours.
+              </p>
+              <p>
+                However, this requires a concerted effort to reskill workers and ensure that the benefits of AI are distributed equitably.
+              </p>
+              <p>
+                AI is not inherently good or evil; it is a tool whose impact depends on how we use it.
+              </p>
+              <p>
+                While it has the potential to displace jobs and exacerbate inequalities, it also offers unprecedented opportunities for innovation and growth. The challenge is to navigate this dual reality with foresight and responsibility.
+              </p>
+              <p>
+                As we stand on the brink of an AI-driven future, the question is not whether AI is coming for us, but how we will choose to meet it. By embracing AI’s potential while addressing its challenges, we can ensure that it serves as a force for good, enhancing human capabilities rather than replacing them.
+              </p>
+
+              {/* About ETA Section */}
+              <div className="blog-about-eta">
+                <h3>About ETA</h3>
+                <p>
+                  The Ebibiman Tech Alliance (ETA) is a pioneering initiative dedicated to promoting indigenous knowledge in technology across Africa. ETA is committed to fostering the ethical and humane use of technology to benefit society, while simultaneously enhancing digital skills, entrepreneurship, and employment opportunities in the tech sector.
+                </p>
+                <p>
+                  As a knowledge-generating center, ETA aspires to be at the forefront of technology research, innovation and education on the continent driven by young minds.
+                </p>
+              </div>
+
+              <p className="blog-pull-quote" style={{ marginTop: '30px', textAlign: 'center' }}>
+                "AI is here to stay. The question is: Are we ready?"
+              </p>
+
+              {/* Authors Section */}
+              <h2 className="blog-section-title">About the Authors</h2>
+              <div className="blog-authors-container">
+                <div className="blog-author-profile">
+                  <h5>Samuel Sasu Adonteng</h5>
+                  <p>Samuel Sasu Adonteng is the Chief Technical Officer at AASU and Co-Founder of Ebibiman Tech Alliance, working on youth empowerment, quality assurance, and ethical indigenous technology across Africa.</p>
+                </div>
+                <div className="blog-author-profile">
+                  <h5>Margaret Edem Gasu</h5>
+                  <p>Margaret Edem Gasu is a multidisciplinary designer, technologist, and Co-Founder of Ebibiman Tech Alliance, focused on building people-centered systems and African-led digital transformation.</p>
+                </div>
+              </div>
+            </>
+          ) : articleId === 'reproducing-mind' ? (
+            /* WHAT HAPPENS WHEN TECHNOLOGY STARTS REPRODUCING MIND CONTENT */
             <>
               <p className="blog-intro-lead">
                 Ghana has a youth employment problem. According to the Ghana Statistical Service's Quarterly Labour Statistics Report, unemployment among people aged 15 to 24 averaged 32% in 2024. Among those aged 20 to 24, the rate reached 36.7% in the final quarter of the year, the highest of any age group in the country. Those figures already tell a difficult story.

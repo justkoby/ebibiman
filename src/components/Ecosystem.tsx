@@ -79,6 +79,8 @@ const Ecosystem = () => {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: "-60px" }}
+                onClick={() => { window.location.hash = '#/solutions' }}
+                style={{ cursor: 'pointer' }}
               >
                 <div className="eco-row-left">
                   <span className="eco-row-num">{item.num}</span>
@@ -107,7 +109,7 @@ const Ecosystem = () => {
 
         {/* Bottom CTA */}
         <div className="eco-cta-wrapper">
-          <a href="#contact" className="eco-cta-btn">
+          <a href="#/solutions" className="eco-cta-btn">
             <span>EXPLORE ETA SOLUTIONS</span>
             <ArrowRight size={15} />
           </a>

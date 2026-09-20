@@ -12,21 +12,20 @@ interface ArticleItem {
   desc: string
 }
 
-// 3 Latest Articles & Events for the homepage (Newest first)
 const latestStories: ArticleItem[] = [
   {
     category: 'Editorial',
     title: "What Happens When Technology Starts Reproducing Not Merely What Your Hands Can Do, but What Your Mind Can Do?",
     date: 'Sept. 2026',
     image: '/images/What Happens When Technology Starts Reproducing Not Merely What Your Hands Can Do, but What Your Mind Can Do.jpeg',
-    link: '#/blog/ai-coming-for-you',
+    link: '#/blog/reproducing-mind',
     desc: 'What happens to a developing economy when technology begins automating the very cognitive skills we have spent decades telling young people to acquire? We must develop what becomes more valuable because the machine exists.'
   },
   {
     category: 'Tech Policy & Advocacy',
     title: "Ghana's Digital Future Is at Stake - The NITA Bill Must Do Better",
     date: 'June 2026',
-    image: '/images/nita_bill_opinion.png',
+    image: '/images/image-1.jpeg',
     link: '#/blog/nita-bill',
     desc: 'Ghana is at an inflection point. The National Information Technology Authority Bill, 2025 is an opportunity to build legal architecture for the next generation. We cannot stay silent about the ways this bill, as currently drafted, could do serious harm.'
   },
@@ -34,15 +33,23 @@ const latestStories: ArticleItem[] = [
     category: 'Thought Leadership',
     title: "Five Technology Issues to Watch Out For in 2026",
     date: 'Feb. 2026',
-    image: '/images/tech_trends_2026.png',
+    image: '/images/image-6.jpg',
     link: '#/blog/tech-issues-2026',
     desc: 'Rapid advances in AI, digital finance, connectivity, green tech, and cybersecurity are redefining work, health, and agriculture. How will Ghana and Africa navigate this critical transition?'
+  },
+  {
+    category: 'Editorial',
+    title: "AI is coming for you!",
+    date: 'March 8, 2025',
+    image: '/images/image-4.jpg',
+    link: '#/blog/ai-coming-for-you',
+    desc: 'The headline may sound ominous, but the reality of artificial intelligence is far more nuanced. Exploring AI’s transformative potential, workforce disruption, and the double-edged sword for society.'
   },
   {
     category: 'Tech Policy & Advocacy',
     title: "Ghana's Digital Innovation Is a Façade",
     date: 'Jan. 2025',
-    image: '/images/digital_innovation_facade.png',
+    image: '/images/image-3.jpeg',
     link: '#/blog/digital-innovation-facade',
     desc: 'Beneath the promising digital narrative lies a persistent divide, limited rural connectivity, and an overdependence on foreign technologies. How can Africa build genuine digital sovereignty?'
   }
@@ -80,7 +87,7 @@ const Events: React.FC = () => {
         >
           <div className="section-eyebrow">Latest From The Ecosystem</div>
           <h2 className="section-title">
-            Stories Shaping Africa's <span className="gold-text">Tech Future</span>
+            Insights Shaping Africa's <span className="gold-text">Tech Future</span>
           </h2>
           <p className="events-section-desc">
             Explore the insights, milestones, and discussions driving technology adoption and digital impact across the continent.
@@ -121,9 +128,9 @@ const Events: React.FC = () => {
             </motion.div>
           )}
 
-          {/* Right Column: News Post List (Small Thumbnail on Left, Details on Right) */}
+          {/* Right Column: News Post List (Small Thumbnail on Left, Details on Right - Exactly 3 Cards) */}
           <div className="events-news-list-col">
-            {latestStories.slice(1).map((story, idx) => (
+            {latestStories.slice(1, 4).map((story, idx) => (
               <motion.div className="news-row-wrapper" variants={fadeUp} key={idx}>
                 <a href={story.link} className="news-row-item">
                   <div className="news-row-thumb-wrap">

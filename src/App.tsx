@@ -19,12 +19,13 @@ import EbiAssistant from './components/EbiAssistant'
 import BlogPage from './components/BlogPage'
 import ArticlesPage from './components/ArticlesPage'
 import EventsPage from './components/EventsPage'
+import SolutionsPage from './components/SolutionsPage'
 import ScrollToTop from './components/ScrollToTop'
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const [currentView, setCurrentView] = useState<'home' | 'nita-bill' | 'tech-issues-2026' | 'ai-coming-for-you' | 'digital-innovation-facade' | 'articles' | 'events-page'>('home')
+  const [currentView, setCurrentView] = useState<'home' | 'nita-bill' | 'tech-issues-2026' | 'ai-coming-for-you' | 'reproducing-mind' | 'digital-innovation-facade' | 'articles' | 'events-page' | 'solutions'>('home')
 
   useEffect(() => {
     const handleScroll = () => {
@@ -46,8 +47,11 @@ function App() {
       } else if (window.location.hash === '#/blog/tech-issues-2026') {
         setCurrentView('tech-issues-2026')
         window.scrollTo(0, 0)
-      } else if (window.location.hash === '#/blog/ai-coming-for-you') {
+      } else if (window.location.hash === '#/blog/ai-coming-for-you' || window.location.hash === '#/blog/ai-is-coming-for-you') {
         setCurrentView('ai-coming-for-you')
+        window.scrollTo(0, 0)
+      } else if (window.location.hash === '#/blog/reproducing-mind' || window.location.hash === '#/blog/what-happens-when-tech-reproduces-mind') {
+        setCurrentView('reproducing-mind')
         window.scrollTo(0, 0)
       } else if (window.location.hash === '#/blog/digital-innovation-facade') {
         setCurrentView('digital-innovation-facade')
@@ -57,6 +61,9 @@ function App() {
         window.scrollTo(0, 0)
       } else if (window.location.hash === '#/events-page' || window.location.hash === '#/events-listing') {
         setCurrentView('events-page')
+        window.scrollTo(0, 0)
+      } else if (window.location.hash === '#/solutions' || window.location.hash === '#/eta-solutions') {
+        setCurrentView('solutions')
         window.scrollTo(0, 0)
       } else {
         setCurrentView('home')
@@ -127,12 +134,16 @@ function App() {
           <BlogPage articleId="tech-issues-2026" onBack={handleBackToHome} />
         ) : currentView === 'ai-coming-for-you' ? (
           <BlogPage articleId="ai-coming-for-you" onBack={handleBackToHome} />
+        ) : currentView === 'reproducing-mind' ? (
+          <BlogPage articleId="reproducing-mind" onBack={handleBackToHome} />
         ) : currentView === 'digital-innovation-facade' ? (
           <BlogPage articleId="digital-innovation-facade" onBack={handleBackToHome} />
         ) : currentView === 'articles' ? (
           <ArticlesPage onBack={handleBackToHome} />
         ) : currentView === 'events-page' ? (
           <EventsPage onBack={handleBackToHome} />
+        ) : currentView === 'solutions' ? (
+          <SolutionsPage onBack={handleBackToHome} />
         ) : (
           <>
             <Hero />

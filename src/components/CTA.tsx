@@ -1,40 +1,61 @@
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowRight, X, Mail, CheckCircle2, Send, MessageSquare, HeartHandshake } from 'lucide-react'
+import { ArrowRight, X, Mail, CheckCircle2, Send, Lightbulb, GraduationCap, Cpu } from 'lucide-react'
 import './CTA.css'
 
+type PathwayType = 'think' | 'learn' | 'build' | 'contact'
+
 interface ActionCard {
-  id: 'contact' | 'mentor'
+  id: PathwayType
   title: string
   desc: string
   linkText: string
   icon: any
+  categoryName: string
+  modalTitle: string
+  modalDesc: string
 }
 
-const actions: ActionCard[] = [
+const pathways: ActionCard[] = [
   {
-    id: 'contact',
-    title: 'Contact Us',
-    desc: 'Have an idea, project, partnership inquiry or looking to explore how ETA can work with your organisation? Get in touch with our team.',
-    linkText: 'Send a Message',
-    icon: MessageSquare
+    id: 'think',
+    title: 'THINK WITH US',
+    desc: 'Researchers, institutions and partners exploring technology and African society.',
+    linkText: 'Partner With ETA',
+    icon: Lightbulb,
+    categoryName: 'Think With Us · Research & Institutional Partnership',
+    modalTitle: 'Partner With ETA (Think With Us)',
+    modalDesc: 'Collaborate on research, policy, ethical tech frameworks, and institutional initiatives.'
   },
   {
-    id: 'mentor',
-    title: 'Volunteer as Mentor',
-    desc: 'Are you a tech veteran or industry practitioner? Lend your voice, review code, or teach a class of aspiring ethical builders across Africa.',
-    linkText: 'Apply as Mentor',
-    icon: HeartHandshake
+    id: 'learn',
+    title: 'LEARN WITH US',
+    desc: 'People and organisations developing capabilities for a changing technological environment.',
+    linkText: 'Explore Academy',
+    icon: GraduationCap,
+    categoryName: 'Learn With Us · Academy & Capability Development',
+    modalTitle: 'Explore Academy (Learn With Us)',
+    modalDesc: 'Join our cohorts, masterclasses, and capacity-building programs across Africa.'
+  },
+  {
+    id: 'build',
+    title: 'BUILD WITH US',
+    desc: 'Organisations solving real problems through technology, AI and intelligent systems.',
+    linkText: 'Explore Solutions',
+    icon: Cpu,
+    categoryName: 'Build With Us · Technology Solutions & AI Systems',
+    modalTitle: 'Explore Solutions (Build With Us)',
+    modalDesc: 'Work with ETA to design, engineer, and deploy high-impact indigenous technology solutions.'
   }
 ]
 
 const CTA: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const [selectedType, setSelectedType] = useState<'contact' | 'mentor'>('contact')
+  const [selectedPathway, setSelectedPathway] = useState<PathwayType>('think')
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    category: 'General Inquiry / Contact',
+    category: 'Think With Us · Research & Institutional Partnership',
     role: '',
     message: ''
   })
@@ -59,12 +80,13 @@ const CTA: React.FC = () => {
     }
   }, [isModalOpen])
 
-  const handleOpenModal = (e: React.MouseEvent, type: 'contact' | 'mentor') => {
+  const handleOpenModal = (e: React.MouseEvent, pathway: PathwayType) => {
     e.preventDefault()
-    setSelectedType(type)
+    setSelectedPathway(pathway)
+    const activePathway = pathways.find(p => p.id === pathway)
     setFormData(prev => ({
       ...prev,
-      category: type === 'mentor' ? 'Volunteer / Mentor Application' : 'General Inquiry / Contact'
+      category: activePathway ? activePathway.categoryName : 'General Inquiry / Contact'
     }))
     setSubmitted(false)
     setIsModalOpen(true)
@@ -75,11 +97,11 @@ const CTA: React.FC = () => {
     setSubmitted(true)
     
     // Construct mailto link as reliable direct transport fallback
-    const subject = encodeURIComponent(`[ETA Website Inquiry] ${formData.category} - from ${formData.name}`)
+    const subject = encodeURIComponent(`[ETA Website - ${formData.category}] from ${formData.name}`)
     const body = encodeURIComponent(
       `Name: ${formData.name}\n` +
       `Email: ${formData.email}\n` +
-      `Category: ${formData.category}\n` +
+      `Pathway / Category: ${formData.category}\n` +
       `Role / Organization: ${formData.role || 'N/A'}\n\n` +
       `Message:\n${formData.message}\n`
     )
@@ -107,6 +129,8 @@ const CTA: React.FC = () => {
     }
   } as any
 
+  const currentPathwayInfo = pathways.find(p => p.id === selectedPathway) || pathways[0]
+
   return (
     <section className="cta-section" id="contact">
       <div className="cta-container">
@@ -121,40 +145,40 @@ const CTA: React.FC = () => {
         >
           <span className="section-eyebrow">Get Involved</span>
           <h2 className="section-title">
-            Help Build This <span className="gold-text">Future Together</span>
+            AFRICA'S TECHNOLOGICAL FUTURE IS ALREADY BEING BUILT.
+            <span className="gold-text cta-title-highlight">
+              LET'S MAKE SURE WE'RE BUILDING IT TOO.
+            </span>
           </h2>
-          <p className="cta-subtitle">
-            Ethical technology is not a solo effort. We work with academic institutions, technology companies, developers, and organizations across the continent.
-          </p>
         </motion.div>
 
-        {/* 2 Action Cards */}
+        {/* 3 Pathway Action Cards */}
         <motion.div 
-          className="cta-action-cards-grid cta-two-cards"
+          className="cta-action-cards-grid"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
         >
-          {actions.map((act) => {
-            const Icon = act.icon
+          {pathways.map((card) => {
+            const Icon = card.icon
             return (
-              <motion.div className="cta-action-card" key={act.id} variants={fadeUp}>
+              <motion.div className="cta-action-card" key={card.id} variants={fadeUp}>
                 <div className="cta-card-header-row">
-                  <h4 className="cta-act-title">{act.title}</h4>
+                  <h4 className="cta-act-title">{card.title}</h4>
                   <div className="cta-act-icon-wrap">
-                    <Icon size={18} />
+                    <Icon size={20} />
                   </div>
                 </div>
-                <p className="cta-act-desc">{act.desc}</p>
+                <p className="cta-act-desc">{card.desc}</p>
                 
                 <div className="cta-act-btn-row">
                   <button 
                     type="button" 
-                    onClick={(e) => handleOpenModal(e, act.id)} 
+                    onClick={(e) => handleOpenModal(e, card.id)} 
                     className="btn-cta-act"
                   >
-                    <span>{act.linkText}</span>
+                    <span>{card.linkText}</span>
                     <ArrowRight className="cta-btn-arrow" />
                   </button>
                 </div>
@@ -194,10 +218,10 @@ const CTA: React.FC = () => {
                       <span>Direct Dispatch · ebibimantech@gmail.com</span>
                     </div>
                     <h3 className="cta-modal-title">
-                      {selectedType === 'mentor' ? 'Volunteer as a Mentor' : 'Contact Ebibiman Tech Alliance'}
+                      {currentPathwayInfo.modalTitle}
                     </h3>
                     <p className="cta-modal-desc">
-                      Send us a note below and our team will get in touch directly.
+                      {currentPathwayInfo.modalDesc}
                     </p>
                   </div>
 
@@ -230,25 +254,25 @@ const CTA: React.FC = () => {
 
                     <div className="cta-form-row">
                       <div className="cta-form-group">
-                        <label htmlFor="cta-category">Inquiry Category</label>
+                        <label htmlFor="cta-category">Pathway / Inquiry Focus</label>
                         <select 
                           id="cta-category"
                           value={formData.category}
                           onChange={(e) => setFormData({ ...formData, category: e.target.value })}
                         >
+                          <option value="Think With Us · Research & Institutional Partnership">Think With Us · Research & Institutional Partnership</option>
+                          <option value="Learn With Us · Academy & Capability Development">Learn With Us · Academy & Capability Development</option>
+                          <option value="Build With Us · Technology Solutions & AI Systems">Build With Us · Technology Solutions & AI Systems</option>
                           <option value="General Inquiry / Contact">General Inquiry / Contact</option>
-                          <option value="Volunteer / Mentor Application">Volunteer / Mentor Application</option>
-                          <option value="Partnership / Institutional Work">Partnership / Institutional Work</option>
-                          <option value="Technology Solutions & Consulting">Technology Solutions & Consulting</option>
                         </select>
                       </div>
 
                       <div className="cta-form-group">
-                        <label htmlFor="cta-role">Role / Organization (Optional)</label>
+                        <label htmlFor="cta-role">Role / Organisation (Optional)</label>
                         <input 
                           id="cta-role"
                           type="text" 
-                          placeholder="e.g. Software Engineer, Researcher, Student"
+                          placeholder="e.g. Researcher, Founder, Engineer, Student"
                           value={formData.role}
                           onChange={(e) => setFormData({ ...formData, role: e.target.value })}
                         />
@@ -257,22 +281,20 @@ const CTA: React.FC = () => {
 
                     <div className="cta-form-group">
                       <label htmlFor="cta-message">
-                        {selectedType === 'mentor' 
-                          ? 'Tell us about your background and how you would like to mentor' 
-                          : 'Your Message'}
+                        How would you like to collaborate or get involved?
                       </label>
                       <textarea 
                         id="cta-message"
                         rows={4}
                         required
-                        placeholder="Write your note or project summary here..."
+                        placeholder="Tell us about your organization, idea, learning goals, or partnership interest..."
                         value={formData.message}
                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       ></textarea>
                     </div>
 
                     <button type="submit" className="cta-modal-submit-btn">
-                      <span>Send Message to ebibimantech@gmail.com</span>
+                      <span>Send Dispatch to ebibimantech@gmail.com</span>
                       <Send size={14} />
                     </button>
                   </form>
@@ -282,7 +304,7 @@ const CTA: React.FC = () => {
                   <CheckCircle2 size={54} className="cta-success-icon" />
                   <h3 className="cta-modal-title">Thank You, {formData.name}!</h3>
                   <p className="cta-modal-desc">
-                    Your message has been processed. If your email client did not automatically launch, you can also write to us directly at:
+                    Your inquiry has been prepared. If your email client did not automatically launch, you can write directly to us at:
                   </p>
                   <a href="mailto:ebibimantech@gmail.com" className="cta-success-email">
                     ebibimantech@gmail.com
@@ -305,4 +327,3 @@ const CTA: React.FC = () => {
 }
 
 export default CTA
-

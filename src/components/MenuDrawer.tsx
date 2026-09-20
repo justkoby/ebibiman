@@ -9,11 +9,9 @@ interface MenuDrawerProps {
 const menuItems = [
   { label: 'Home', target: '#hero' },
   { label: 'About', target: '#the-problem' },
-  { label: 'Approach', target: '#approach' },
-  { label: 'Solutions', target: '#ecosystem' },
+  { label: 'Solutions', target: '#/solutions' },
   { label: 'Articles', target: '#/articles' },
   { label: 'Events', target: '#/events-page' },
-  { label: 'Programmes', target: '#programmes' },
   { label: 'Contact', target: '#contact' }
 ]
 
@@ -113,28 +111,7 @@ const MenuDrawer = ({ isOpen, onClose }: MenuDrawerProps) => {
           ))}
         </motion.nav>
 
-        {/* Divider 1 */}
-        <div className="drawer-divider"></div>
-
-        {/* Secondary Links */}
-        <div className="drawer-secondary-links">
-          <a 
-            href="#contact" 
-            onClick={(e) => handleLinkClick(e, 'contact')} 
-            className="drawer-sec-link"
-          >
-            Join The Movement
-          </a>
-          <a 
-            href="#contact" 
-            onClick={(e) => handleLinkClick(e, 'contact')} 
-            className="drawer-sec-link"
-          >
-            Become A Partner
-          </a>
-        </div>
-
-        {/* Divider 2 */}
+        {/* Divider */}
         <div className="drawer-divider"></div>
 
         {/* Socials Block */}
