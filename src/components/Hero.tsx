@@ -65,8 +65,7 @@ const Hero = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4, duration: 1.2 }}
         >
-          Africa built technologies long before the digital age.<br />
-          Yet much of that knowledge is disappearing.
+          ETA is an African technology social enterprise exploring the intersection of emerging technology, indigenous knowledge and African development. We think, teach and build toward technological systems grounded in African realities.
         </motion.p>
       </div>
 

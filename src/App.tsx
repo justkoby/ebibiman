@@ -3,6 +3,7 @@ import { ArrowRight } from 'lucide-react'
 import Hero from './components/Hero'
 import TheProblem from './components/TheProblem'
 import AfricanKnowledgeAtlas from './components/AfricanKnowledgeAtlas'
+import TheQuestion from './components/TheQuestion'
 import WhyEbibiman from './components/WhyEbibiman'
 import Approach from './components/Approach'
 import TransitionMarquee from './components/TransitionMarquee'
@@ -17,11 +18,13 @@ import MenuDrawer from './components/MenuDrawer'
 import Footer from './components/Footer'
 import EbiAssistant from './components/EbiAssistant'
 import BlogPage from './components/BlogPage'
+import ArticlesPage from './components/ArticlesPage'
+import EventsPage from './components/EventsPage'
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const [currentView, setCurrentView] = useState<'home' | 'nita-bill' | 'tech-issues-2026' | 'ai-coming-for-you'>('home')
+  const [currentView, setCurrentView] = useState<'home' | 'nita-bill' | 'tech-issues-2026' | 'ai-coming-for-you' | 'articles' | 'events-page'>('home')
 
   useEffect(() => {
     const handleScroll = () => {
@@ -46,12 +49,18 @@ function App() {
       } else if (window.location.hash === '#/blog/ai-coming-for-you') {
         setCurrentView('ai-coming-for-you')
         window.scrollTo(0, 0)
+      } else if (window.location.hash === '#/articles') {
+        setCurrentView('articles')
+        window.scrollTo(0, 0)
+      } else if (window.location.hash === '#/events-page' || window.location.hash === '#/events-listing') {
+        setCurrentView('events-page')
+        window.scrollTo(0, 0)
       } else {
         setCurrentView('home')
         
         // Handle auto-scroll to anchor when returning to home view
         const anchor = window.location.hash.slice(1)
-        if (anchor && anchor !== 'home') {
+        if (anchor && anchor !== 'home' && !anchor.startsWith('/')) {
           // Wait for DOM update
           setTimeout(() => {
             const element = document.getElementById(anchor)
@@ -79,7 +88,7 @@ function App() {
   }
 
   const handleBackToHome = () => {
-    window.location.hash = '#programmes'
+    window.location.hash = '#events'
   }
 
   return (
@@ -118,11 +127,16 @@ function App() {
           <BlogPage articleId="tech-issues-2026" onBack={handleBackToHome} />
         ) : currentView === 'ai-coming-for-you' ? (
           <BlogPage articleId="ai-coming-for-you" onBack={handleBackToHome} />
+        ) : currentView === 'articles' ? (
+          <ArticlesPage onBack={handleBackToHome} />
+        ) : currentView === 'events-page' ? (
+          <EventsPage onBack={handleBackToHome} />
         ) : (
           <>
             <Hero />
             <TheProblem />
             <AfricanKnowledgeAtlas />
+            <TheQuestion />
             <WhyEbibiman />
             <Approach />
             <TransitionMarquee />

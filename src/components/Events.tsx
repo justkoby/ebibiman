@@ -1,8 +1,9 @@
+import React from 'react'
 import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import './Events.css'
 
-interface MagazineStory {
+interface ArticleItem {
   category: string
   title: string
   date: string
@@ -11,63 +12,37 @@ interface MagazineStory {
   desc: string
 }
 
-const featuredStory: MagazineStory = {
-  category: 'Opinion Piece',
-  title: "Ghana's Digital Future Is at Stake - The NITA Bill Must Do Better",
-  date: 'June 2025',
-  image: '/images/nita_bill_opinion.png',
-  link: '#/blog/nita-bill',
-  desc: 'Ghana is at an inflection point. The National Information Technology Authority Bill, 2025 is an opportunity to build legal architecture for the next generation. We cannot stay silent about the ways this bill, as currently drafted, could do serious harm.'
-}
-
-const sideStories: MagazineStory[] = [
+// 3 Latest Articles & Events for the homepage (Newest first)
+const latestStories: ArticleItem[] = [
   {
-    category: 'Opinion Piece',
-    title: 'AI is coming for you!',
-    date: 'March 8, 2025',
-    image: '/images/ai_coming_for_you.png',
+    category: 'Editorial',
+    title: "What Happens When Technology Starts Reproducing Not Merely What Your Hands Can Do, but What Your Mind Can Do?",
+    date: 'Sept. 2026',
+    image: '/images/What Happens When Technology Starts Reproducing Not Merely What Your Hands Can Do, but What Your Mind Can Do.jpeg',
     link: '#/blog/ai-coming-for-you',
-    desc: 'AI is not just a harbinger of job displacement; it is a powerful tool to revolutionize industries. But its rapid advancement raises critical questions about our future.'
+    desc: 'What happens to a developing economy when technology begins automating the very cognitive skills we have spent decades telling young people to acquire? We must develop what becomes more valuable because the machine exists.'
   },
   {
-    category: 'Opinion Piece',
-    title: 'Five Technology Issues to Watch Out For in 2026',
+    category: 'Tech Policy & Advocacy',
+    title: "Ghana's Digital Future Is at Stake - The NITA Bill Must Do Better",
     date: 'June 2026',
-    image: '/images/tech_trends_2026.png',
-    link: '#/blog/tech-issues-2026',
-    desc: 'Rapid advances in AI, digital finance, connectivity, green tech, and cybersecurity are redefining work, health, and agriculture. How will Ghana navigate this transition?'
-  },
-  {
-    category: 'Masterclass',
-    title: 'AI Prompt Engineering: Teaching Young Africans To Work Smarter With AI',
-    date: 'July 2025',
-    image: '/images/AI Prompt Engineering.png',
-    link: '#story-ai',
-    desc: 'Equipping the next generation of African builders with AI prompt structures, communication frameworks, and critical future-skills required for cognitive work.'
+    image: '/images/nita_bill_opinion.png',
+    link: '#/blog/nita-bill',
+    desc: 'Ghana is at an inflection point. The National Information Technology Authority Bill, 2025 is an opportunity to build legal architecture for the next generation. We cannot stay silent about the ways this bill, as currently drafted, could do serious harm.'
   },
   {
     category: 'Thought Leadership',
-    title: "The Ghanaian Tech Space Is Dying: Reimagining Ghana's Technology Landscape",
-    date: 'Monthly Series',
-    image: '/images/webinar_series.png',
-    link: '#story-webinar',
-    desc: 'Bringing industry leaders together to challenge status quos and design sustainable digital policy.'
-  },
-  {
-    category: 'Education',
-    title: "Preparing Schools For Africa's Digital Future",
-    date: 'Ongoing Initiative',
-    image: '/images/future_minds_ghana.png',
-    link: '#story-education',
-    desc: 'Setting up modern ICT labs and training educators to sustain technology adoption across regional institutions.'
+    title: "Five Technology Issues to Watch Out For in 2026",
+    date: 'Feb. 2026',
+    image: '/images/tech_trends_2026.png',
+    link: '#/blog/tech-issues-2026',
+    desc: 'Rapid advances in AI, digital finance, connectivity, green tech, and cybersecurity are redefining work, health, and agriculture. How will Ghana and Africa navigate this critical transition?'
   }
 ]
 
-const allStories = [featuredStory, ...sideStories]
-
-const Events = () => {
+const Events: React.FC = () => {
   const fadeUp = {
-    hidden: { opacity: 0, y: 35 },
+    hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
       y: 0,
@@ -104,92 +79,61 @@ const Events = () => {
           </p>
         </motion.div>
 
-        {/* Desktop Magazine Grid View */}
+        {/* 3-Column Responsive Grid (Desktop: 3 cols, Tablet: 2 cols, Mobile: 1 col) */}
         <motion.div 
-          className="events-layout-grid desktop-only"
+          className="events-layout-grid"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: "-80px" }}
         >
-          {/* Left Column: Giant Featured Card */}
-          <motion.div className="featured-story-col" variants={fadeUp}>
-            <a href={featuredStory.link} className="mag-card featured-card">
-              <div className="mag-image-wrapper">
-                <span className="mag-badge highlight">{featuredStory.category}</span>
-                <img 
-                  src={featuredStory.image} 
-                  alt={featuredStory.title} 
-                  className="mag-image featured-parallax" 
-                />
-                <div className="mag-overlay"></div>
-              </div>
-              <div className="mag-content">
-                <span className="mag-date">{featuredStory.date}</span>
-                <h3 className="mag-title">{featuredStory.title}</h3>
-                <p className="mag-desc">{featuredStory.desc}</p>
-                <div className="mag-action-link">
-                  <span>Read Story</span>
-                  <ArrowRight className="mag-arrow-icon" />
+          {latestStories.map((story, idx) => (
+            <motion.div className="events-grid-item" variants={fadeUp} key={idx}>
+              <a href={story.link} className="mag-card">
+                <div className="mag-image-wrapper">
+                  <span className="mag-badge">{story.category}</span>
+                  <img 
+                    src={story.image} 
+                    alt={story.title} 
+                    className="mag-image" 
+                  />
+                  <div className="mag-overlay"></div>
                 </div>
-              </div>
-            </a>
-          </motion.div>
-
-          {/* Right Column: Stacked Smaller Cards */}
-          <motion.div className="side-stories-col" variants={fadeUp}>
-            <div className="side-stories-stack">
-              {sideStories.map((story, idx) => (
-                <a href={story.link} className="mag-card side-card" key={idx}>
-                  <div className="mag-image-wrapper">
-                    <span className="mag-badge">{story.category}</span>
-                    <img 
-                      src={story.image} 
-                      alt={story.title} 
-                      className="mag-image" 
-                    />
-                    <div className="mag-overlay"></div>
+                <div className="mag-content">
+                  <span className="mag-date">{story.date}</span>
+                  <h3 className="mag-title">{story.title}</h3>
+                  <p className="mag-desc">{story.desc}</p>
+                  <div className="mag-action-link">
+                    <span>Read Article</span>
+                    <ArrowRight className="mag-arrow-icon" />
                   </div>
-                  <div className="mag-content">
-                    <span className="mag-date">{story.date}</span>
-                    <h4 className="mag-title">{story.title}</h4>
-                    <p className="mag-desc">{story.desc}</p>
-                    <div className="mag-action-link">
-                      <span>Read Story</span>
-                      <ArrowRight className="mag-arrow-icon" />
-                    </div>
-                  </div>
-                </a>
-              ))}
-            </div>
-          </motion.div>
+                </div>
+              </a>
+            </motion.div>
+          ))}
         </motion.div>
 
-        {/* Mobile Horizontal Carousel View */}
-        <div className="blog-scroll mobile-only">
-          {allStories.map((story, idx) => (
-            <a href={story.link} className="blog-card" key={idx}>
-              <div className="blog-card-image-wrap">
-                <img src={story.image} alt={story.title} />
-                <span className="blog-badge">{story.category}</span>
-              </div>
-              <div className="blog-card-content">
-                <div className="blog-card-meta">
-                  <span className="blog-date">{story.date}</span>
-                </div>
-                <h3 className="blog-title">{story.title}</h3>
-                <div className="blog-action-link">
-                  <span>Read Story</span>
-                  <ArrowRight className="blog-arrow-icon" size={14} />
-                </div>
-              </div>
-            </a>
-          ))}
-        </div>
+        {/* View All Actions (Direct links to Dedicated Articles & Events Pages) */}
+        <motion.div 
+          className="events-view-all-wrapper"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          <a href="#/articles" className="events-view-all-btn">
+            <span>VIEW ALL ARTICLES</span>
+            <ArrowRight className="view-all-arrow" />
+          </a>
+          <a href="#/events-page" className="events-view-all-btn secondary">
+            <span>VIEW ALL EVENTS</span>
+            <ArrowRight className="view-all-arrow" />
+          </a>
+        </motion.div>
 
       </div>
     </section>
   )
 }
 
-export default Events;
+export default Events

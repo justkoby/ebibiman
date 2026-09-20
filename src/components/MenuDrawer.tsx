@@ -7,27 +7,33 @@ interface MenuDrawerProps {
 }
 
 const menuItems = [
-  { label: 'Home', targetId: 'hero' },
-  { label: 'About', targetId: 'why-ebibiman' },
-  { label: 'Approach', targetId: 'approach' },
-  { label: 'Programmes', targetId: 'programmes' },
-  { label: 'Future Minds Ghana', targetId: 'future-minds' },
-  { label: 'Events', targetId: 'events' },
-  { label: 'FAQ', targetId: 'faq' },
-  { label: 'Contact', targetId: 'contact' }
+  { label: 'Home', target: '#hero' },
+  { label: 'About', target: '#why-ebibiman' },
+  { label: 'Approach', target: '#approach' },
+  { label: 'Articles', target: '#/articles' },
+  { label: 'Events', target: '#/events-page' },
+  { label: 'Programmes', target: '#programmes' },
+  { label: 'Future Minds Ghana', target: '#future-minds' },
+  { label: 'FAQ', target: '#faq' },
+  { label: 'Contact', target: '#contact' }
 ]
 
 const MenuDrawer = ({ isOpen, onClose }: MenuDrawerProps) => {
-  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, target: string) => {
     onClose()
     
-    if (window.location.hash.includes('/blog/')) {
-      // Let the hash change propagate normally so that App.tsx can switch back to home view
+    if (target.startsWith('#/')) {
+      window.location.hash = target
+      return
+    }
+
+    if (window.location.hash.startsWith('#/')) {
+      window.location.hash = target
       return
     }
 
     e.preventDefault()
-    // Slight timeout to let the drawer close transition start before scrolling
+    const targetId = target.replace('#', '')
     setTimeout(() => {
       const element = document.getElementById(targetId)
       if (element) {
@@ -98,8 +104,8 @@ const MenuDrawer = ({ isOpen, onClose }: MenuDrawerProps) => {
               className="drawer-nav-item-wrap"
             >
               <a 
-                href={`#${item.targetId}`} 
-                onClick={(e) => handleLinkClick(e, item.targetId)}
+                href={item.target} 
+                onClick={(e) => handleLinkClick(e, item.target)}
                 className="drawer-nav-link"
               >
                 {item.label}

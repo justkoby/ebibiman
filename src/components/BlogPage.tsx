@@ -16,7 +16,7 @@ const BlogPage: React.FC<BlogPageProps> = ({ articleId, onBack }) => {
       title: "Ghana's Digital Future Is at Stake - The NITA Bill Must Do Better",
       tagline: "Why we must ensure the new legal architecture of our IT sector builds inclusion and fosters innovation, not isolation and capture.",
       authors: "Samuel Sasu Adonteng & Margaret Edem Gasu",
-      date: "June 2025",
+      date: "June 2026",
       image: "/images/nita_bill_opinion.png",
       caption: "Conceptual illustration representing legal structures and digital ecosystems in Ghana."
     },
@@ -25,18 +25,18 @@ const BlogPage: React.FC<BlogPageProps> = ({ articleId, onBack }) => {
       title: "Five Technology Issues to Watch Out For in 2026",
       tagline: "situtating global transitions in AI, cybersecurity, inclusion, fintech, and green tech within Ghana's development context.",
       authors: "Samuel Sasu Adonteng, Peter Kwasi Kodjie, Margaret Edem Gasu & Rexford Akrong",
-      date: "June 2026",
+      date: "Feb. 2026",
       image: "/images/tech_trends_2026.png",
       caption: "Conceptual illustration representing the 2026 technological landscape: AI, security, connectivity, fintech, and green sustainability."
     },
     'ai-coming-for-you': {
-      category: 'Opinion Piece',
-      title: "AI is coming for you!",
-      tagline: "Exploring the double-edged sword of AI, its transformative potential, and the challenges it poses for society.",
+      category: 'Editorial',
+      title: "What Happens When Technology Starts Reproducing Not Merely What Your Hands Can Do, but What Your Mind Can Do?",
+      tagline: "What happens to a developing economy when technology begins automating the very cognitive skills we have spent decades telling young people to acquire?",
       authors: "Samuel Sasu Adonteng & Margaret Edem Gasu",
-      date: "March 8, 2025",
-      image: "/images/ai_coming_for_you.png",
-      caption: "Conceptual illustration representing the integration of artificial intelligence and human capabilities."
+      date: "Sept. 2026",
+      image: "/images/What Happens When Technology Starts Reproducing Not Merely What Your Hands Can Do, but What Your Mind Can Do.jpeg",
+      caption: "What Happens When Technology Starts Reproducing Not Merely What Your Hands Can Do, but What Your Mind Can Do?"
     }
   }[articleId]
 
@@ -64,8 +64,12 @@ const BlogPage: React.FC<BlogPageProps> = ({ articleId, onBack }) => {
       <header className="blog-article-header-nav">
         <button onClick={onBack} className="blog-back-btn">
           <ArrowLeft className="back-icon" />
-          <span>Back to Home</span>
+          <span>Home</span>
         </button>
+        <a href="#/articles" className="blog-back-btn" style={{ marginLeft: '10px' }}>
+          <BookOpen className="back-icon" />
+          <span>All Articles</span>
+        </a>
       </header>
 
       {/* Main Content Area */}
@@ -418,115 +422,145 @@ const BlogPage: React.FC<BlogPageProps> = ({ articleId, onBack }) => {
             /* AI IS COMING FOR YOU ARTICLE CONTENT */
             <>
               <p className="blog-intro-lead">
-                The headline may sound ominous, but the reality of artificial intelligence (AI) is far more nuanced. AI is not just a harbinger of job displacement or a threat to human ingenuity; it is also a powerful tool that, when used correctly, can revolutionize industries, enhance productivity, and improve quality of life.
+                Ghana has a youth employment problem. According to the Ghana Statistical Service's Quarterly Labour Statistics Report, unemployment among people aged 15 to 24 averaged 32% in 2024. Among those aged 20 to 24, the rate reached 36.7% in the final quarter of the year, the highest of any age group in the country. Those figures already tell a difficult story.
               </p>
               <p>
-                However, its rapid advancement raises critical questions about its impact on employment, human cognition, and societal structures. This article delves into the double-edged sword of AI, exploring its transformative potential and the challenges it poses.
-              </p>
-
-              <h2 className="blog-section-title">The Evolution of AI: From Checkers to Generative Models</h2>
-              <p>
-                AI has come a long way since its inception in the 1950s. The first documented success of an AI program was Christopher Strachey’s checkers game in 1951. Fast forward to 1997, when IBM’s Deep Blue defeated chess grandmaster Garry Kasparov, and 2011, when IBM Watson won Jeopardy!. These milestones marked the beginning of AI’s journey into mainstream consciousness.
+                For decades, the answer we have given young people has been remarkably consistent: get educated, acquire skills and move into higher-value work.
               </p>
               <p>
-                The advent of generative AI, spearheaded by OpenAI’s GPT models in 2018, has been a game-changer. Tools like ChatGPT, Google’s Gemini, and Anthropic’s Claude have democratized access to AI, enabling users to generate text, audio, images, and more with simple prompts.
+                Education was supposed to move people away from work that machines could easily replace and towards work that depended on the human mind. But artificial intelligence introduces an uncomfortable question into that promise:
+              </p>
+              <p className="blog-pull-quote">
+                "What happens to a developing economy when technology begins automating the very cognitive skills we have spent decades telling young people to acquire?"
               </p>
               <p>
-                By 2025, models like DeepSeek’s R1 and V3, have achieved near-parity with competitors at a fraction of the cost, further accelerating AI adoption.
+                Because this time, technology is not merely reproducing what our hands can do. It is beginning to reproduce parts of what our minds can do.
+              </p>
+
+              <h2 className="blog-section-title">The old story about technology</h2>
+              <p>
+                For most of history, technological progress was relatively easy to understand.
               </p>
               <p>
-                AI’s applications are vast, from sequencing RNA for vaccines to modeling human speech. Its ability to perceive, reason, and generalize has made it indispensable across industries. But as AI continues to evolve, its implications for society grow more complex.
-              </p>
-
-              <h2 className="blog-section-title">The Bright Side: How AI Benefits Humanity</h2>
-              
-              <div className="blog-criticism-card">
-                <h3><span>1</span> Enhanced Business Automation</h3>
-                <p>
-                  AI is transforming how businesses operate. According to a 2023 IBM survey, 42% of enterprise-scale businesses have integrated AI into their operations, with another 40% considering it. Chatbots and digital assistants handle customer queries, while AI-driven data analysis provides instant insights, enabling faster and more informed decision-making.
-                </p>
-                <p>
-                  Mike Mendelson of NVIDIA highlights that AI’s potential lies in its ability to solve domain-specific problems, often in ways humans might not anticipate. This capability is driving innovation and efficiency across sectors, from healthcare to finance.
-                </p>
-              </div>
-
-              <div className="blog-criticism-card">
-                <h3><span>2</span> Accelerated Innovation</h3>
-                <p>
-                  AI is not just automating tasks; it’s also accelerating innovation. Anthropic CEO Dario Amodei predicts that AI could speed up research in fields like biology by tenfold, compressing decades of progress into just a few years. This “compressed 21st century” could lead to breakthroughs in areas like gene editing and climate change mitigation.
-                </p>
-              </div>
-
-              <div className="blog-criticism-card">
-                <h3><span>3</span> Personalized Experiences</h3>
-                <p>
-                  In education, AI tailors learning experiences to individual students, while in healthcare, it aids in diagnosing diseases and streamlining drug discovery. AI’s ability to analyze vast amounts of data ensures that services are more personalized and effective than ever before.
-                </p>
-              </div>
-
-              <h2 className="blog-section-title">The Dark Side: Challenges and Risks of AI</h2>
-
-              <div className="blog-criticism-card">
-                <h3><span>1</span> Job Disruption</h3>
-                <p>
-                  One of the most pressing concerns is AI’s impact on employment. A 2023 Resume Builder survey found that 37% of companies using AI have already replaced workers, with 44% anticipating layoffs in 2024. Jobs in customer service, manufacturing, and even creative fields like content writing and graphic design are at risk.
-                </p>
-                <p>
-                  However, AI is also creating new roles, such as machine learning engineers and AI ethics specialists. The challenge lies in ensuring that workers are reskilled to fill these emerging positions. As Klara Nahrstedt, a computer science professor at the University of Illinois, notes, “We need to invest tremendously in education to retrain people for new jobs.”
-                </p>
-              </div>
-
-              <div className="blog-criticism-card">
-                <h3><span>2</span> Data Privacy and Ethical Concerns</h3>
-                <p>
-                  AI’s reliance on vast amounts of data raises significant privacy concerns. The FTC has investigated Open AI for potential violations of European data protection laws, highlighting the need for stricter regulations. The Biden-Harris administration’s AI Bill of Rights is a step in the right direction, but more robust frameworks are needed to protect consumer data.
-                </p>
-              </div>
-
-              <div className="blog-criticism-card">
-                <h3><span>3</span> Bias and Misinformation</h3>
-                <p>
-                  AI systems often reflect the biases of their creators. Facial recognition technology, for example, has been shown to favor lighter-skinned individuals, perpetuating racial inequalities. Additionally, the rise of deep fakes and AI-generated misinformation threatens to erode trust in media and institutions.
-                </p>
-              </div>
-
-              <div className="blog-criticism-card">
-                <h3><span>4</span> Environmental Impact</h3>
-                <p>
-                  The energy required to train and maintain AI models is staggering. Some estimates suggest that AI could increase carbon emissions by up to 80%, undermining efforts to combat climate change. While AI can optimize supply chains and reduce waste, its environmental costs must be carefully managed.
-                </p>
-              </div>
-
-              <h2 className="blog-section-title">The Future of AI: Opportunities and Threats</h2>
-              <p>
-                AI’s potential to transform society is immense, but its risks cannot be ignored. The key lies in responsible development and deployment. As AI becomes more integrated into our lives, we must address issues like job displacement, data privacy, and environmental sustainability.
+                Machines became stronger than us. A tractor could cultivate more land than a farmer working manually. An excavator could move what would have required dozens of labourers. Technology replaced or amplified physical effort. The response, particularly for developing economies, seemed obvious: educate people. Move people from manual labour into skilled and knowledge-based work. Learn to write, analyse, calculate, design, code and manage. Become an accountant, lawyer, administrator, engineer, marketer or consultant. The mind, after all, was where human beings still had the advantage.
               </p>
               <p>
-                The rise of AI also presents an opportunity to redefine work. By automating repetitive tasks, AI can free humans to focus on creative and strategic endeavours. However, this requires a concerted effort to reskill workers and ensure that the benefits of AI are distributed equitably.
+                AI complicates that assumption. Today, a machine can draft a letter, analyse a spreadsheet, summarise a meeting, write computer code, develop a marketing campaign, translate a document, create a presentation and generate a business proposal.
               </p>
               <p>
-                AI is not inherently good or evil; it is a tool whose impact depends on how we use it. While it has the potential to displace jobs and exacerbate inequalities, it also offers unprecedented opportunities for innovation and growth. The challenge is to navigate this dual reality with foresight and responsibility.
+                These are not factory-floor activities. They are the kinds of activities many Ghanaians go to university to learn how to do. Of course, this is not the first time a new technology has threatened existing forms of work. The printing press reduced the need for certain forms of manual copying. Computers transformed clerical work. Spreadsheets changed accounting. In each case, some tasks disappeared, others changed, and entirely new forms of work emerged.
               </p>
               <p>
-                As we stand on the brink of an AI-driven future, the question is not whether AI is coming for us, but how we will choose to meet it. By embracing AI’s potential while addressing its challenges, we can ensure that it serves as a force for good, enhancing human capabilities rather than replacing them.
+                But there is something worth paying attention to with AI. Previous technologies often automated particular tasks within a profession. AI is beginning to automate some of the sequence of small tasks through which a young person learns the profession in the first place. And that is a different problem.
               </p>
 
-              {/* Reusable About ETA Section */}
+              <h2 className="blog-section-title">What happens to the Ghanaian graduate?</h2>
+              <p>
+                Imagine a young graduate beginning their first office job in Accra. They prepare meeting minutes, draft correspondence, research information, build presentations and analyse basic data. None of these tasks represents the full value of that employee. But they are often how the employee begins. They do the basic work. They make mistakes. A manager corrects them. They try again. Over time, something develops that cannot simply be downloaded: judgment.
+              </p>
+              <p>
+                Now imagine that much of that entry-level work can be completed by AI in seconds. The temptation for a business is understandable. Why employ five people to perform work that two people, properly equipped with AI, can accomplish? For the business, that is productivity.
+              </p>
+              <p>
+                For a country already struggling to absorb young people into the workforce, however, it creates a much more complicated question. If AI removes some of the first tasks young professionals traditionally perform, where will they gain the experience required to become senior professionals?
+              </p>
+              <p>
+                We could automate the bottom rung of the ladder and eventually discover that fewer people have had the opportunity to climb it. Perhaps, then, the answer is not to eliminate entry-level work but to redesign it. The graduate of the future may not be employed simply to produce the first draft. They may be expected to examine what AI produced, identify what is wrong or missing, improve it and explain why.
+              </p>
+              <p>
+                The task begins to shift from production to judgment much earlier in a person's career. That sounds simple but it isn't. Judgment is harder to teach than software. It comes from knowledge, experience, mistakes, context and exposure to real problems. Which means Ghanaian employers and educational institutions cannot simply assume this transition will work itself out. We will have to design for it.
+              </p>
+
+              <h2 className="blog-section-title">Why rejecting AI would be a bigger mistake</h2>
+              <p>
+                None of this means Ghana should fear AI. Quite the opposite. A Ghanaian entrepreneur who cannot afford a designer, researcher, marketer, analyst and software developer can suddenly access parts of all those capabilities.
+              </p>
+              <p>
+                A small business in Kumasi can use AI to communicate with customers outside Ghana. A farmer can potentially access better information. A nurse can spend less time on repetitive documentation. A young developer can build in weeks what might previously have required a larger team and significantly more capital.
+              </p>
+              <p>
+                AI is leverage and Ghana needs leverage.
+              </p>
+              <p>
+                The mistake would be believing that because AI can do more, humans should simply do less. The better question is:
+              </p>
+              <p style={{ fontWeight: 600, color: '#1A1A1A', fontSize: '1.15em' }}>
+                What must humans become better at?
+              </p>
+              <p>
+                The World Economic Forum's Future of Jobs Report 2025 points towards an interesting answer. Employers expect technology-related skills such as AI and big data to grow rapidly in importance, but they are also placing considerable value on analytical thinking, creative thinking, resilience, flexibility and leadership. The implication matters.
+              </p>
+              <p>
+                As technical capabilities become more accessible, distinctly human abilities such as judgment, creativity, leadership and adaptability may become even more important.
+              </p>
+              <ul className="blog-bullet-list">
+                <li>If information becomes cheap, judgment becomes more valuable.</li>
+                <li>If content becomes easy to generate, originality becomes more valuable.</li>
+                <li>If machines can communicate instantly, genuine relationships and trust become more valuable.</li>
+              </ul>
+              <p>
+                Leadership, negotiation, entrepreneurship, creativity, discernment, skilled trades and ownership. These are not alternatives to technology. They become increasingly important because of it.
+              </p>
+
+              <h2 className="blog-section-title">Ghana shouldn't train people to compete with the machine.</h2>
+              <p>
+                For years, digital-skills programmes have understandably focused on teaching people how to use technology. That is no longer enough. AI literacy itself will not remain a competitive advantage forever. Eventually, knowing how to prompt an AI system may become as ordinary as knowing how to search Google or use Microsoft Word.
+              </p>
+              <p>
+                The bigger advantage will belong to people who can combine AI with deep knowledge, judgment and the ability to solve real problems. And this creates a serious challenge for our schools and universities. If AI can write the essay, perhaps the answer is not simply to ban AI.
+              </p>
+              <p>
+                Perhaps we need to reconsider what the essay was supposed to prove in the first place. Was it supposed to prove that the student could produce 2,000 words? Or that the student understood an idea well enough to question it, defend it and apply it? Education cannot continue rewarding the reproduction of information in the same way when machines can reproduce information almost instantly. Students will need to question information. Challenge it. Apply it. Recognise when it is wrong. Defend their reasoning. And turn knowledge into something useful. Because Ghana does not need a generation that simply knows how to ask machines for answers.
+              </p>
+              <p style={{ fontWeight: 600, color: '#1A1A1A' }}>
+                It needs a generation that knows what questions are worth asking.
+              </p>
+
+              <h2 className="blog-section-title">So where does human value go?</h2>
+              <p>
+                The tractor reproduced the power of our hands. The computer amplified our ability to process information. Artificial intelligence is beginning to reproduce parts of what we once considered exclusively the work of the human mind.
+              </p>
+              <p>
+                That does not make human beings obsolete. But it does force us to reconsider where human value comes from. For Ghana, that question is especially urgent.
+              </p>
+              <p>
+                We already have a large population of young people searching for opportunity. We cannot prepare them for a labour market built around tasks that technology is rapidly making cheaper. The answer is not to compete with the machine at everything it can do.
+              </p>
+              <p>
+                It is to develop what becomes more valuable because the machine exists: judgment, creativity, leadership, problem solving, trust, entrepreneurship and the ability to turn knowledge into real-world value.
+              </p>
+              <p>
+                The question is no longer whether machines can do some of what we do.
+              </p>
+              <p style={{ fontWeight: 600, color: '#1A1A1A' }}>
+                The question is what we must become capable of doing when they can.
+              </p>
+              <p>
+                At Ebibiman Tech Alliance, this is the conversation we believe Ghana needs to be having: not simply how young people can use AI, but how they can build the judgment, capability and problem-solving ability required to remain valuable in an AI-shaped economy.
+              </p>
+
               <div className="blog-about-eta">
-                <h3>About Ebibiman Tech Alliance</h3>
-                <p>
-                  The Ebibiman Tech Alliance (ETA) is a pioneering initiative dedicated to promoting indigenous knowledge in technology across Africa. ETA is committed to fostering the ethical and humane use of technology to benefit society, while simultaneously enhancing digital skills, entrepreneurship, and employment opportunities in the tech sector.
-                </p>
-                <p style={{ marginTop: '12px', fontStyle: 'italic', fontWeight: 600 }}>
-                  AI is here to stay. The question is: Are we ready?
-                </p>
+                <h3>Ebibiman Tech Alliance (ETA)</h3>
+              </div>
+
+              {/* Sources Section */}
+              <div className="blog-sources-section">
+                <h3 className="blog-sources-title">Sources</h3>
+                <ul className="blog-sources-list">
+                  <li>Ghana Statistical Service. Quarterly Labour Statistics Report, Annual Household Income and Expenditure Survey, Q4 2024. Released 2025.</li>
+                  <li>World Economic Forum. Future of Jobs Report 2025. January 2025.</li>
+                </ul>
               </div>
             </>
           )}
         </div>
 
         {/* Footer Actions */}
-        <div className="blog-article-footer">
+        <div className="blog-article-footer" style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+          <a href="#/articles" className="blog-footer-back-btn" style={{ background: '#1A1A1A', color: '#FAF9F6', borderColor: '#1A1A1A' }}>
+            <BookOpen className="back-icon" />
+            <span>View All Articles</span>
+          </a>
           <button onClick={onBack} className="blog-footer-back-btn">
             <ArrowLeft className="back-icon" />
             <span>Return to Homepage</span>

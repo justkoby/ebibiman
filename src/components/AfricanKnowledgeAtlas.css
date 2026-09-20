@@ -1,15 +1,15 @@
 /* ===== AFRICAN KNOWLEDGE ATLAS SECTION ===== */
 .atlas-section {
   position: relative;
-  background-color: #0A0A0A; /* Premium deep dark background */
+  background-color: #030406; /* Rich slate dark background */
   color: var(--off-white);
-  padding: 100px 6vw;
+  padding: 80px 4vw;
   box-sizing: border-box;
   overflow: hidden;
-  border-bottom: 1px solid rgba(253, 250, 244, 0.05);
+  border-bottom: 1px solid rgba(253, 250, 244, 0.03);
 }
 
-/* Subtle background tech routes/nodes grid */
+/* Subtle background constellation network grid */
 .atlas-grid-overlay {
   position: absolute;
   top: 0;
@@ -17,32 +17,47 @@
   right: 0;
   bottom: 0;
   background-image: 
-    radial-gradient(rgba(212, 160, 23, 0.03) 1px, transparent 1px),
-    radial-gradient(rgba(242, 204, 107, 0.02) 1px, transparent 1px);
-  background-size: 40px 40px;
-  background-position: 0 0, 20px 20px;
+    radial-gradient(rgba(212, 160, 23, 0.02) 1.5px, transparent 1.5px),
+    radial-gradient(rgba(242, 204, 107, 0.01) 1px, transparent 1px);
+  background-size: 50px 50px;
+  background-position: 0 0, 25px 25px;
   pointer-events: none;
-  opacity: 0.8;
+  opacity: 0.9;
   z-index: 1;
 }
 
 .atlas-container {
-  max-width: 1300px;
+  max-width: 1440px;
   margin: 0 auto;
   position: relative;
   z-index: 2;
-  display: flex;
-  flex-direction: column;
-  gap: 50px;
 }
 
-/* Eyebrow and Headings */
+/* Three-column grid layout */
+.atlas-layout-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1.3fr 1fr;
+  gap: 40px;
+  align-items: start;
+  width: 100%;
+  min-width: 0;
+}
+
+/* ==========================================================================
+   COLUMN 1: LEFT PANEL (Header, Stats)
+   ========================================================================== */
+.atlas-left-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  min-width: 0;
+}
+
 .atlas-header {
   display: flex;
   flex-direction: column;
   gap: 12px;
   text-align: left;
-  max-width: 800px;
 }
 
 .atlas-eyebrow {
@@ -56,131 +71,286 @@
 
 .atlas-title {
   font-family: 'PT Sans Narrow', sans-serif;
-  font-size: clamp(34px, 4vw, 56px);
+  font-size: clamp(36px, 4.5vw, 60px);
   font-weight: 700;
   text-transform: uppercase;
   margin: 0;
-  line-height: 1.05;
-  letter-spacing: -1px;
+  line-height: 1.02;
+  letter-spacing: -1.2px;
+  color: #FFFFFF;
+}
+
+.atlas-title .highlight-gold {
+  color: var(--gold);
 }
 
 .atlas-desc {
   font-family: 'Inter Tight', sans-serif;
-  font-size: clamp(16px, 1.1vw, 19px);
+  font-size: clamp(14px, 1vw, 16px);
   font-weight: 300;
-  line-height: 1.6;
+  line-height: 1.65;
   color: rgba(253, 250, 244, 0.7);
   margin-top: 8px;
 }
 
-/* Two-column layout grid */
-.atlas-layout-grid {
-  display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: 60px;
+/* Info Cards Layout */
+.atlas-info-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Card 1: A Living Atlas */
+.atlas-card-living {
+  display: flex;
   align-items: start;
+  gap: 16px;
+  background: rgba(212, 160, 23, 0.02);
+  border: 1px solid rgba(212, 160, 23, 0.15);
+  border-radius: 12px;
+  padding: 20px;
 }
 
-/* Left Content Styles */
-.atlas-content-panel {
+.atlas-card-icon-container {
   display: flex;
-  flex-direction: column;
-  gap: 30px;
-}
-
-.atlas-active-country-name {
-  font-family: 'PT Sans Narrow', sans-serif;
-  font-size: clamp(28px, 3vw, 42px);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: -0.5px;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  background: rgba(212, 160, 23, 0.1);
+  border: 1px solid rgba(212, 160, 23, 0.3);
   color: var(--gold-light);
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  margin: 0;
+  flex-shrink: 0;
 }
 
-.atlas-active-country-name::after {
-  content: '';
-  height: 1px;
-  flex-grow: 1;
-  background: linear-gradient(90deg, var(--gold-light), transparent);
+.atlas-card-icon {
+  width: 22px;
+  height: 22px;
 }
 
-.atlas-quote-block {
-  position: relative;
-  padding-left: 20px;
-  border-left: 3px solid var(--gold);
-  margin: 10px 0;
-}
-
-.atlas-quote {
-  font-family: 'Inter Tight', sans-serif;
-  font-style: italic;
-  font-size: clamp(16px, 1.1vw, 19px);
-  line-height: 1.5;
-  color: var(--off-white);
-  font-weight: 400;
-}
-
-/* Detail Blocks */
-.atlas-details-list {
+.atlas-card-content {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 6px;
 }
 
-.atlas-detail-item {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.atlas-detail-label {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+.atlas-card-eyebrow {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
   font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
 }
 
-.atlas-detail-label .bullet {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-}
-
-.atlas-detail-value {
-  font-family: 'Inter Tight', sans-serif;
-  font-size: clamp(14px, 1vw, 16px);
-  line-height: 1.6;
-  color: rgba(253, 250, 244, 0.8);
+.atlas-card-text {
+  font-size: 13px;
+  line-height: 1.5;
+  color: rgba(253, 250, 244, 0.7);
   font-weight: 300;
 }
 
-/* Right Map Styles */
+/* Card 2: Stats Counter */
+.atlas-card-stats {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(253, 250, 244, 0.08);
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.stats-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stat-number {
+  font-family: 'PT Sans Narrow', sans-serif;
+  font-size: clamp(24px, 2.2vw, 30px);
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+}
+
+.stat-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: rgba(253, 250, 244, 0.6);
+  line-height: 1.3;
+}
+
+.stat-divider {
+  width: 1px;
+  height: 44px;
+  background: rgba(253, 250, 244, 0.1);
+  flex-shrink: 0;
+}
+
+.stat-footer-text {
+  font-size: 11px;
+  color: rgba(253, 250, 244, 0.5);
+  font-weight: 300;
+}
+
+.stat-sources-link {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--gold);
+  text-decoration: none;
+  letter-spacing: 0.5px;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.stat-sources-link:hover {
+  color: #FFFFFF;
+  text-decoration: underline;
+}
+
+/* Category Explorer Section */
+.atlas-categories-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  margin-top: 48px;
+  min-width: 0;
+}
+
+.categories-title {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.categories-grid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 12px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 4px 2px 8px 2px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.categories-grid::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+  width: 0;
+  height: 0;
+}
+
+.category-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(253, 250, 244, 0.12);
+  border-radius: 30px;
+  padding: 8px 16px;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  outline: none;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.category-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1px solid var(--category-color);
+  color: var(--category-color);
+  background: rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.category-icon {
+  width: 13px;
+  height: 13px;
+}
+
+.category-label {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 12px;
+  color: rgba(253, 250, 244, 0.85);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.category-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--category-color);
+}
+
+.category-btn:hover .category-label {
+  color: #FFFFFF;
+}
+
+.category-btn.active {
+  background: rgba(0, 0, 0, 0.6);
+  border-color: var(--category-color);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.05), inset 0 0 8px rgba(255, 255, 255, 0.02);
+}
+
+.category-btn.active .category-icon-wrapper {
+  background: var(--category-color);
+  color: #030406;
+}
+
+.category-btn.active .category-label {
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   COLUMN 2: CENTER PANEL (Interactive SVG Map)
+   ========================================================================== */
 .atlas-map-panel {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(253, 250, 244, 0.05);
-  border-radius: 16px;
-  padding: 40px;
-  backdrop-filter: blur(10px);
-  min-height: 550px;
+  background-color: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(253, 250, 244, 0.06);
+  border-radius: 20px;
+  padding: 20px;
+  backdrop-filter: blur(8px);
+  min-height: 580px;
+  min-width: 0;
 }
 
 .atlas-map-svg-container {
   position: relative;
   width: 100%;
-  max-width: 480px;
+  max-width: 520px;
   aspect-ratio: 710/730;
   display: flex;
   align-items: center;
@@ -193,32 +363,53 @@
   overflow: visible;
 }
 
-/* Map Country Paths */
+/* Map Country Paths with lighter grey fill and outlines for clear continent visibility */
 .atlas-country-path {
-  fill: rgba(255, 255, 255, 0.02);
-  stroke: rgba(255, 255, 255, 0.06);
-  stroke-width: 0.7;
-  transition: fill 0.4s ease, stroke 0.4s ease, filter 0.4s ease;
+  fill: #262B33;
+  stroke: #4B5565;
+  stroke-width: 0.8;
+  transition: fill 0.3s ease, stroke 0.3s ease, filter 0.3s ease, opacity 0.3s ease;
 }
 
+/* Subtle regional variations with lighter grey base */
+.atlas-country-path.region-north {
+  fill: #302E30;
+}
+.atlas-country-path.region-west {
+  fill: #24302C;
+}
+.atlas-country-path.region-central {
+  fill: #252D37;
+}
+.atlas-country-path.region-east {
+  fill: #233134;
+}
+.atlas-country-path.region-southern {
+  fill: #2E2936;
+}
+
+/* Interactive hover & active styles */
 .atlas-country-path.interactive {
   cursor: pointer;
-  fill: rgba(212, 160, 23, 0.08);
-  stroke: rgba(212, 160, 23, 0.35);
-  stroke-width: 1.0;
+  stroke: #7B8599;
 }
 
 .atlas-country-path.interactive:hover {
-  fill: rgba(212, 160, 23, 0.2);
-  stroke: var(--gold-light);
-  filter: drop-shadow(0 0 4px rgba(212, 160, 23, 0.4));
+  stroke: var(--gold);
+  stroke-width: 1.4;
+  fill: #3D4452;
 }
 
 .atlas-country-path.active {
-  fill: rgba(212, 160, 23, 0.3);
-  stroke: var(--gold-light);
-  stroke-width: 1.8;
-  filter: drop-shadow(0 0 8px rgba(212, 160, 23, 0.6));
+  stroke: var(--gold) !important;
+  stroke-width: 2 !important;
+  fill: rgba(212, 160, 23, 0.35) !important;
+  filter: drop-shadow(0 0 10px rgba(212, 160, 23, 0.5));
+}
+
+/* Dimming paths that do not have nodes in current category filter */
+.atlas-country-path.dimmed {
+  opacity: 0.25;
 }
 
 /* Map Floating Knowledge Nodes */
@@ -227,59 +418,101 @@
   transform: translate(-50%, -50%);
   z-index: 10;
   pointer-events: auto;
+  transition: opacity 0.3s ease;
+}
+
+.atlas-node-wrapper.dimmed {
+  opacity: 0.15;
+  pointer-events: none;
 }
 
 .atlas-node-pin {
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  background-color: var(--gold);
-  border: 2px solid #000;
+  border: 1.5px solid rgba(0, 0, 0, 0.7);
   cursor: pointer;
-  box-shadow: 0 0 10px var(--gold);
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+  z-index: 2;
+  background: var(--node-color, #D4A017);
+  box-shadow: 0 0 10px var(--node-color, #D4A017), 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
-.atlas-node-pin::after {
-  content: '';
+/* Soft glowing ambient halo around each conceptual pin */
+.atlas-node-halo {
   position: absolute;
-  top: -6px;
-  left: -6px;
-  right: -6px;
-  bottom: -6px;
-  border: 1.5px solid var(--gold);
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
-  opacity: 0;
-  transform: scale(0.6);
-  animation: pulseNodeRing 2s infinite ease-out;
+  pointer-events: none;
+  background: var(--node-color, #D4A017);
+  opacity: 0.45;
+  filter: blur(4px);
+  transform: scale(1);
+  animation: softStaggeredPulse var(--pulse-duration, 5s) infinite ease-in-out var(--pulse-delay, 0s);
 }
 
-@keyframes pulseNodeRing {
-  0% {
-    opacity: 0.8;
-    transform: scale(0.6);
+/* Central glowing core */
+.atlas-node-core {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: #FFFFFF;
+  opacity: 0.95;
+  box-shadow: 0 0 5px #FFFFFF;
+  pointer-events: none;
+}
+
+/* Slow, organic, non-synchronized staggered pulse animation */
+@keyframes softStaggeredPulse {
+  0%, 100% {
+    transform: scale(0.85);
+    opacity: 0.3;
   }
-  100% {
-    opacity: 0;
-    transform: scale(1.6);
+  50% {
+    transform: scale(1.55);
+    opacity: 0.7;
   }
+}
+
+/* On hover: enlarge point & strengthen glow */
+.atlas-node-wrapper:hover {
+  z-index: 50;
+}
+
+.atlas-node-wrapper:hover .atlas-node-pin {
+  transform: scale(1.4);
+  box-shadow: 0 0 16px var(--node-color, #D4A017), 0 0 32px var(--node-color, #D4A017);
+}
+
+.atlas-node-wrapper:hover .atlas-node-halo {
+  transform: scale(2.2);
+  opacity: 0.9;
+  filter: blur(5px);
+  animation: none;
+}
+
+/* Active selected country nodes */
+.atlas-node-wrapper.active .atlas-node-pin {
+  box-shadow: 0 0 14px var(--node-color, #D4A017), 0 0 28px var(--node-color, #D4A017);
 }
 
 /* Glowing node details card (Tooltip) */
 .atlas-node-tooltip {
   position: absolute;
-  bottom: calc(100% + 12px);
+  bottom: calc(100% + 14px);
   left: 50%;
   transform: translateX(-50%);
   width: 250px;
-  background-color: #121212;
-  border: 1.5px solid var(--gold);
+  background-color: #0d1117;
+  border: 1.5px solid var(--node-color, rgba(212, 160, 23, 0.4));
   border-radius: 12px;
   padding: 16px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 10px rgba(212, 160, 23, 0.15);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.7), 0 0 18px rgba(0, 0, 0, 0.4);
   pointer-events: none;
   opacity: 0;
   transform: translate(-50%, 10px) scale(0.95);
@@ -301,25 +534,50 @@
   transform: translateX(-50%);
   border-width: 6px;
   border-style: solid;
-  border-color: var(--gold) transparent transparent transparent;
+  border-color: var(--node-color, rgba(212, 160, 23, 0.4)) transparent transparent transparent;
+}
+
+.atlas-node-category-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--node-color, var(--gold));
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.category-tag-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 0 6px currentColor;
+}
+
+.category-tag-text {
+  line-height: 1.2;
 }
 
 .atlas-node-tooltip-title {
   font-family: 'PT Sans Narrow', sans-serif;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 700;
   text-transform: uppercase;
-  color: var(--gold-light);
+  color: #FFFFFF;
   margin-bottom: 6px;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.3px;
 }
 
 .atlas-node-tooltip-desc {
   font-family: 'Inter Tight', sans-serif;
   font-size: 12px;
-  line-height: 1.4;
+  line-height: 1.45;
   color: rgba(253, 250, 244, 0.85);
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   font-weight: 300;
 }
 
@@ -337,41 +595,10 @@
   font-family: 'IBM Plex Mono', monospace;
   font-size: 9px;
   text-transform: uppercase;
-  color: #8E7A53;
+  color: var(--gold);
   display: block;
   margin-bottom: 3px;
   font-weight: 700;
-}
-
-/* Legend items in container */
-.atlas-legend-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  padding-top: 20px;
-  border-top: 1px solid rgba(253, 250, 244, 0.05);
-}
-
-.atlas-legend-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 10.5px;
-  letter-spacing: 0.5px;
-  color: rgba(253, 250, 244, 0.5);
-  transition: color 0.3s ease;
-}
-
-.atlas-legend-item.active {
-  color: var(--off-white);
-}
-
-.atlas-legend-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  display: inline-block;
 }
 
 /* Instruction Text overlay */
@@ -390,17 +617,6 @@
   border: 1px solid rgba(253, 250, 244, 0.04);
 }
 
-/* Floating animation details */
-.atlas-trade-routes-svg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 3;
-}
-
 .atlas-trade-route-path {
   fill: none;
   stroke: rgba(242, 204, 107, 0.12);
@@ -415,30 +631,315 @@
   }
 }
 
-/* Responsive Media Queries */
-@media (max-width: 1024px) {
+/* ==========================================================================
+   COLUMN 3: SIDEBAR PANEL (Selected Country Details)
+   ========================================================================== */
+.atlas-sidebar-panel {
+  background: rgba(13, 17, 23, 0.45); /* Premium glassmorphism */
+  border: 1.5px solid rgba(212, 160, 23, 0.25);
+  border-radius: 16px;
+  padding: 24px;
+  backdrop-filter: blur(16px);
+  height: 580px; /* Fits exactly with the map height */
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5), inset 0 0 10px rgba(253, 250, 244, 0.02);
+  box-sizing: border-box;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.sidebar-inner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.sidebar-country-name {
+  font-family: 'PT Sans Narrow', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.sidebar-close-btn {
+  background: none;
+  border: none;
+  color: rgba(253, 250, 244, 0.5);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s ease;
+  padding: 4px;
+}
+
+.sidebar-close-btn:hover {
+  color: #FFFFFF;
+}
+
+.sidebar-close-icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* Image container */
+.sidebar-image-container {
+  width: 100%;
+  height: 120px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  border: 1px solid rgba(253, 250, 244, 0.06);
+}
+
+.sidebar-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.sidebar-image-container:hover .sidebar-image {
+  transform: scale(1.05);
+}
+
+/* Scrollable content area */
+.sidebar-content-scroll {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding-right: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 0;
+}
+
+/* Styled scrollbars for sidebar */
+.sidebar-content-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+
+.sidebar-content-scroll::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.sidebar-content-scroll::-webkit-scrollbar-thumb {
+  background: rgba(212, 160, 23, 0.3);
+  border-radius: 10px;
+}
+
+.sidebar-content-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(212, 160, 23, 0.5);
+}
+
+/* Section detail items */
+.sidebar-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sidebar-section-title {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.sidebar-section-title.gold { color: #8E7A53; }
+.sidebar-section-title.blue { color: #3A86C8; }
+.sidebar-section-title.green { color: #38A169; }
+
+.sidebar-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.sidebar-list-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* Colored Icon Wrapper Themes */
+.sidebar-item-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
+}
+
+.sidebar-item-icon-wrapper.gold-theme {
+  border-color: rgba(212, 160, 23, 0.4);
+  background: rgba(212, 160, 23, 0.08);
+  color: var(--gold-light);
+}
+
+.sidebar-item-icon-wrapper.blue-theme {
+  border-color: rgba(58, 134, 200, 0.4);
+  background: rgba(58, 134, 200, 0.08);
+  color: #3A86C8;
+}
+
+.sidebar-item-icon-wrapper.green-theme {
+  border-color: rgba(56, 161, 105, 0.4);
+  background: rgba(56, 161, 105, 0.08);
+  color: #38A169;
+}
+
+.sidebar-item-icon {
+  width: 14px;
+  height: 14px;
+}
+
+.sidebar-item-text {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.sidebar-item-title {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(253, 250, 244, 0.9);
+}
+
+.sidebar-item-subtitle {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 11px;
+  color: rgba(253, 250, 244, 0.5);
+  font-weight: 300;
+}
+
+/* CTA Button at bottom of sidebar */
+.sidebar-cta-btn {
+  width: 100%;
+  background: #D4A017;
+  color: #030406;
+  border: none;
+  border-radius: 30px;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  font-family: 'PT Sans Narrow', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: background 0.3s ease, transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.sidebar-cta-btn:hover {
+  background: #F2CC6B;
+}
+
+.sidebar-cta-btn:active {
+  transform: scale(0.98);
+}
+
+.cta-arrow {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s ease;
+}
+
+.sidebar-cta-btn:hover .cta-arrow {
+  transform: translateX(4px);
+}
+
+/* Empty State / Welcome Screen */
+.sidebar-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+  padding: 20px;
+  color: rgba(253, 250, 244, 0.4);
+  gap: 16px;
+}
+
+.empty-globe-icon {
+  width: 48px;
+  height: 48px;
+  color: rgba(212, 160, 23, 0.3);
+  stroke-width: 1.2;
+}
+
+.sidebar-empty-state p {
+  font-size: 13px;
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN & MEDIA QUERIES
+   ========================================================================== */
+@media (max-width: 1200px) {
+  .atlas-layout-grid {
+    grid-template-columns: 1fr 1.1fr;
+    gap: 30px;
+  }
+
+  .atlas-sidebar-panel {
+    grid-column: span 2;
+    height: auto;
+    max-height: 500px;
+  }
+}
+
+@media (max-width: 900px) {
   .atlas-layout-grid {
     grid-template-columns: 1fr;
     gap: 40px;
   }
 
-  .atlas-map-panel {
-    min-height: auto;
-    padding: 30px;
+  .atlas-sidebar-panel {
+    grid-column: span 1;
+  }
+
+  .atlas-info-cards {
+    flex-direction: row;
+  }
+  
+  .atlas-card-living, .atlas-card-stats {
+    flex: 1;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
   .atlas-section {
-    padding: 70px 6vw;
+    padding: 60px 4vw;
   }
 
-  .atlas-legend-container {
-    justify-content: flex-start;
-    gap: 15px 20px;
+  .atlas-info-cards {
+    flex-direction: column;
   }
 
   .atlas-map-panel {
-    padding: 20px;
+    padding: 10px;
+    min-height: auto;
   }
 }

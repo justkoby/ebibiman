@@ -72,11 +72,11 @@ const Footer = () => {
             <div className="footer-column hide-on-mobile">
               <h4 className="footer-col-title">Resources</h4>
               <ul className="footer-col-links">
-                <li><a href="#events">Events</a></li>
-                <li><a href="#events">News & Insights</a></li>
+                <li><a href="#/articles">Articles & Essays</a></li>
+                <li><a href="#/events-page">Events & Masterclasses</a></li>
                 <li><a href="#voices">Speaker Highlights</a></li>
-                <li><a href="#events">Media Centre</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#programmes">Programmes Directory</a></li>
+                <li><a href="#contact">Contact & Inquiries</a></li>
               </ul>
             </div>
 
